@@ -21,6 +21,14 @@ class Application extends \Awf\Application\Application
 	 */
 	public function initialise()
 	{
+		$isDebug       = defined('AKEEBADEBUG');
+		$isDevelopment = strpos(Uri::base(), 'local.web') !== false;
+
+		if (!$isDebug && $isDevelopment)
+		{
+			define('AKEEBADEBUG', 1);
+		}
+
 		// Let AWF know that the prefix for our system JavaScript is 'akeeba.System.'
 		\Awf\Html\Grid::$javascriptPrefix = 'akeeba.System.';
 
@@ -253,8 +261,8 @@ class Application extends \Awf\Application\Application
 	{
 		$this->getContainer()->mediaQueryKey = md5(microtime(false));
 
-		$isDebug       = !defined('AKEEBADEBUG');
-		$isDevelopment    = strpos(Uri::base(), 'local.web') !== false;
+		$isDebug       = defined('AKEEBADEBUG');
+		$isDevelopment = strpos(Uri::base(), 'local.web') !== false;
 
 		if (!$isDebug && !$isDevelopment)
 		{
