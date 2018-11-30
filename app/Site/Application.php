@@ -36,18 +36,18 @@ class Application extends \Awf\Application\Application
 		// Load the language files
 		$this->loadLanguages();
 
-		// TODO Use a different method to initialize the appConfig
-		$configPath = $this->container->appConfig->getDefaultPath();
+		// Load the configuration if it's present. IMPORTANT! The **first** .env file to have a certain option wins.
+		$configPaths = [
+			APATH_ROOT . '/config/.env.ci',
+			APATH_ROOT . '/config/.env.dev',
+			APATH_ROOT . '/config/.env',
+		];
 
-		// Load the configuration if it's present
-		if (@file_exists($configPath))
-		{
-			// Load the application's configuration
-			$this->container->appConfig->loadConfiguration();
+		// Load the application's configuration
+		$this->container->appConfig->loadConfiguration($configPaths);
 
-			// Session timeout check
-			$this->applySessionTimeout();
-		}
+		// Session timeout check
+		$this->applySessionTimeout();
 
 		// Load the application routes
 		$this->loadRoutes();
