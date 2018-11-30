@@ -13,6 +13,7 @@
     "php": ">=7.2.0",
     "ext-curl": "*",
     "akeeba/s3": "dev-master",
-    "akeeba/awf": "dev-development"
+    "akeeba/awf": "dev-development",
+    "symfony/dotenv": "v4.1.8"
   }
 }

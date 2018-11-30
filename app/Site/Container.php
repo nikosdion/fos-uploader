@@ -7,6 +7,8 @@
 
 namespace Site;
 
+use Site\Application\Configuration;
+
 class Container extends \Awf\Container\Container
 {
 	public function __construct(array $values = array())
@@ -14,6 +16,14 @@ class Container extends \Awf\Container\Container
 		if (!isset($values['application_name']))
 		{
 			$values['application_name'] = 'Site';
+		}
+
+		if (!isset($values['appConfig']))
+		{
+			$values['appConfig'] = function (Container $c)
+			{
+				return new Configuration($c);
+			};
 		}
 
 		if (!isset($values['session_segment_name']))
