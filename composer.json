@@ -1,0 +1,18 @@
+{
+  "name": "akeeba/uploads3poc",
+  "description": "Proof of Concept - Uploading to S3",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Nicholas K. Dionysopoulos",
+      "email": "nicholas@akeebabackup.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2.0",
+    "ext-curl": "*",
+    "akeeba/s3": "dev-master",
+    "akeeba/awf": "dev-development"
+  }
+}
