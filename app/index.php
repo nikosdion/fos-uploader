@@ -7,7 +7,7 @@
 
 // Include the autoloader
 /** @var Composer\Autoload\ClassLoader $autoloader */
-$autoloader = require_once __DIR__ . '/../vendor/autoload.php';
+$autoloader = require_once(__DIR__ . '/../vendor/autoload.php');
 
 // Load the platform defines
 require_once __DIR__ . '/defines.php';
@@ -19,11 +19,11 @@ if (defined('AKEEBADEBUG'))
 	ini_set('display_errors', 1);
 }
 
-// Add our app to the autoloader, if it's not already set
-$autoloader->addPsr4('Site', APATH_BASE);
-
 try
 {
+	// Add our app to the autoloader, if it's not already set
+	$autoloader->addPsr4('Site\\', APATH_BASE . '/Site');
+
 	// Create the container if it doesn't already exist
 	if (!isset($container))
 	{
@@ -50,7 +50,7 @@ try
 	// Clean-up and shut down
 	$application->close();
 }
-catch (Exception $exc)
+catch (Throwable $exc)
 {
 	$filename = APATH_THEMES . '/system/error.php';
 

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<project name="AkeebaSolo" description="Akeeba Solo" default="git">
+
+	<import file="${phing.dir}/../../../akeeba/buildfiles/phing/common.xml"/>
+
+	<!-- Default properties, set only if not already assigned in the build.properties file -->
+	<property name="dirs.phpapp" value="../app"/>
+
+	<!--
+	====================================================================================================
+	File sets
+	====================================================================================================
+	-->
+
+	<!-- The application -->
+	<fileset dir="${phing.dir}/.." id="app" expandsymboliclinks="true">
+		<include name="app/**"/>
+		<include name="vendor/**"/>
+
+		<!-- Skip the configuration -->
+		<exclude name="app/config/**"/>
+	</fileset>
+
+	<!--
+	====================================================================================================
+	Tasks - General
+	====================================================================================================
+	-->
+
+	<target name="git" description="Makes only packages, not the documentation"
+			depends="new-release,git-app">
+	</target>
+
+	<target name="git-app" description="Makes only packages, not the documentation"
+			depends="new-release-app,setup-properties,app-package">
+	</target>
+
+    <target name="new-common" description="Preparation before making any release">
+        <echo>Making sure the release directory exists</echo>
+        <mkdir dir="${dirs.release}" />
+
+        <echo>Clearing old temporary files</echo>
+        <delete quiet="true">
+            <fileset dir="${dirs.phpapp}/tmp">
+                <include name="**"/>
+                <exclude name=".htaccess"/>
+                <exclude name="web.config"/>
+            </fileset>
+        </delete>
+
+        <!-- Removing .DS_Store files -->
+        <echo>Removing .DS_Store files</echo>
+        <exec command="sh killDS.sh" dir="${dirs.root}"/>
+    </target>
+
+	<target name="documentation" description="Creates the documentation packages">
+	</target>
+
+	<target name="new-release" depends="new-common">
+		<echo>Emptying release directory</echo>
+		<delete dir="${dirs.release}" quiet="true" includeemptydirs="true" />
+		<mkdir dir="${dirs.release}" />
+	</target>
+
+	<target name="new-release-app" depends="new-common">
+		<echo>Removing Akeeba Solo files</echo>
+		<delete quiet="true" includeemptydirs="true">
+			<fileset dir="${dirs.release}">
+				<include name="akeeba_solo-*.zip" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="setup-properties" description="Set up version and build properties">
+		<!-- Initialize the build.date timestamp -->
+		<tstamp>
+			<format property="build.date" pattern="%Y-%m-%d"/>
+		</tstamp>
+
+		<!-- Initialize the version if it's not set -->
+		<if>
+			<equals arg1="${version}" arg2="git"/>
+			<then>
+				<gitversion workingcopy="${dirs.root}" propertyname="git.lastrevision"/>
+				<property name="version" value="rev${git.lastrevision}" override="true"/>
+			</then>
+		</if>
+
+		<filterchain id="standard-tokens">
+			<replacetokens begintoken="##" endtoken="##">
+				<token key="DATE" value="${build.date}"/>
+				<token key="VERSION" value="${version}"/>
+			</replacetokens>
+		</filterchain>
+	</target>
+
+	<!--
+	====================================================================================================
+	Tasks - Packages
+	====================================================================================================
+	-->
+
+	<target name="app-package" description="Component package build"
+			depends="new-release-app,setup-properties">
+
+		<!-- Create the application package (PRO) -->
+		<zipme basedir="${phing.dir}/.." destfile="${dirs.release}/app-${version}.zip"
+			   includeemptydirs="true">
+			<fileset refid="app"/>
+		</zipme>
+	</target>
+
+	<!--
+	====================================================================================================
+	Tasks - Project management
+	====================================================================================================
+	-->
+
+	<target name="relink" description="Project relinker">
+		<!-- TODO -->
+	</target>
+</project>

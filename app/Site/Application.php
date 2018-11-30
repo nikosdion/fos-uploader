@@ -24,14 +24,11 @@ class Application extends \Awf\Application\Application
 		// Let AWF know that the prefix for our system JavaScript is 'akeeba.System.'
 		\Awf\Html\Grid::$javascriptPrefix = 'akeeba.System.';
 
-		// This line must appear before the user manager initializes, or it won't find the users table!
-		$this->container->appConfig->set('user_table', '#__ak_users');
-
 		// If the PHP session save path is not writable we will use the 'session' subdirectory inside our tmp directory
 		$this->discoverSessionSavePath();
 
 		// Set up the template (theme) to use
-		$this->setTemplate('poc');
+		$this->setTemplate('default');
 
 		// Load the language files
 		$this->loadLanguages();
