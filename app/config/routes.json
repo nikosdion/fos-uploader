@@ -1,0 +1,52 @@
+[
+  {
+    "path": "login",
+    "matchVars": {
+      "view": "login"
+    },
+    "pushVars": {
+      "view": "login",
+      "task": "main"
+    }
+  },
+  {
+    "path": "hello",
+    "matchVars": {
+      "view": "main"
+    },
+    "pushVars": {
+      "view": "main",
+      "task": "main"
+    }
+  },
+  {
+    "path": "upload",
+    "matchVars": {
+      "view": "upload"
+    },
+    "pushVars": {
+      "view": "upload",
+      "task": "main"
+    }
+  },
+  {
+    "path": "thankyou",
+    "matchVars": {
+      "view": "thankyou"
+    },
+    "pushVars": {
+      "view": "thankyou",
+      "task": "main"
+    }
+  },
+  {
+    "path": "expired",
+    "matchVars": {
+      "view": "expired"
+    },
+    "pushVars": {
+      "view": "expired",
+      "task": "main"
+    }
+  }
+]
