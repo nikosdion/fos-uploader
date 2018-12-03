@@ -367,6 +367,11 @@ class Application extends \Awf\Application\Application
 		{
 			$this->container->input->set('view', 'login');
 		}
+	}
 
+	public function route($url = null)
+	{
+		$uri = Uri::getInstance();
+		$this->container->router->parse($uri->toString(), false);
 	}
 }

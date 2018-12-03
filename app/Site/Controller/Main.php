@@ -38,4 +38,39 @@ class Main extends Controller
 		return parent::execute($task);
 	}
 
+	public function setinfo(): bool
+	{
+		$name    = trim($this->input->post->getString('fullname', ''));
+		$agree   = $this->input->post->get('agreetotos', false) == 'on';
+		$session = $this->container->segment;
+		$valid   = true;
+
+		$session->set('name', $name);
+		$session->set('agree', $agree);
+
+		if (empty($name))
+		{
+			$valid = false;
+			$msg   = Text::_('SITE_ERR_NAME_EMPTY');
+			$this->container->application->enqueueMessage($msg, 'error');
+		}
+
+		if (!$agree)
+		{
+			$valid = false;
+			$msg   = Text::_('SITE_ERR_TOS_ACCEPT');
+			$this->container->application->enqueueMessage($msg, 'error');
+		}
+
+		$redirectURL = $this->container->router->route('index.php?view=upload');
+
+		if (!$valid)
+		{
+			$redirectURL = $this->container->router->route('index.php?view=main');
+		}
+
+		$this->setRedirect($redirectURL);
+
+		return true;
+	}
 }

@@ -15,8 +15,17 @@
       "view": "main"
     },
     "pushVars": {
-      "view": "main",
-      "task": "main"
+      "view": "main"
+    }
+  },
+  {
+    "path": "upload/presigned",
+    "matchVars": {
+      "view": "upload"
+    },
+    "pushVars": {
+      "view": "upload",
+      "task": "presigned"
     }
   },
   {
