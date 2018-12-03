@@ -16,7 +16,7 @@ class Html extends \Awf\Mvc\View
 	public $accept = false;
 
 	/**
-	 * Runs before showing the main page of the application
+	 * Runs before showing the page where you enter your name and agree to TOS.
 	 *
 	 * @return  bool
 	 */

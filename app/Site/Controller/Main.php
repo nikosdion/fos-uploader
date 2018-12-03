@@ -15,7 +15,16 @@ class Main extends Controller
 {
 	use RequireShortcode;
 
-	public function execute($task)
+	/**
+	 * Runs when executing a task. Used to verify that a valid shortcode exists.
+	 *
+	 * @param   string  $task
+	 *
+	 * @return  bool|null
+	 *
+	 * @throws  \Exception
+	 */
+	public function execute($task): ?bool
 	{
 		if (!$this->isValidShortcode())
 		{
@@ -38,6 +47,11 @@ class Main extends Controller
 		return parent::execute($task);
 	}
 
+	/**
+	 * Form handler for the name and agree to TOS fields. Always redirects.
+	 *
+	 * @return  bool
+	 */
 	public function setinfo(): bool
 	{
 		$name    = trim($this->input->post->getString('fullname', ''));
