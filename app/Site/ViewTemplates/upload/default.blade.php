@@ -5,18 +5,10 @@
  * @license    proprietary
  */
 
-$js = <<< JS
-
-akeeba.System.documentReady(function() {
-});
-
-JS;
-
 ?>
 @js('media://js/system.js')
 @js('media://js/modal.js')
 @js('media://js/upload.js')
-@inlineJs($js)
 
 <div class="AKEEBA_MASTER_FORM_STYLING akeeba-form--stretch">
 	<div class="akeeba-panel--teal">
@@ -48,11 +40,9 @@ JS;
 			<span id="totalSize"></span>&nbsp;bytes
 		</p>
 
-		<div class="akeeba-form-group--pull-right">
-			<div class="akeeba-form-group--actions">
-				<button type="submit" class="akeeba-btn">Upload</button>
-			</div>
-		</div>
+		<p id="uploadButton">
+			<button type="submit" class="akeeba-btn--green--big">Upload</button>
+		</p>
 
 
 		<div id="thumbnails" class="akeeba-grid--small">

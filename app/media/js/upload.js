@@ -8,7 +8,8 @@ if (typeof akeeba.Upload === "undefined")
 	akeeba.Upload = {
 		totalFiles: 0,
 		totalSize: 0,
-		files: {}
+		files: {},
+		processingSelections: 0
 	};
 }
 
@@ -22,6 +23,15 @@ akeeba.Upload.updateUI = function ()
 		document.getElementById("previewContainer").style.display = "none";
 
 		return;
+	}
+
+	if (akeeba.Upload.processingSelections)
+	{
+		document.getElementById('uploadButton').style.display = 'none';
+	}
+	else
+	{
+		document.getElementById('uploadButton').style.display = 'block';
 	}
 
 	document.getElementById("previewContainer").style.display = "block";
@@ -83,6 +93,7 @@ akeeba.Upload.handleFiles = function (files, appendTo)
 			continue;
 		}
 
+		akeeba.Upload.processingSelections++;
 		akeeba.Upload.getFileThumb(file, appendTo);
 	}
 };
@@ -131,8 +142,17 @@ akeeba.Upload.appendThumb = function (url, file, appendTo)
 	var img            = document.createElement("img");
 	img.src            = url;
 	img.style.maxWidth = "120";
+	img.style.maxHeight = "120";
 	akeeba.System.data.set(img, "uuid", uuid);
 	appendTo.appendChild(img);
+
+	// Mark one file as processed
+	akeeba.Upload.processingSelections--;
+
+	if (akeeba.Upload.processingSelections < 0)
+	{
+		akeeba.Upload.processingSelections = 0;
+	}
 
 	// Finally, update the UI
 	akeeba.Upload.updateUI();
@@ -210,11 +230,7 @@ akeeba.Upload.getVideoThumb = function (file, appendTo)
 
 			if (success)
 			{
-				var img            = document.createElement("img");
-				img.src            = image;
-				img.style.maxWidth = "120";
-				akeeba.System.data.set(img, "file", file);
-				appendTo.appendChild(img);
+				akeeba.Upload.appendThumb(image, file, appendTo);
 				URL.revokeObjectURL(url);
 			}
 
