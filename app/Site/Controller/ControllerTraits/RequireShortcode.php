@@ -63,6 +63,11 @@ trait RequireShortcode
 	{
 		$requestCode = $this->input->getString('shortcode', '');
 
-		return $this->container->segment->get('shortcode', $requestCode);
+		if ($requestCode)
+		{
+			return $requestCode;
+		}
+
+		return $this->container->segment->get('shortcode', '');
 	}
 }

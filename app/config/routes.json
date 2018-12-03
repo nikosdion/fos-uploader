@@ -38,15 +38,5 @@
       "view": "thankyou",
       "task": "main"
     }
-  },
-  {
-    "path": "expired",
-    "matchVars": {
-      "view": "expired"
-    },
-    "pushVars": {
-      "view": "expired",
-      "task": "main"
-    }
   }
 ]

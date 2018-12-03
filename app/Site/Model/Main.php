@@ -14,7 +14,7 @@ use Awf\Mvc\Model;
 class Main extends Model
 {
 	/**
-	 * Does the provided shortcode correspond to a past or current event?
+	 * Does the provided shortcode correspond to a current event?
 	 *
 	 * @param   string  $code
 	 *
@@ -22,8 +22,8 @@ class Main extends Model
 	 */
 	public function isValidShortcode(string $code): bool
 	{
-		// TODO Check the database. Get all codes, even for expired events
-		$validCodes = ['TEST', 'EXPIRED'];
+		// TODO Check the database. Get all codes, EXCEPT for expired events
+		$validCodes = ['TEST'];
 
 		// Cast codes to lowercase for safe comparison
 		$validCodes = array_map('strtolower', $validCodes);

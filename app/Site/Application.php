@@ -260,7 +260,7 @@ class Application extends \Awf\Application\Application
 				 * session!). Therefore we need to modify the effective view. We do so through the return array.
 				 */
 				return [
-					'view' => 'main'
+					'view' => 'main',
 				];
 			},
 		]);
@@ -288,8 +288,8 @@ class Application extends \Awf\Application\Application
 	/**
 	 * Creates or updates the custom session save path
 	 *
-	 * @param   string   $path    The custom session save path
-	 * @param   boolean  $silent  Should I suppress all errors?
+	 * @param   string  $path   The custom session save path
+	 * @param   boolean $silent Should I suppress all errors?
 	 *
 	 * @return  void
 	 *
@@ -354,13 +354,18 @@ class Application extends \Awf\Application\Application
 	 */
 	private function redirectToLogin(): void
 	{
+		$requestCode = $this->container->input->getString('shortcode', '');
+
+		if (!empty($requestCode))
+		{
+			$this->container->segment->set('shortcode', $requestCode);
+		}
+
 		$shortCode = $this->container->segment->get('shortcode', '');
 
 		if (empty($shortCode))
 		{
-			$this->container->input->setData(array(
-				'view' => 'login',
-			));
+			$this->container->input->set('view', 'login');
 		}
 
 	}
