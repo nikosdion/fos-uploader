@@ -7,6 +7,7 @@
 
 namespace Site;
 
+use Awf\Router\Rule;
 use Awf\Text\Text;
 use Awf\Uri\Uri;
 use Awf\User\ManagerInterface;
@@ -57,13 +58,8 @@ class Application extends \Awf\Application\Application
 		// Load the application routes
 		$this->loadRoutes();
 
-		// Attach the user privileges to the user manager
-		$manager = $this->container->userManager;
-
-		$this->attachPrivileges($manager);
-
 		// Show the login page when necessary
-		//$this->redirectToLogin();
+		$this->redirectToLogin();
 
 		// Set up the media query key
 		$this->setupMediaVersioning();
@@ -212,7 +208,7 @@ class Application extends \Awf\Application\Application
 	protected function loadRoutes(): void
 	{
 		// Load the routes from JSON, if they are present
-		$routesJSONPath = $this->container->basePath . '/config/routes.json';
+		$routesJSONPath = $this->container->basePath . '/../config/routes.json';
 		$router         = $this->container->router;
 		$importedRoutes = false;
 
@@ -228,28 +224,47 @@ class Application extends \Awf\Application\Application
 		}
 
 		// If we could not import routes from routes.json, try loading routes.php
-		$routesPHPPath = $this->container->basePath . '/config/routes.php';
+		$routesPHPPath = $this->container->basePath . '/../config/routes.php';
 
 		if (!$importedRoutes && @file_exists($routesPHPPath))
 		{
 			require_once $routesPHPPath;
 		}
-	}
 
-	/**
-	 * Attach custom privileges to the application
-	 *
-	 * @param   ManagerInterface  $manager
-	 *
-	 * @return  void
-	 */
-	protected function attachPrivileges(ManagerInterface $manager): void
-	{
-		// The only relevant privilege is frontend.upload
-		$manager->registerPrivilegePlugin('frontend', '\\Site\\Application\\UserPrivileges');
+		// Finally, add our custom route handler which interprets the first section of the path as a shortcode
+		$container     = $this->container;
+		$shortcodeRule = new Rule([
+			'parseCallable' => function ($path) use ($container) {
+				if (empty($path))
+				{
+					return null;
+				}
 
-		// In the frontend we use a lax security model where the event attendees need to supply an event shortcode.
-		$manager->registerAuthenticationPlugin('shortcode', '\\Site\\Application\\UserAuthenticationShortcode');
+				while (strpos($path, '//') !== false)
+				{
+					$path = str_replace('//', '/', $path);
+				}
+
+				if (empty($path))
+				{
+					return null;
+				}
+
+				$parts = explode('/', $path);
+
+				$container->segment->set('shortcode', $parts[0]);
+
+				/**
+				 * At this point, Application::redirectToLogin() has already run and will have set view=login because
+				 * there was no shortcode present in the session (since we literally just set the shortcode to the
+				 * session!). Therefore we need to modify the effective view. We do so through the return array.
+				 */
+				return [
+					'view' => 'main'
+				];
+			},
+		]);
+		$router->addRule($shortcodeRule);
 	}
 
 	/**
@@ -327,4 +342,26 @@ class Application extends \Awf\Application\Application
 		}
 	}
 
+	/**
+	 * Redirect the user to the login page if they have not already provided a valid shortcode.
+	 *
+	 * IMPORTANT: This is called before the Route rules. Therefore, if you are using a shortcode in the URL, e.g.
+	 *            https://www.example.com/MYCODE, you will still trigger the rule to set the view to login. However, in
+	 *            this case the Route rule will trigger before dispatching the application, resetting the view to Main.
+	 *            Keep this in mind when debugging routing issues.
+	 *
+	 * @return  void
+	 */
+	private function redirectToLogin(): void
+	{
+		$shortCode = $this->container->segment->get('shortcode', '');
+
+		if (empty($shortCode))
+		{
+			$this->container->input->setData(array(
+				'view' => 'login',
+			));
+		}
+
+	}
 }
