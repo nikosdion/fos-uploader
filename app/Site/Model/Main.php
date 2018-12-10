@@ -61,7 +61,7 @@ class Main extends Model
 		$name = trim(mb_strtolower($name));
 
 		// Remove any duplicate whitespace, and ensure all characters are alphanumeric
-		$name = preg_replace(array('/\s+/', '/[^\p{L}-_]/u'), array('-', ''), $name);
+		$name = preg_replace(array('/\s+/', '/[^\p{L}\-_]/u'), array('-', ''), $name);
 
 		// Limit length
 		if (strlen($name) > 100)

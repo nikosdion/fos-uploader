@@ -16,6 +16,29 @@ use Exception;
 class Application extends \Awf\Application\Application
 {
 	/**
+	 * Public constructor
+	 *
+	 * @param Container $container Configuration parameters
+	 *
+	 * @return Application
+	 */
+	public function __construct(Container $container = null)
+	{
+		// Create or attach the DI container
+		if (!is_object($container) || !($container instanceof Container))
+		{
+			$container = new Container();
+		}
+
+		$this->container = $container;
+
+		// Session timeout check
+		$this->applySessionTimeout();
+
+		parent::__construct($container);
+	}
+
+	/**
 	 * Initialize the application
 	 *
 	 * @throws Exception
@@ -51,9 +74,6 @@ class Application extends \Awf\Application\Application
 
 		// Load the application's configuration
 		$this->container->appConfig->loadConfiguration($configPaths);
-
-		// Session timeout check
-		$this->applySessionTimeout();
 
 		// Load the application routes
 		$this->loadRoutes();
