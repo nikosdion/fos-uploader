@@ -59,6 +59,13 @@ class Configuration extends \Awf\Application\Configuration
 		// User management
 		'USER_TABLE'     => 'user_table',
 		'USER_CLASS'     => 'user_class',
+
+		// Amazon S3
+		'S3_ACCESS' => 's3.access',
+		'S3_SECRET' => 's3.secret',
+		'S3_REGION' => 's3.region',
+		'S3_BUCKET' => 's3.bucket',
+		'S3_PREFIX' => 's3.prefix',
 	];
 
 	/**
