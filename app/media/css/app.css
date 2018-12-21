@@ -21,3 +21,10 @@ img.thumbRemove {
     max-width: 120px;
     max-height: 120px;
 }
+
+div.thumbProgress {
+    float: right;
+    position: absolute !important;
+    width: 120px;
+    bottom: -16px;
+}

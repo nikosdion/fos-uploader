@@ -7,11 +7,12 @@
 
 ?>
 @js('media://js/system.js')
+@js('media://js/ajax.js')
 @js('media://js/modal.js')
 @js('media://js/upload.js')
 
 <div class="AKEEBA_MASTER_FORM_STYLING akeeba-form--stretch">
-	<div class="akeeba-panel--teal">
+	<div class="akeeba-panel--teal" id="uploadWrapper">
 		<header class="akeeba-block-header">
 			<h1>Choose photos and videos to upload</h1>
 		</header>
@@ -41,7 +42,12 @@
 		</p>
 
 		<p id="uploadButton">
-			<button type="submit" class="akeeba-btn--green--big">Upload</button>
+			<button
+					type="submit" class="akeeba-btn--green--big"
+					onclick="akeeba.Upload.uploadAllFiles(); return false;"
+			>
+				Upload
+			</button>
 		</p>
 
 

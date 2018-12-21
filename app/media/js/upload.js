@@ -157,12 +157,23 @@ akeeba.Upload.appendThumb = function (url, file, appendTo)
 	removeBtn.src       = '/media/images/modal-close.png';
 	removeBtn.className = 'thumbRemove';
 
+	// Create a progress bar
+	var elProgress           = document.createElement("div");
+	elProgress.className     = 'akeeba-progress thumbProgress';
+	elProgress.style.display = 'none';
+
+	var elProgressFill         = document.createElement('div');
+	elProgressFill.className   = 'akeeba-progress-fill thumbProgressFill';
+	elProgressFill.style.width = 0;
+	elProgress.appendChild(elProgressFill);
+
 	// Create the thumbnail IMG
-	var img             = document.createElement("img");
-	img.src             = url;
+	var img       = document.createElement("img");
+	img.src       = url;
 	img.className = 'thumbPreview';
 
 	div.appendChild(removeBtn);
+	div.appendChild(elProgress);
 	div.appendChild(img);
 	appendTo.appendChild(div);
 
@@ -277,15 +288,135 @@ akeeba.Upload.getVideoThumb = function (file, appendTo)
 };
 
 /**
+ * Hide/show the upload UI: upload form, Upload button and the remove buttons on all images
  *
- * @param {File} file
+ * @param   {boolean}  displayed
  */
-akeeba.Upload.uploadFile = function(file)
+akeeba.Upload.setUIDisplayState = function(displayed)
 {
-	// TODO Find the image element using the data-uuid attribute
-	// document.querySelectorAll('img[data-uuid="5CAC6961-9E24-4B3E-8BBC-0996BC3DA11C"]')[0]
+	var display = displayed ? 'inline-block' : 'none';
 
-	// TODO XHR to get the presigned upload URL
+	document.getElementById('uploadWrapper').style.display = display;
+	document.getElementById('uploadButton').style.display  = display;
 
-	// TODO XHR to upload the file and overlay a progress bar on top of the thumbnail
+	var allImages = document.querySelectorAll('#thumbnails div.thumbContainer');
+
+	for (var i = 0; i < allImages.length; i++)
+	{
+		var elContainer           = allImages[i];
+		var elRemoveBtn           = elContainer.querySelectorAll('img.thumbRemove')[0];
+		elRemoveBtn.style.display = display;
+	}
+};
+
+akeeba.Upload.uploadAllFiles = function () {
+	// Hide the UI
+	akeeba.Upload.setUIDisplayState(false);
+
+	window.setTimeout(function () {
+		akeeba.Upload.uploadNextFile();
+	}, 100);
+};
+
+akeeba.Upload.uploadNextFile = function() {
+	// Get the next img
+	var allImages   = document.querySelectorAll('#thumbnails div.thumbContainer');
+	var elContainer = allImages[0];
+
+	// Get the File object
+	var uuid = akeeba.System.data.get(elContainer, 'uuid');
+	var file = akeeba.Upload.files[uuid];
+	var data = {
+		filename: file.name,
+		mime:     file.type,
+		size:     file.size
+	};
+
+	console.log("Getting presigned URL for " + file.name + ' (' + file.type + ')');
+
+	akeeba.System.params.AjaxURL = '/upload/presigned';
+	akeeba.System.doAjax(data, function (presignedURL) {
+		if (presignedURL === false)
+		{
+			console.log("Failed to get presigned URL");
+			akeeba.Upload.setUIDisplayState(true);
+			// FIXME Better error handling
+			akeeba.System.defaultErrorHandler('FIXME -- The server returned false -- cannot upload any files');
+
+			return;
+		}
+
+		console.log("Got presigned URL: " + presignedURL);
+		setTimeout(function () {
+			akeeba.Upload.uploadFile(file, presignedURL, elContainer);
+		}, 100);
+	}, function (msg) {
+		akeeba.Upload.setUIDisplayState(true);
+		// FIXME Better error handling
+		akeeba.System.defaultErrorHandler(msg);
+	})
+
+};
+
+/**
+ *
+ * @param   {File}     file          The File object we're uploading
+ * @param   {string}   presignedURL  The presigned URL we're uploading to
+ * @param   {Element}  elContainer   The container of the file's thumbnail
+ */
+akeeba.Upload.uploadFile = function(file, presignedURL, elContainer) {
+	var elProgress           = elContainer.querySelectorAll('div.thumbProgress')[0];
+	var elPBFill             = elProgress.querySelectorAll('div.thumbProgressFill')[0];
+	elProgress.style.display = 'grid';
+	elPBFill.style.width     = 0;
+
+	var successCallbackUpload = function(responseText, statusText, xhr) {
+		// Update the UI
+		akeeba.Upload.totalSize -= file.size;
+		akeeba.Upload.totalFiles--;
+		akeeba.Upload.updateUI();
+
+		elContainer.parentElement.removeChild(elContainer);
+
+		// If no more files, redirect
+		var allImages   = document.querySelectorAll('#thumbnails div.thumbContainer');
+
+		if (allImages.length === 0)
+		{
+			window.location = '/thankyou';
+
+			return;
+		}
+
+		// If I do have more files, call uploadNextFile again
+		setTimeout(function() {
+			akeeba.Upload.uploadNextFile();
+		}, 100);
+	};
+
+	var errorCallbackUpload = function(xhr, type) {
+		akeeba.Upload.setUIDisplayState(true);
+		// TODO Improve error handling
+		akeeba.System.defaultErrorHandler('An error occurred: ' + type);
+	};
+
+	var ajaxStructure = {
+		type:        "PUT",
+		cache:       false,
+		data:        file,
+		contentType: file.type,
+		timeout:     3600000,
+		success:     successCallbackUpload,
+		error:       errorCallbackUpload,
+		progress:    function(event) {
+			if (event.lengthComputable) {
+				var percent = Math.round((event.loaded / event.total) * 100);
+				console.log('Uploaded ' + percent + '%');
+
+				elPBFill.style.width = 120 * percent / 100;
+			}
+		}
+	};
+
+	akeeba.Ajax.ajax(presignedURL, ajaxStructure);
 };

@@ -9,6 +9,8 @@
 namespace Site\Controller;
 
 
+use Akeeba\Engine\Postproc\Connector\S3v4\Acl;
+use Akeeba\Engine\Postproc\Connector\S3v4\Input;
 use Akeeba\Engine\Postproc\Connector\S3v4\Request as S3Request;
 use Awf\Container\Container;
 use Awf\Mvc\Controller;
@@ -79,8 +81,9 @@ class Upload extends Controller
 	public function presigned()
 	{
 		$folderName = $this->container->segment->get('foldername', '');
-		$fileName   = $this->input->getPath('filename', '');
-		$mime       = $this->input->getString('mime', '');
+		$fileName   = $this->input->post->getPath('filename', '');
+		$mime       = $this->input->post->getString('mime', '');
+		$size       = $this->input->post->getInt('size', 0);
 
 		if ($this->sanityChecksRequireRedirect() || empty($folderName) || empty($fileName) || empty($mime))
 		{
@@ -88,7 +91,7 @@ class Upload extends Controller
 			$this->message  = '';
 
 			@ob_end_clean();
-			echo json_encode(false);
+			echo '###' . json_encode(false) . '###';
 
 			$this->container->application->close();
 
@@ -115,9 +118,18 @@ class Upload extends Controller
 		$s3Config = $container->s3->getConfiguration();
 		$uri      = str_replace('%2F', '/', rawurlencode($uri));
 		$request  = new S3Request('PUT', $bucket, $uri, $s3Config);
+		$fakeData = '';
+		$input = Input::createFromData($fakeData);
+		$input->setType($mime);
+		$request->setInput($input);
+		$input->setSize($size);
+		$request->setHeader('Content-Type', $mime);
+		$request->setHeader('Content-Length', $size);
+		// Do not add that header, it messes up the presigned URL
+		//$request->setAmzHeader('x-amz-acl', Acl::ACL_PRIVATE);
 
 		@ob_end_clean();
-		echo json_encode($request->getAuthenticatedURL(60, true));
+		echo '###' . json_encode($request->getAuthenticatedURL(60, true)) . '###';
 
 		$this->container->application->close();
 	}
