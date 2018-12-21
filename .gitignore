@@ -85,6 +85,8 @@ app/media/fonts/Open_Sans
 ### Application
 # Dot env files
 app/config/.env
+app/config/.env.dev
+app/config/.env.ci
 
 # Temporary folder
 app/tmp/*

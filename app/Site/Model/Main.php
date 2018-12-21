@@ -52,6 +52,20 @@ class Main extends Model
 		return in_array($code, $expiredCodes);
 	}
 
+	/**
+	 * Get the Amazon S3 folder name for this project
+	 *
+	 * @param   string  $code  The project code
+	 *
+	 * @return  string  The S3 folder name for the project
+	 */
+	public function getProjectFolderName(string $code): string
+	{
+		// TODO Check the database. Get the folder name for the project.
+
+		return $code;
+	}
+
 	public function getFolderNameFromName(string $name)
 	{
 		// Remove any '-' from the string they will be used as concatenator

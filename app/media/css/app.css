@@ -1,0 +1,23 @@
+/***********************************************************************************************************************
+ * Upload page
+ **********************************************************************************************************************/
+.thumbContainer {
+    position: relative;
+}
+
+img.thumbRemove {
+    max-width: 18px;
+    max-height: 18px;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 2px;
+    position: absolute;
+    float: right;
+    background-color: #fff;
+    right: 0;
+}
+
+.thumbPreview {
+    max-width: 120px;
+    max-height: 120px;
+}

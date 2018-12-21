@@ -1,3 +1,12 @@
+/**
+ * FOS Image Uploader
+ *
+ * @package     fos
+ * @copyright   Copyright (c)2018-2019 Akeeba Ltd & Fos Photography
+ * @license     proprietary
+ *
+ * Written by Akeeba Ltd – https://www.akeeba.com
+ */
 if (typeof akeeba === "undefined")
 {
 	akeeba = {};
@@ -138,13 +147,24 @@ akeeba.Upload.appendThumb = function (url, file, appendTo)
 	akeeba.Upload.totalSize += file.size;
 	akeeba.Upload.totalFiles += 1;
 
-	// Create the thumbnail
-	var img            = document.createElement("img");
-	img.src            = url;
-	img.style.maxWidth = "120";
-	img.style.maxHeight = "120";
-	akeeba.System.data.set(img, "uuid", uuid);
-	appendTo.appendChild(img);
+	// Create a containing DIV
+	var div = document.createElement("div");
+	akeeba.System.data.set(div, "uuid", uuid);
+	div.className = 'thumbContainer';
+
+	// Create an X button
+	var removeBtn       = document.createElement("img");
+	removeBtn.src       = '/media/images/modal-close.png';
+	removeBtn.className = 'thumbRemove';
+
+	// Create the thumbnail IMG
+	var img             = document.createElement("img");
+	img.src             = url;
+	img.className = 'thumbPreview';
+
+	div.appendChild(removeBtn);
+	div.appendChild(img);
+	appendTo.appendChild(div);
 
 	// Mark one file as processed
 	akeeba.Upload.processingSelections--;
@@ -158,18 +178,24 @@ akeeba.Upload.appendThumb = function (url, file, appendTo)
 	akeeba.Upload.updateUI();
 
 	// Remove file on clicking its preview
-	akeeba.System.addEventListener(img, "click", function (event) {
+	akeeba.System.addEventListener(removeBtn, "click", function (event) {
+		// Get a reference to the containing DIV
+		var elContainer = this.parentNode;
+
 		// Remove this file's size from the running total
-		var uuid = akeeba.System.data.get(this, "uuid");
+		var uuid = akeeba.System.data.get(elContainer, "uuid");
 		var file = akeeba.Upload.files[uuid];
 
 		akeeba.Upload.totalSize -= file.size;
 		akeeba.Upload.totalFiles -= 1;
 
+		// Remove the file information
 		delete akeeba.Upload.files[uuid];
 
-		this.parentNode.removeChild(this);
+		// Remove the thumbnail
+		elContainer.parentNode.removeChild(elContainer);
 
+		// Update the status counters
 		akeeba.Upload.updateUI();
 	});
 };
@@ -248,4 +274,18 @@ akeeba.Upload.getVideoThumb = function (file, appendTo)
 	};
 
 	fileReader.readAsArrayBuffer(file);
+};
+
+/**
+ *
+ * @param {File} file
+ */
+akeeba.Upload.uploadFile = function(file)
+{
+	// TODO Find the image element using the data-uuid attribute
+	// document.querySelectorAll('img[data-uuid="5CAC6961-9E24-4B3E-8BBC-0996BC3DA11C"]')[0]
+
+	// TODO XHR to get the presigned upload URL
+
+	// TODO XHR to upload the file and overlay a progress bar on top of the thumbnail
 };
