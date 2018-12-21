@@ -19,16 +19,6 @@
     }
   },
   {
-    "path": "upload/presigned",
-    "matchVars": {
-      "view": "upload"
-    },
-    "pushVars": {
-      "view": "upload",
-      "task": "presigned"
-    }
-  },
-  {
     "path": "upload",
     "matchVars": {
       "view": "upload"
@@ -36,6 +26,16 @@
     "pushVars": {
       "view": "upload",
       "task": "main"
+    }
+  },
+  {
+    "path": "upload/presigned",
+    "matchVars": {
+      "view": "upload"
+    },
+    "pushVars": {
+      "view": "upload",
+      "task": "presigned"
     }
   },
   {
