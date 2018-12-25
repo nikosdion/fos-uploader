@@ -1,16 +1,16 @@
 /**
  * @package     Solo
- * @copyright   Copyright (c)2014-2018 Nicholas K. Dionysopoulos / Akeeba Ltd
+ * @copyright Copyright (c)2014-2018 Nicholas K. Dionysopoulos / Akeeba Ltd
  * @license     GNU GPL version 3 or later
  */
 
 // Object initialisation
-if (typeof akeeba === "undefined")
+if (typeof akeeba === 'undefined')
 {
 	var akeeba = {};
 }
 
-if (typeof akeeba.Modal === "undefined")
+if (typeof akeeba.Modal === 'undefined')
 {
 	/*!
 	 * jsModal - A pure JavaScript modal dialog engine v1.0d
@@ -32,8 +32,7 @@ if (typeof akeeba.Modal === "undefined")
 	 * – [Oct 2016] open() returns the Modal object so that we can interact with it through external code.
 	 * – [Nov 2016] Added parameter "iframe" where you can give a URL to load inside an IFRAME.
 	 */
-	akeeba.Modal = (function ()
-	{
+	akeeba.Modal = (function () {
 		"use strict";
 		/*global document: false */
 		/*global window: false */
@@ -42,11 +41,11 @@ if (typeof akeeba.Modal === "undefined")
 		var method           = {},
 			settings         = {},
 
-			modalOverlay     = document.createElement("div"),
-			modalContainer   = document.createElement("div"),
-			modalHeader      = document.createElement("div"),
-			modalContent     = document.createElement("div"),
-			modalClose       = document.createElement("div"),
+			modalOverlay     = document.createElement('div'),
+			modalContainer   = document.createElement('div'),
+			modalHeader      = document.createElement('div'),
+			modalContent     = document.createElement('div'),
+			modalClose       = document.createElement('div'),
 
 			inheritedElement = null,
 
@@ -55,23 +54,22 @@ if (typeof akeeba.Modal === "undefined")
 			closeModalEvent,
 
 			defaultSettings  = {
-				width: "auto",
-				height: "auto",
-				lock: false,
-				hideClose: false,
-				draggable: false,
-				closeAfter: 0,
-				openCallback: false,
+				width:         'auto',
+				height:        'auto',
+				lock:          false,
+				hideClose:     false,
+				draggable:     false,
+				closeAfter:    0,
+				openCallback:  false,
 				closeCallback: false,
-				hideOverlay: false
+				hideOverlay:   false
 			};
 
 		// I seem to be getting confused all the time
-		method.show = function (parameters)
-		{
+		method.show = function (parameters) {
 			try
 			{
-				console.log("Using akeeba.Modal.show() is deprecated. Use .open() instead.");
+				console.log('Using akeeba.Modal.show() is deprecated. Use .open() instead.');
 			}
 			catch (e)
 			{
@@ -82,8 +80,7 @@ if (typeof akeeba.Modal === "undefined")
 		};
 
 		// Open the modal
-		method.open = function (parameters)
-		{
+		method.open = function (parameters) {
 			settings.width         = parameters.width || defaultSettings.width;
 			settings.height        = parameters.height || defaultSettings.height;
 			settings.lock          = parameters.lock || defaultSettings.lock;
@@ -94,12 +91,11 @@ if (typeof akeeba.Modal === "undefined")
 			settings.openCallback  = parameters.openCallback || defaultSettings.openCallback;
 			settings.hideOverlay   = parameters.hideOverlay || defaultSettings.hideOverlay;
 
-			centerModal = function ()
-			{
+			centerModal = function () {
 				method.center({});
 			};
 
-			modalContent.innerHTML = "";
+			modalContent.innerHTML = '';
 			var element            = null;
 
 			if (parameters.content)
@@ -110,7 +106,7 @@ if (typeof akeeba.Modal === "undefined")
 			{
 				element = parameters.inherit;
 
-				if (typeof parameters.inherit == "string")
+				if (typeof parameters.inherit == 'string')
 				{
 					element = window.document.querySelector(parameters.inherit);
 				}
@@ -127,17 +123,17 @@ if (typeof akeeba.Modal === "undefined")
 			}
 			else if (parameters.iframe)
 			{
-				element = window.document.createElement("iframe");
-				element.setAttribute("src", parameters.iframe);
-				element.setAttribute("width", parameters.width);
-				element.setAttribute("height", parameters.height);
-				element.setAttribute("frameborder", 0);
-				element.setAttribute("marginheight", 0);
-				element.setAttribute("marginwidth", 0);
+				element = window.document.createElement('iframe');
+				element.setAttribute('src', parameters.iframe);
+				element.setAttribute('width', parameters.width);
+				element.setAttribute('height', parameters.height);
+				element.setAttribute('frameborder', 0);
+				element.setAttribute('marginheight', 0);
+				element.setAttribute('marginwidth', 0);
 				modalContent.appendChild(element);
 			}
 
-			modalContainer.style.display = "block";
+			modalContainer.style.display = 'block';
 			modalContainer.style.width   = settings.width;
 			modalContainer.style.height  = settings.height;
 
@@ -145,24 +141,22 @@ if (typeof akeeba.Modal === "undefined")
 
 			if (settings.lock || settings.hideClose)
 			{
-				modalClose.style.visibility = "hidden";
+				modalClose.style.visibility = 'hidden';
 			}
 			if (!settings.hideOverlay)
 			{
-				modalOverlay.style.visibility = "visible";
+				modalOverlay.style.visibility = 'visible';
 			}
-			modalContainer.style.visibility = "visible";
+			modalContainer.style.visibility = 'visible';
 
-			document.onkeypress = function (e)
-			{
+			document.onkeypress = function (e) {
 				if (e.keyCode === 27 && settings.lock !== true)
 				{
 					method.close();
 				}
 			};
 
-			modalClose.onclick   = function ()
-			{
+			modalClose.onclick   = function () {
 				if (!settings.hideClose)
 				{
 					method.close();
@@ -172,8 +166,7 @@ if (typeof akeeba.Modal === "undefined")
 					return false;
 				}
 			};
-			modalOverlay.onclick = function ()
-			{
+			modalOverlay.onclick = function () {
 				if (!settings.lock)
 				{
 					method.close();
@@ -186,33 +179,30 @@ if (typeof akeeba.Modal === "undefined")
 
 			if (window.addEventListener)
 			{
-				window.addEventListener("resize", centerModal, false);
+				window.addEventListener('resize', centerModal, false);
 			}
 			else if (window.attachEvent)
 			{
-				window.attachEvent("onresize", centerModal);
+				window.attachEvent('onresize', centerModal);
 			}
 
 			if (settings.draggable)
 			{
-				modalHeader.style.cursor = "move";
-				modalHeader.onmousedown  = function (e)
-				{
+				modalHeader.style.cursor = 'move';
+				modalHeader.onmousedown  = function (e) {
 					method.drag(e);
 					return false;
 				};
 			}
 			else
 			{
-				modalHeader.onmousedown = function ()
-				{
+				modalHeader.onmousedown = function () {
 					return false;
 				};
 			}
 			if (settings.closeAfter > 0)
 			{
-				closeModalEvent = window.setTimeout(function ()
-				{
+				closeModalEvent = window.setTimeout(function () {
 					method.close();
 				}, settings.closeAfter * 1000);
 			}
@@ -225,31 +215,27 @@ if (typeof akeeba.Modal === "undefined")
 		};
 
 		// Drag the modal
-		method.drag = function (e)
-		{
+		method.drag = function (e) {
 			var xPosition   = (window.event !== undefined) ? window.event.clientX : e.clientX,
 				yPosition   = (window.event !== undefined) ? window.event.clientY : e.clientY,
 				differenceX = xPosition - modalContainer.offsetLeft,
 				differenceY = yPosition - modalContainer.offsetTop;
 
-			document.onmousemove = function (e)
-			{
+			document.onmousemove = function (e) {
 				xPosition = (window.event !== undefined) ? window.event.clientX : e.clientX;
 				yPosition = (window.event !== undefined) ? window.event.clientY : e.clientY;
 
-				modalContainer.style.left = ((xPosition - differenceX) > 0) ? (xPosition - differenceX) + "px" : 0;
-				modalContainer.style.top  = ((yPosition - differenceY) > 0) ? (yPosition - differenceY) + "px" : 0;
+				modalContainer.style.left = ((xPosition - differenceX) > 0) ? (xPosition - differenceX) + 'px' : 0;
+				modalContainer.style.top  = ((yPosition - differenceY) > 0) ? (yPosition - differenceY) + 'px' : 0;
 
-				document.onmouseup = function ()
-				{
+				document.onmouseup = function () {
 					window.document.onmousemove = null;
 				};
 			};
 		};
 
 		// Close the modal
-		method.close = function ()
-		{
+		method.close = function () {
 			if (!empty(inheritedElement))
 			{
 				while (modalContent.childNodes.length > 0)
@@ -259,17 +245,17 @@ if (typeof akeeba.Modal === "undefined")
 
 				inheritedElement = null;
 			}
-			modalContent.innerHTML = "";
-			modalOverlay.setAttribute("style", "");
-			modalOverlay.style.cssText    = "";
-			modalOverlay.style.visibility = "hidden";
-			modalContainer.setAttribute("style", "");
-			modalContainer.style.cssText    = "";
-			modalContainer.style.display    = "none";
-			modalContainer.style.visibility = "hidden";
-			modalHeader.style.cursor        = "default";
-			modalClose.setAttribute("style", "");
-			modalClose.style.cssText = "";
+			modalContent.innerHTML = '';
+			modalOverlay.setAttribute('style', '');
+			modalOverlay.style.cssText    = '';
+			modalOverlay.style.visibility = 'hidden';
+			modalContainer.setAttribute('style', '');
+			modalContainer.style.cssText    = '';
+			modalContainer.style.display    = 'none';
+			modalContainer.style.visibility = 'hidden';
+			modalHeader.style.cursor        = 'default';
+			modalClose.setAttribute('style', '');
+			modalClose.style.cssText = '';
 
 			if (closeModalEvent)
 			{
@@ -283,17 +269,16 @@ if (typeof akeeba.Modal === "undefined")
 
 			if (window.removeEventListener)
 			{
-				window.removeEventListener("resize", centerModal, false);
+				window.removeEventListener('resize', centerModal, false);
 			}
 			else if (window.detachEvent)
 			{
-				window.detachEvent("onresize", centerModal);
+				window.detachEvent('onresize', centerModal);
 			}
 		};
 
 		// Center the modal in the viewport
-		method.center = function (parameters)
-		{
+		method.center = function (parameters) {
 			var documentHeight  = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
 
 				modalWidth      = Math.max(modalContainer.clientWidth, modalContainer.offsetWidth),
@@ -305,7 +290,7 @@ if (typeof akeeba.Modal === "undefined")
 				amountScrolledX = 0,
 				amountScrolledY = 0;
 
-			if (typeof (window.innerWidth) === "number")
+			if (typeof (window.innerWidth) === 'number')
 			{
 				browserWidth  = window.innerWidth;
 				browserHeight = window.innerHeight;
@@ -316,7 +301,7 @@ if (typeof akeeba.Modal === "undefined")
 				browserHeight = document.documentElement.clientHeight;
 			}
 
-			if (typeof (window.pageYOffset) === "number")
+			if (typeof (window.pageYOffset) === 'number')
 			{
 				amountScrolledY = window.pageYOffset;
 				amountScrolledX = window.pageXOffset;
@@ -334,21 +319,21 @@ if (typeof akeeba.Modal === "undefined")
 
 			if (!parameters.horizontalOnly)
 			{
-				modalContainer.style.top = amountScrolledY + (browserHeight / 2) - (modalHeight / 2) + "px";
+				modalContainer.style.top = amountScrolledY + (browserHeight / 2) - (modalHeight / 2) + 'px';
 			}
 
-			modalContainer.style.left = amountScrolledX + (browserWidth / 2) - (modalWidth / 2) + "px";
+			modalContainer.style.left = amountScrolledX + (browserWidth / 2) - (modalWidth / 2) + 'px';
 
-			modalOverlay.style.height = documentHeight + "px";
-			modalOverlay.style.width  = "100%";
+			modalOverlay.style.height = documentHeight + 'px';
+			modalOverlay.style.width  = '100%';
 		};
 
 		// Set the id's, append the nested elements, and append the complete modal to the document body
-		modalOverlay.setAttribute("id", "akeeba-modal-overlay");
-		modalContainer.setAttribute("id", "akeeba-modal-container");
-		modalHeader.setAttribute("id", "akeeba-modal-header");
-		modalContent.setAttribute("id", "akeeba-modal-content");
-		modalClose.setAttribute("id", "akeeba-modal-close");
+		modalOverlay.setAttribute('id', 'akeeba-modal-overlay');
+		modalContainer.setAttribute('id', 'akeeba-modal-container');
+		modalHeader.setAttribute('id', 'akeeba-modal-header');
+		modalContent.setAttribute('id', 'akeeba-modal-content');
+		modalClose.setAttribute('id', 'akeeba-modal-close');
 		modalHeader.appendChild(modalClose);
 		modalContainer.appendChild(modalHeader);
 		modalContainer.appendChild(modalContent);
@@ -356,29 +341,27 @@ if (typeof akeeba.Modal === "undefined")
 		/** The following lines are required for WordPress compatibility **/
 		// Use Bootstrap styling (akeeba-bootstrap). Make sure the modal is aligned to the entire WordPress backend
 		// (akeeba-wp).
-		modalContainer.className = "akeeba-renderer-fef akeeba-wp";
+		modalContainer.className = 'akeeba-renderer-fef akeeba-wp';
 		// Make sure the modal is ABOVE the WordPress sidebar
-		modalContainer.style.zIndex = "10000";
+		modalContainer.style.zIndex = '10000';
 		// Make sure the overlay is ABOVE the WordPress sidebar
-		modalOverlay.style.zIndex   = "10000";
+		modalOverlay.style.zIndex   = '10000';
 		/** End WordPress compatibility **/
 
-		modalOverlay.style.visibility = "hidden";
-		modalContainer.style.display    = "none";
-		modalContainer.style.visibility = "hidden";
+		modalOverlay.style.visibility = 'hidden';
+		modalContainer.style.display    = 'none';
+		modalContainer.style.visibility = 'hidden';
 
 		if (window.addEventListener)
 		{
-			window.addEventListener("load", function ()
-			{
+			window.addEventListener('load', function () {
 				document.body.appendChild(modalOverlay);
 				document.body.appendChild(modalContainer);
 			}, false);
 		}
 		else if (window.attachEvent)
 		{
-			window.attachEvent("onload", function ()
-			{
+			window.attachEvent('onload', function () {
 				document.body.appendChild(modalOverlay);
 				document.body.appendChild(modalContainer);
 			});

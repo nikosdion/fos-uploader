@@ -352,7 +352,7 @@ akeeba.Upload.uploadNextFile = function() {
 			console.log("Failed to get presigned URL");
 			akeeba.Upload.setUIDisplayState(true);
 			// FIXME Better error handling
-			akeeba.System.defaultErrorHandler('FIXME -- The server returned false -- cannot upload any files');
+			akeeba.System.modalErrorHandler('The application server cannot communicate with the file storage server.');
 
 			return;
 		}
@@ -364,7 +364,7 @@ akeeba.Upload.uploadNextFile = function() {
 	}, function (msg) {
 		akeeba.Upload.setUIDisplayState(true);
 		// FIXME Better error handling
-		akeeba.System.defaultErrorHandler(msg);
+		akeeba.System.modalErrorHandler(msg);
 	})
 
 };
@@ -408,7 +408,7 @@ akeeba.Upload.uploadFile = function(file, presignedURL, elContainer) {
 	var errorCallbackUpload = function(xhr, type) {
 		akeeba.Upload.setUIDisplayState(true);
 		// TODO Improve error handling
-		akeeba.System.defaultErrorHandler('An error occurred: ' + type);
+		akeeba.System.modalErrorHandler('An error occurred: ' + type);
 	};
 
 	var ajaxStructure = {

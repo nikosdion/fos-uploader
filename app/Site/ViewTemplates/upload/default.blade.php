@@ -11,6 +11,8 @@
 @js('media://js/modal.js')
 @js('media://js/upload.js')
 
+@include('common/error_modal')
+
 <div class="AKEEBA_MASTER_FORM_STYLING akeeba-form--stretch">
 	<div class="akeeba-panel--teal" id="uploadWrapper">
 		<header class="akeeba-block-header">
