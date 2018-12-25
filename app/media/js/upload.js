@@ -25,8 +25,21 @@ if (typeof akeeba.Upload === "undefined")
 /**
  * Update the selected images UI
  */
-akeeba.Upload.updateUI = function ()
-{
+akeeba.Upload.updateUI = function () {
+	function bytesToSize(bytes)
+	{
+		var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+
+		if (bytes === 0)
+		{
+			return '0 Byte';
+		}
+
+		var i = parseInt(String(Math.floor(Math.log(bytes) / Math.log(1024))));
+		return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+	}
+
+
 	if (akeeba.Upload.totalFiles === 0)
 	{
 		document.getElementById("previewContainer").style.display = "none";
@@ -46,7 +59,7 @@ akeeba.Upload.updateUI = function ()
 	document.getElementById("previewContainer").style.display = "block";
 
 	document.getElementById("numFiles").innerText  = akeeba.Upload.totalFiles;
-	document.getElementById("totalSize").innerText = akeeba.Upload.totalSize;
+	document.getElementById("totalSize").innerText = bytesToSize(akeeba.Upload.totalSize);
 
 };
 
@@ -59,9 +72,7 @@ akeeba.Upload.updateUI = function ()
  */
 akeeba.Upload.handleFiles = function (files, appendTo)
 {
-	var i = 0;
-
-	for (i = 0; i < files.length; i++)
+	for (var i = 0; i < files.length; i++)
 	{
 		var file = files[i];
 
@@ -164,7 +175,7 @@ akeeba.Upload.appendThumb = function (url, file, appendTo)
 
 	var elProgressFill         = document.createElement('div');
 	elProgressFill.className   = 'akeeba-progress-fill thumbProgressFill';
-	elProgressFill.style.width = 0;
+	elProgressFill.style.width = '0';
 	elProgress.appendChild(elProgressFill);
 
 	// Create the thumbnail IMG
@@ -189,7 +200,7 @@ akeeba.Upload.appendThumb = function (url, file, appendTo)
 	akeeba.Upload.updateUI();
 
 	// Remove file on clicking its preview
-	akeeba.System.addEventListener(removeBtn, "click", function (event) {
+	akeeba.System.addEventListener(removeBtn, "click", function () {
 		// Get a reference to the containing DIV
 		var elContainer = this.parentNode;
 
@@ -222,7 +233,7 @@ akeeba.Upload.getPhotoThumb = function (file, appendTo)
 	var fileReader = new FileReader();
 
 	fileReader.onload = function () {
-		akeeba.Upload.appendThumb(fileReader.result, file, appendTo);
+		akeeba.Upload.appendThumb(String(fileReader.result), file, appendTo);
 	};
 	fileReader.readAsDataURL(file);
 };
@@ -368,7 +379,7 @@ akeeba.Upload.uploadFile = function(file, presignedURL, elContainer) {
 	var elProgress           = elContainer.querySelectorAll('div.thumbProgress')[0];
 	var elPBFill             = elProgress.querySelectorAll('div.thumbProgressFill')[0];
 	elProgress.style.display = 'grid';
-	elPBFill.style.width     = 0;
+	elPBFill.style.width     = '0';
 
 	var successCallbackUpload = function(responseText, statusText, xhr) {
 		// Update the UI
