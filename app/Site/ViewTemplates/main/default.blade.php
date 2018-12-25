@@ -33,7 +33,9 @@
 		</div>
 		<div class="akeeba-form-group--pull-right">
 			<div class="akeeba-form-group--actions">
-				<button type="submit" class="akeeba-btn">Submit</button>
+				<button type="submit" class="akeeba-btn">
+					@lang('SITE_MAIN_BTN_SUBMIT')
+				</button>
 			</div>
 		</div>
 	</div>

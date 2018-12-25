@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17de663cd760e5b799146f4cbf49d7e2",
+    "content-hash": "0a0b040696f1349d95efd4e537550fbb",
     "packages": [
         {
             "name": "akeeba/awf",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/akeeba/awf.git",
-                "reference": "212f953e0b9488eb7eb1d018075428ee0c252653"
+                "reference": "e6184e7bca9727cc6a7313051e60012d9f4724f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/akeeba/awf/zipball/212f953e0b9488eb7eb1d018075428ee0c252653",
-                "reference": "212f953e0b9488eb7eb1d018075428ee0c252653",
+                "url": "https://api.github.com/repos/akeeba/awf/zipball/e6184e7bca9727cc6a7313051e60012d9f4724f3",
+                "reference": "e6184e7bca9727cc6a7313051e60012d9f4724f3",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
                 "joomla",
                 "wordpress"
             ],
-            "time": "2018-12-03T09:23:01+00:00"
+            "time": "2018-12-12T09:19:31+00:00"
         },
         {
             "name": "akeeba/s3",
@@ -66,12 +66,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/akeeba/s3.git",
-                "reference": "76b413cee48be7c7f8ed32804084c5098ad1a183"
+                "reference": "5776fbc782bb689fe7ae1bb00bf09c244f1fd215"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/akeeba/s3/zipball/76b413cee48be7c7f8ed32804084c5098ad1a183",
-                "reference": "76b413cee48be7c7f8ed32804084c5098ad1a183",
+                "url": "https://api.github.com/repos/akeeba/s3/zipball/5776fbc782bb689fe7ae1bb00bf09c244f1fd215",
+                "reference": "5776fbc782bb689fe7ae1bb00bf09c244f1fd215",
                 "shasum": ""
             },
             "require": {
@@ -100,7 +100,7 @@
             "keywords": [
                 "s3"
             ],
-            "time": "2018-10-09T19:17:11+00:00"
+            "time": "2018-12-21T16:53:47+00:00"
         },
         {
             "name": "symfony/dotenv",
@@ -171,7 +171,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.2.0",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "platform-dev": []
 }

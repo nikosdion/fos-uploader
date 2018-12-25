@@ -14,31 +14,36 @@
 <div class="AKEEBA_MASTER_FORM_STYLING akeeba-form--stretch">
 	<div class="akeeba-panel--teal" id="uploadWrapper">
 		<header class="akeeba-block-header">
-			<h1>Choose photos and videos to upload</h1>
+			<h1>
+				@lang('SITE_UPLOAD_HEAD_CHOOSE_PHOTOS')
+			</h1>
 		</header>
 		<div class="akeeba-form-group">
-			<label for="images">Choose photos and videos to upload</label>
+			<label for="images">
+				@lang('SITE_UPLOAD_LBL_CHOOSE_PHOTOS')
+			</label>
 			<input type="file" multiple name="images" id="images"
 				   accept=".jpg,.jpeg.,.gif,.png,.mov,.mp4"
 				   onchange="akeeba.Upload.handleFiles(this.files, document.getElementById('thumbnails'))"
 			>
 			<p class="akeeba-help-text">
-				Click or tap the button above to select photos and videos from your device. Then click on Upload to send
-				the files to us.
+				@lang('SITE_UPLOAD_HELP_CHOOSE_PHOTOS')
 			</p>
 		</div>
 	</div>
 
 	<div class="akeeba-panel--info" id="previewContainer" style="display: none;">
 		<header class="akeeba-block-header">
-			<h3>Selected images</h3>
+			<h3>
+				@lang('SITE_UPLOAD_HEAD_SELECTED_IMAGES')
+			</h3>
 		</header>
 
 		<p>
-			Total&nbsp;
+			@lang('SITE_UPLOAD_LBL_TOTAL')&nbsp;
 			<span id="numFiles"></span>
-			&nbsp;items,&nbsp;
-			<span id="totalSize"></span>&nbsp;bytes
+			@lang('SITE_UPLOAD_LBL_ITEMS'),&nbsp;
+			<span id="totalSize"></span>
 		</p>
 
 		<p id="uploadButton">
@@ -46,7 +51,7 @@
 					type="submit" class="akeeba-btn--green--big"
 					onclick="akeeba.Upload.uploadAllFiles(); return false;"
 			>
-				Upload
+				@lang('SITE_UPLOAD_BTN_UPLOAD')
 			</button>
 		</p>
 
