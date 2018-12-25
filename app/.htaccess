@@ -62,7 +62,7 @@ RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC]
 
 # Exceptions
 RewriteRule ^index\.php$ - [L]
-RewriteRule ^Admin/index\.php$ - [L]
+RewriteRule ^administrator/index\.php$ - [L]
 
 # Disallow PHP Easter Eggs
 RewriteCond %{QUERY_STRING} \=PHP[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12} [NC]
@@ -81,7 +81,7 @@ RewriteRule ^media/ - [F]
 # Disallow access to rogue PHP files throughout the site, unless they are explicitly allowed
 RewriteCond %{REQUEST_FILENAME} (\.php)$
 RewriteCond %{REQUEST_FILENAME} !(/index\.php)$
-RewriteCond %{REQUEST_FILENAME} !(/Admin/index\.php)$
+RewriteCond %{REQUEST_FILENAME} !(/administrator/index\.php)$
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule (.*\.php)$ - [F]
 
