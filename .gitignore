@@ -85,3 +85,6 @@ fabric.properties
 
 # Temporary folder
 /app/tmp/*
+
+### Releases
+/release/*
