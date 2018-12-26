@@ -1,8 +1,10 @@
 <?php
 /**
- * @package        solo
- * @copyright Copyright (c)2014-2018 Nicholas K. Dionysopoulos / Akeeba Ltd
- * @license        GNU GPL version 3 or later
+ * @package    fos-uploader
+ * @copyright  Copyright (c)2018-${YEAR} Akeeba Ltd & Fos Photography
+ * @license    proprietary
+ *
+ * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
 
 if (!isset($exc))
