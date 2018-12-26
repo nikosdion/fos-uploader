@@ -9,9 +9,10 @@
 // define('AKEEBADEBUG', 1);
 
 // Do not change these paths unless you know what you're doing
-define('APATH_BASE', realpath(__DIR__ . '/../Admin'));
-define('APATH_ROOT', realpath(__DIR__ . '/..'));
+define('APATH_BASE', realpath(__DIR__ . '/..'));
+define('APATH_ROOT', APATH_BASE . '/administrator');
 define('APATH_SITE', APATH_BASE);
 define('APATH_THEMES', APATH_BASE . '/template');
 define('APATH_TRANSLATION', APATH_BASE . '/language');
 define('APATH_TMP', APATH_ROOT . '/tmp');
+define('APATH_APPROOT', realpath(APATH_BASE . '/application'));

@@ -15,3 +15,4 @@ define('APATH_SITE', APATH_BASE);
 define('APATH_THEMES', APATH_BASE . '/template');
 define('APATH_TRANSLATION', APATH_BASE . '/language');
 define('APATH_TMP', APATH_BASE . '/tmp');
+define('APATH_APPROOT', realpath(APATH_BASE . '/application'));

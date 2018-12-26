@@ -69,7 +69,7 @@ RewriteCond %{QUERY_STRING} \=PHP[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}
 RewriteRule .* - [F]
 
 # Disallow front-end access for system directories and certain files
-RewriteRule ^(Admin|config|language|Site|template|tmp)/ - [F]
+RewriteRule ^(application|config|language|template|tmp)/ - [F]
 
 # Disallow access to certain files
 RewriteRule ^(\.htaccess|\.user\.ini|php\.ini|htaccess\.txt|LICENSE\.txt|README\.txt)$ - [F]
