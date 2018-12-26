@@ -18,17 +18,17 @@ $this->outputHTTPHeaders();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<?php // Favicons size reference: https://github.com/audreyr/favicon-cheat-sheet ?>
-	<link rel="shortcut icon" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/favicon.ico">
-	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-152.png">
+	<link rel="shortcut icon" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-152.png">
 	<meta name="msapplication-TileColor" content="#FFFFFF">
-	<meta name="msapplication-TileImage" content="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-144.png">
-	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-152.png">
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-144.png">
-	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-120.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-114.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-72.png">
-	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-57.png">
-	<link rel="icon" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-32.png" sizes="32x32">
+	<meta name="msapplication-TileImage" content="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-152.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-120.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-72.png">
+	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-57.png">
+	<link rel="icon" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-32.png" sizes="32x32">
 
 	<title><?php echo \Awf\Text\Text::_('ADMIN_APP_TITLE') ?></title>
 

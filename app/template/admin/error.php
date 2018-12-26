@@ -49,31 +49,31 @@ switch ($exc->getCode())
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="shortcut icon" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/favicon.ico">
-	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/solo-152.png">
+	<link rel="shortcut icon" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/solo-152.png">
 	<meta name="msapplication-TileColor" content="#FFFFFF">
-	<meta name="msapplication-TileImage" content="<?php echo \Awf\Uri\Uri::base() ?>media/logo/solo-144.png">
-	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-152.png">
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-144.png">
-	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-120.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-114.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-72.png">
-	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-57.png">
-	<link rel="icon" href="<?php echo \Awf\Uri\Uri::base() ?>media/logo/fos-32.png" sizes="32x32">
+	<meta name="msapplication-TileImage" content="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/solo-144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-152.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-120.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-72.png">
+	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-57.png">
+	<link rel="icon" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-32.png" sizes="32x32">
 
 	<title><?php echo \Awf\Text\Text::_('ADMIN_APP_TITLE_ERROR') ?></title>
 
-	<script type="text/javascript" src="<?php echo \Awf\Uri\Uri::base(); ?>media/js/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo \Awf\Uri\Uri::base(); ?>media/js/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="<?php echo \Awf\Uri\Uri::base(); ?>../media/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo \Awf\Uri\Uri::base(); ?>../media/js/jquery-migrate.min.js"></script>
     <script type="text/javascript">
 		if (typeof akeeba == 'undefined') { var akeeba = {}; }
 		if (typeof akeeba.loadScripts == 'undefined') { akeeba.loadScripts = []; }
     </script>
-	<script type="text/javascript" src="<?php echo \Awf\Uri\Uri::base(); ?>media/js/fef/menu.min.js"></script>
-	<script type="text/javascript" src="<?php echo \Awf\Uri\Uri::base(); ?>media/js/fef/tabs.min.js"></script>
+	<script type="text/javascript" src="<?php echo \Awf\Uri\Uri::base(); ?>../media/js/fef/menu.min.js"></script>
+	<script type="text/javascript" src="<?php echo \Awf\Uri\Uri::base(); ?>../media/js/fef/tabs.min.js"></script>
     <script type="text/javascript">window.addEventListener('DOMContentLoaded', function(event) { akeeba.fef.menuButton(); akeeba.fef.tabs(); });</script>
-	<link rel="stylesheet" type="text/css" href="<?php echo \Awf\Uri\Uri::base(); ?>/media/css/fef.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo \Awf\Uri\Uri::base(); ?>/media/css/app.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo \Awf\Uri\Uri::base(); ?>../media/css/fef.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo \Awf\Uri\Uri::base(); ?>../media/css/app.css" />
 </head>
 <body class="akeeba-renderer-fef" id="error-wrap">
     <div class="akeeba-panel--danger">

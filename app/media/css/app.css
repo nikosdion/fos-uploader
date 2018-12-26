@@ -1,37 +1,15 @@
 /***********************************************************************************************************************
- * Upload page
+ * General
  **********************************************************************************************************************/
-.thumbContainer {
-    position: relative;
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
 }
 
-img.thumbRemove {
-    max-width: 18px;
-    max-height: 18px;
-    border: 2px solid black;
-    border-radius: 8px;
-    padding: 2px;
-    position: absolute;
-    float: right;
-    background-color: #fff;
-    right: 0;
-}
-
-.thumbPreview {
-    max-width: 120px;
-    max-height: 120px;
-}
-
-div.thumbProgress {
-    float: right;
-    position: absolute !important;
-    width: 120px;
-    bottom: -16px;
-}
-
-/**
+/***********************************************************************************************************************
  * Modal dialogs using jsModal. Light version (should fit most, if not all, administrator themes)
- */
+ **********************************************************************************************************************/
 #akeeba-modal-overlay {
     background: #000;
     filter: alpha(opacity=60);
@@ -100,4 +78,67 @@ div.thumbProgress {
 
 #akeeba-modal-container.modal-loading {
     background: #fff url('../icons/loading.gif') no-repeat center center;
+}
+
+/* Set the fixed height of the footer here */
+#akeeba-footer {
+    background-color: #EFEFEF;
+    padding: 0.6em 1em 3em;
+}
+
+#akeeba-footer p {
+    margin: 6pt 0;
+}
+
+#akeeba-footer p:last-child {
+    margin-bottom: 0;
+}
+
+div.toolbar {
+    margin-top: 1em;
+}
+
+/***********************************************************************************************************************
+ * Upload page
+ **********************************************************************************************************************/
+.thumbContainer {
+    position: relative;
+}
+
+img.thumbRemove {
+    max-width: 18px;
+    max-height: 18px;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 2px;
+    position: absolute;
+    float: right;
+    background-color: #fff;
+    right: 0;
+}
+
+.thumbPreview {
+    max-width: 120px;
+    max-height: 120px;
+}
+
+div.thumbProgress {
+    float: right;
+    position: absolute !important;
+    width: 120px;
+    bottom: -16px;
+}
+
+/***********************************************************************************************************************
+ * Login
+ **********************************************************************************************************************/
+form#loginForm {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    max-width: 30em;
 }
