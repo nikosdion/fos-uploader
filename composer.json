@@ -9,6 +9,9 @@
       "email": "nicholas@akeebabackup.com"
     }
   ],
+  "config": {
+    "vendor-dir": "app/vendor"
+  },
   "require": {
     "php": ">=7.2.0",
     "ext-curl": "*",

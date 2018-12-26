@@ -9,7 +9,7 @@
 
 // Include the autoloader
 /** @var Composer\Autoload\ClassLoader $autoloader */
-$autoloader = require_once(__DIR__ . '/../vendor/autoload.php');
+$autoloader = require_once(__DIR__ . '/vendor/autoload.php');
 
 // Load the platform defines
 require_once __DIR__ . '/defines.php';
