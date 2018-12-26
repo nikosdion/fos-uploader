@@ -12,7 +12,6 @@ namespace Site;
 use Awf\Router\Rule;
 use Awf\Text\Text;
 use Awf\Uri\Uri;
-use Awf\User\ManagerInterface;
 use Exception;
 
 class Application extends \Awf\Application\Application
@@ -20,9 +19,11 @@ class Application extends \Awf\Application\Application
 	/**
 	 * Public constructor
 	 *
-	 * @param Container $container Configuration parameters
+	 * @param   Container $container Configuration parameters
 	 *
-	 * @return Application
+	 * @return  void
+	 *
+	 * @throws  Exception
 	 */
 	public function __construct(Container $container = null)
 	{
@@ -230,7 +231,7 @@ class Application extends \Awf\Application\Application
 	protected function loadRoutes(): void
 	{
 		// Load the routes from JSON, if they are present
-		$routesJSONPath = $this->container->basePath . '/../config/routes.json';
+		$routesJSONPath = APATH_ROOT . '/config/routes.json';
 		$router         = $this->container->router;
 		$importedRoutes = false;
 
@@ -246,7 +247,7 @@ class Application extends \Awf\Application\Application
 		}
 
 		// If we could not import routes from routes.json, try loading routes.php
-		$routesPHPPath = $this->container->basePath . '/../config/routes.php';
+		$routesPHPPath = APATH_ROOT . '/config/routes.php';
 
 		if (!$importedRoutes && @file_exists($routesPHPPath))
 		{
@@ -323,7 +324,6 @@ class Application extends \Awf\Application\Application
 		{
 			$fs            = $this->container->fileSystem;
 			$protectFolder = false;
-
 			if (!@is_dir($path))
 			{
 				$fs->mkdir($path, 0777);
@@ -331,28 +331,6 @@ class Application extends \Awf\Application\Application
 			elseif (!is_writeable($path))
 			{
 				$fs->chmod($path, 0777);
-				$protectFolder = true;
-			}
-			else
-			{
-				if (!@file_exists($path . '/.htaccess'))
-				{
-					$protectFolder = true;
-				}
-
-				if (!@file_exists($path . '/web.config'))
-				{
-					$protectFolder = true;
-				}
-			}
-
-			if ($protectFolder)
-			{
-				$fs->copy($this->container->basePath . '/.htaccess', $path . '/.htaccess');
-				$fs->copy($this->container->basePath . '/web.config', $path . '/web.config');
-
-				$fs->chmod($path . '/.htaccess', 0644);
-				$fs->chmod($path . '/web.config', 0644);
 			}
 		}
 		catch (\Exception $e)

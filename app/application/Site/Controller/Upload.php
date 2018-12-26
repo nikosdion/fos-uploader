@@ -41,7 +41,7 @@ class Upload extends Controller
 	 */
 	public function execute($task): ?bool
 	{
-		if (empty($task))
+		if (empty($task) || ($task == 'default'))
 		{
 			$task = 'main';
 		}
