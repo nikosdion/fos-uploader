@@ -23,12 +23,13 @@ class Container extends \Awf\Container\Container
 {
 	public function __construct(array $values = [])
 	{
-		$defaults = [
-			'application_name'     => reset(explode('\\', get_class(__CLASS__))),
+		$classParts = explode('\\', __CLASS__);
+		$defaults   = [
+			'application_name'     => reset($classParts),
 			'appConfig'            => function (Container $c) {
 				return new Configuration($c);
 			},
-			'basePath' => function(Container $c) {
+			'basePath'             => function (Container $c) {
 				static $basePath = null;
 
 				if (is_null($basePath))

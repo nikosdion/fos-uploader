@@ -7,12 +7,11 @@
  * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
 
-namespace Site;
+namespace Admin;
 
 use Awf\Autoloader\Autoloader;
 use Awf\Database\Installer;
-use Awf\Mvc\Model;
-use Awf\Session\Exception;
+use Awf\User\User;
 use Composer\Autoload\ClassLoader;
 
 // Should I enable debug?
@@ -34,25 +33,20 @@ if (!defined('APATH_BASE'))
 }
 
 // Add our app to the autoloader, if it's not already set
-$prefixes = Autoloader::getInstance()->getPrefixes();
-if (!array_key_exists('Site\\', $prefixes))
-{
-	Autoloader::getInstance()->addMap('Site\\', APATH_APPROOT . '/Site');
-}
+Autoloader::getInstance()->addMap('Site\\', APATH_APPROOT . '/Site');
+Autoloader::getInstance()->addMap('Admin\\', APATH_APPROOT . '/Admin');
 
 class InstallerApplication extends \Awf\Application\Cli
 {
 	public function initialise()
 	{
-		$container     = $this->getContainer();
-
 		// Halt if the configuration does not exist yet
 		$configPaths = [
 			APATH_ROOT . '/config/.env.ci',
 			APATH_ROOT . '/config/.env.dev',
 			APATH_ROOT . '/config/.env',
 		];
-		$hasConfig = false;
+		$hasConfig   = false;
 
 		foreach ($configPaths as $path)
 		{
@@ -83,6 +77,10 @@ class InstallerApplication extends \Awf\Application\Cli
 	 */
 	protected function doExecute()
 	{
+		$manager = $this->container->userManager;
+		$manager->registerPrivilegePlugin('fos', '\\Admin\\Application\\UserPrivileges');
+		$manager->registerAuthenticationPlugin('password', '\\Admin\\Application\\UserAuthenticationPassword');
+
 		$db = $this->container->db;
 
 		if (!$db->connected())
@@ -102,7 +100,7 @@ class InstallerApplication extends \Awf\Application\Cli
 				$hasTable = false;
 			}
 		}
-		catch (Exception $e)
+		catch (\Exception $e)
 		{
 			$hasTable = false;
 		}
@@ -131,15 +129,29 @@ class InstallerApplication extends \Awf\Application\Cli
 			}
 		}
 
-		$this->out('Setting up default users');
+		$this->out('Setting up default user');
 
-		// TODO Set up a default admin user
+		$userManager = $this->container->userManager;
+		$user        = new User();
+		$user->setUsername('admin');
+		$user->setName('Default Administrator');
+		$user->setEmail('no-reply@akeeba.com');
+		$user->setPassword('admin');
+		$user->setPrivilege('fos.create', true);
+		$user->setPrivilege('fos.configure', true);
+		$user->setPrivilege('fos.download', true);
+		$params = $user->getParameters();
+		$params->set('acl.fos.create', true);
+		$params->set('acl.fos.configure', true);
+		$params->set('acl.fos.download', true);
+		$userManager->saveUser($user);
 
+		$this->out('All done');
 	}
 }
 
-$container = new Container(array(
-	'application_name'	=> 'Site'
-));
-$app = new InstallerApplication($container);
+$container = new Container([
+	'application_name' => 'Admin',
+]);
+$app       = new InstallerApplication($container);
 $app->initialise()->execute();

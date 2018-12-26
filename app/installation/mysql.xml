@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `#__akeeba_common` (
         <action table="#__users" canfail="0">
             <condition type="missing" value=""/>
             <query><![CDATA[
-CREATE TABLE `#__ak_users` (
+CREATE TABLE `#__users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -34,6 +34,22 @@ CREATE TABLE `#__ak_users` (
   `password` varchar(255) NOT NULL,
   `parameters` longtext,
   PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8;
+            ]]></query>
+        </action>
+
+        <action table="#__events" canfail="0">
+            <condition type="missing" value=""/>
+            <query><![CDATA[
+CREATE TABLE `#__events` (
+  `event_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `shortcode` varchar(255) NOT NULL,
+  `folder` varchar(255) NOT NULL,
+  `published` TINYINT(3) NOT NULL DEFAULT 1,
+  `image` varchar(255),
+  `notes` longtext,
+  PRIMARY KEY (`event_id`)
 ) DEFAULT CHARACTER SET utf8;
             ]]></query>
         </action>
