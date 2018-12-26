@@ -65,7 +65,7 @@ class Application extends \Awf\Application\Application
 		$this->discoverSessionSavePath();
 
 		// Set up the template (theme) to use
-		$this->setTemplate('default');
+		$this->setTemplate('admin');
 
 		// Load the language files
 		$this->loadLanguages();
