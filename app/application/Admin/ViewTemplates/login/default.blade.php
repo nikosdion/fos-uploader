@@ -40,16 +40,8 @@ $router = $this->container->router;
         </div>
 
         <div class="akeeba-hidden-fields-container">
-            <input type="hidden" name="token" value="<?php echo $this->container->session->getCsrfToken()->getValue() ?>">
+            <input type="hidden" name="token" value="@token()">
         </div>
     </div>
 
 </form>
-
-@if($this->autologin)
-<script type="text/javascript">
-akeeba.System.documentReady({
-    document.getElementById('loginForm').submit();
-});
-</script>
-@endif

@@ -23,7 +23,6 @@ class Html extends \Admin\View\Html
 
 		$this->username  = $this->container->segment->getFlash('auth_username');
 		$this->password  = $this->container->segment->getFlash('auth_password');
-		$this->autologin = $this->container->segment->getFlash('auto_login');
 
 		return true;
 	}
