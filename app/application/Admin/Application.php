@@ -9,7 +9,6 @@
 
 namespace Admin;
 
-use Awf\Text\Text;
 use Awf\Uri\Uri;
 use Awf\User\ManagerInterface;
 use Exception;
@@ -51,6 +50,9 @@ class Application extends \Site\Application
 			APATH_ROOT . '/config/.env.ci',
 			APATH_ROOT . '/config/.env.dev',
 			APATH_ROOT . '/config/.env',
+			APATH_BASE . '/config/.env.ci',
+			APATH_BASE . '/config/.env.dev',
+			APATH_BASE . '/config/.env',
 		];
 
 		// Load the application's configuration

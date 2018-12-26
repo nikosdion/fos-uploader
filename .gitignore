@@ -79,7 +79,7 @@ fabric.properties
 
 ### Application
 # Dot env files
-/app/config/.env
+/app/config/.env.dev
 /app/config/.env.dev
 /app/config/.env.ci
 
