@@ -1,10 +1,11 @@
 <?php
 /**
- * @package    poc-upload-to-s3
- * @copyright  Copyright (c)2018-2018 Akeeba Ltd
+ * @package    fos-uploader
+ * @copyright  Copyright (c)2018-${YEAR} Akeeba Ltd & Fos Photography
  * @license    proprietary
+ *
+ * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
-
 
 namespace Admin\Application;
 

@@ -1,12 +1,11 @@
 /**
- * FOS Image Uploader
+ * @package    fos-uploader
+ * @copyright  Copyright (c)2018-${YEAR} Akeeba Ltd & Fos Photography
+ * @license    proprietary
  *
- * @package     fos
- * @copyright   Copyright (c)2018-2019 Akeeba Ltd & Fos Photography
- * @license     proprietary
- *
- * Written by Akeeba Ltd – https://www.akeeba.com
+ * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
+
 if (typeof akeeba === "undefined")
 {
 	akeeba = {};
@@ -15,9 +14,9 @@ if (typeof akeeba === "undefined")
 if (typeof akeeba.Upload === "undefined")
 {
 	akeeba.Upload = {
-		totalFiles: 0,
-		totalSize: 0,
-		files: {},
+		totalFiles:           0,
+		totalSize:            0,
+		files:                {},
 		processingSelections: 0
 	};
 }
@@ -70,8 +69,7 @@ akeeba.Upload.updateUI = function () {
  * @param  {FileList} files     The list of files returned from the INPUT
  * @param  {Element}  appendTo  The DIV to append the thumbnais to
  */
-akeeba.Upload.handleFiles = function (files, appendTo)
-{
+akeeba.Upload.handleFiles = function (files, appendTo) {
 	for (var i = 0; i < files.length; i++)
 	{
 		var file = files[i];
@@ -124,8 +122,7 @@ akeeba.Upload.handleFiles = function (files, appendTo)
  * @param  {File}    file      The file to process
  * @param  {Element} appendTo  The DIV to append the thumbnail to
  */
-akeeba.Upload.getFileThumb = function (file, appendTo)
-{
+akeeba.Upload.getFileThumb = function (file, appendTo) {
 	if (file.type.match("image"))
 	{
 		akeeba.Upload.getPhotoThumb(file, appendTo);
@@ -150,8 +147,7 @@ akeeba.Upload.getFileThumb = function (file, appendTo)
  * @param  {File}    file      The file to process
  * @param  {Element} appendTo  The DIV to append the thumbnail to
  */
-akeeba.Upload.appendThumb = function (url, file, appendTo)
-{
+akeeba.Upload.appendThumb = function (url, file, appendTo) {
 	// Add the file to the queue and update the stats
 	var uuid                  = akeeba.System.uuid();
 	akeeba.Upload.files[uuid] = file;
@@ -228,8 +224,7 @@ akeeba.Upload.appendThumb = function (url, file, appendTo)
  * @param  {File}    file      The file to process
  * @param  {Element} appendTo  The DIV to append the thumbnail to
  */
-akeeba.Upload.getPhotoThumb = function (file, appendTo)
-{
+akeeba.Upload.getPhotoThumb = function (file, appendTo) {
 	var fileReader = new FileReader();
 
 	fileReader.onload = function () {
@@ -244,8 +239,7 @@ akeeba.Upload.getPhotoThumb = function (file, appendTo)
  * @param  {File}    file      The file to process
  * @param  {Element} appendTo  The DIV to append the thumbnail to
  */
-akeeba.Upload.getVideoThumb = function (file, appendTo)
-{
+akeeba.Upload.getVideoThumb = function (file, appendTo) {
 	var fileReader = new FileReader();
 
 	fileReader.onload = function () {
@@ -303,8 +297,7 @@ akeeba.Upload.getVideoThumb = function (file, appendTo)
  *
  * @param   {boolean}  displayed
  */
-akeeba.Upload.setUIDisplayState = function(displayed)
-{
+akeeba.Upload.setUIDisplayState = function (displayed) {
 	var display = displayed ? 'inline-block' : 'none';
 
 	document.getElementById('uploadWrapper').style.display = display;
@@ -329,7 +322,7 @@ akeeba.Upload.uploadAllFiles = function () {
 	}, 100);
 };
 
-akeeba.Upload.uploadNextFile = function() {
+akeeba.Upload.uploadNextFile = function () {
 	// Get the next img
 	var allImages   = document.querySelectorAll('#thumbnails div.thumbContainer');
 	var elContainer = allImages[0];
@@ -375,13 +368,13 @@ akeeba.Upload.uploadNextFile = function() {
  * @param   {string}   presignedURL  The presigned URL we're uploading to
  * @param   {Element}  elContainer   The container of the file's thumbnail
  */
-akeeba.Upload.uploadFile = function(file, presignedURL, elContainer) {
+akeeba.Upload.uploadFile = function (file, presignedURL, elContainer) {
 	var elProgress           = elContainer.querySelectorAll('div.thumbProgress')[0];
 	var elPBFill             = elProgress.querySelectorAll('div.thumbProgressFill')[0];
 	elProgress.style.display = 'grid';
 	elPBFill.style.width     = '0';
 
-	var successCallbackUpload = function(responseText, statusText, xhr) {
+	var successCallbackUpload = function (responseText, statusText, xhr) {
 		// Update the UI
 		akeeba.Upload.totalSize -= file.size;
 		akeeba.Upload.totalFiles--;
@@ -390,7 +383,7 @@ akeeba.Upload.uploadFile = function(file, presignedURL, elContainer) {
 		elContainer.parentElement.removeChild(elContainer);
 
 		// If no more files, redirect
-		var allImages   = document.querySelectorAll('#thumbnails div.thumbContainer');
+		var allImages = document.querySelectorAll('#thumbnails div.thumbContainer');
 
 		if (allImages.length === 0)
 		{
@@ -400,12 +393,12 @@ akeeba.Upload.uploadFile = function(file, presignedURL, elContainer) {
 		}
 
 		// If I do have more files, call uploadNextFile again
-		setTimeout(function() {
+		setTimeout(function () {
 			akeeba.Upload.uploadNextFile();
 		}, 100);
 	};
 
-	var errorCallbackUpload = function(xhr, type) {
+	var errorCallbackUpload = function (xhr, type) {
 		akeeba.Upload.setUIDisplayState(true);
 		// TODO Improve error handling
 		akeeba.System.modalErrorHandler('An error occurred: ' + type);
@@ -419,8 +412,9 @@ akeeba.Upload.uploadFile = function(file, presignedURL, elContainer) {
 		timeout:     3600000,
 		success:     successCallbackUpload,
 		error:       errorCallbackUpload,
-		progress:    function(event) {
-			if (event.lengthComputable) {
+		progress:    function (event) {
+			if (event.lengthComputable)
+			{
 				var percent = Math.round((event.loaded / event.total) * 100);
 				console.log('Uploaded ' + percent + '%');
 
