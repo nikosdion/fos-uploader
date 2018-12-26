@@ -24,6 +24,7 @@ if (defined('AKEEBADEBUG'))
 try
 {
 	// Add our app to the autoloader, if it's not already set
+	$autoloader->addPsr4('Admin\\', APATH_APPROOT . '/Admin');
 	$autoloader->addPsr4('Site\\', APATH_APPROOT . '/Site');
 
 	// Create the container if it doesn't already exist
