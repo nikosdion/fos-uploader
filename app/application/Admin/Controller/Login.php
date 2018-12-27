@@ -9,8 +9,12 @@
 
 namespace Admin\Controller;
 
-class Login extends ControllerDefault
+use Awf\Mvc\Controller;
+
+class Login extends Controller
 {
+	use ACLTrait;
+
 	/**
 	 * Database setup task. This is where we ask the user for the database connection details.
 	 *

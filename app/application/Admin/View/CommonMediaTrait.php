@@ -1,18 +1,17 @@
 <?php
 /**
  * @package    fos-uploader
- * @copyright  Copyright (c)2018-${YEAR} Akeeba Ltd & Fos Photography
+ * @copyright  Copyright (c)2018-2018 Akeeba Ltd & Fos Photography
  * @license    proprietary
  *
  * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
 
+
 namespace Admin\View;
 
-use Awf\Mvc\DataView\Html;
-use Awf\Utils\Template;
 
-class DataHtml extends Html
+trait CommonMediaTrait
 {
 	/**
 	 * Overrides the default method to execute and display a template script.
@@ -44,8 +43,8 @@ class DataHtml extends Html
 			return;
 		}
 
-		Template::addJs('media://js/solo/modal.js', $this->container->application);
-		Template::addJs('media://js/solo/ajax.js', $this->container->application);
-		Template::addJs('media://js/solo/system.js', $this->container->application);
+		Template::addJs('media://js/modal.js', $this->container->application);
+		Template::addJs('media://js/ajax.js', $this->container->application);
+		Template::addJs('media://js/system.js', $this->container->application);
 	}
 }

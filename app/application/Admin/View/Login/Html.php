@@ -9,8 +9,13 @@
 
 namespace Admin\View\Login;
 
-class Html extends \Admin\View\Html
+use Admin\View\CommonMediaTrait;
+use Awf\Mvc\View;
+
+class Html extends View
 {
+	use CommonMediaTrait;
+
 	/**
 	 * Executes before displaying the "main" task (initial requirements check page)
 	 *

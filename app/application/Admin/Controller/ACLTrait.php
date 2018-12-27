@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    fos-uploader
- * @copyright  Copyright (c)2018-${YEAR} Akeeba Ltd & Fos Photography
+ * @copyright  Copyright (c)2018-2018 Akeeba Ltd & Fos Photography
  * @license    proprietary
  *
  * Developed by Akeeba Ltd <https://www.akeeba.com>.
@@ -9,18 +9,22 @@
 
 namespace Admin\Controller;
 
+
 use Awf\Text\Text;
 
-/**
- * Common controller superclass. Reserved for future use.
- */
-abstract class ControllerDefault extends \Awf\Mvc\Controller
+trait ACLTrait
 {
 	protected $aclChecks = [
 		'events' => [
-			'*' => ['configure'],
+			'add'       => ['create'],
+			'delete'    => ['create'],
+			'publish'   => ['create'],
+			'unpublish' => ['create'],
+			'*'         => ['configure'],
 		],
-		'users'  => ['*' => ['configure']],
+		'users'  => [
+			'*' => ['system'],
+		],
 	];
 
 	/**
