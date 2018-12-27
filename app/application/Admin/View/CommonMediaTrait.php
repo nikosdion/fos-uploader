@@ -11,6 +11,8 @@
 namespace Admin\View;
 
 
+use Awf\Utils\Template;
+
 trait CommonMediaTrait
 {
 	/**
