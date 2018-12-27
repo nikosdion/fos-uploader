@@ -139,11 +139,11 @@ class InstallerApplication extends \Awf\Application\Cli
 		$user->setPassword('admin');
 		$user->setPrivilege('fos.create', true);
 		$user->setPrivilege('fos.configure', true);
-		$user->setPrivilege('fos.download', true);
+		$user->setPrivilege('fos.system', true);
 		$params = $user->getParameters();
 		$params->set('acl.fos.create', true);
 		$params->set('acl.fos.configure', true);
-		$params->set('acl.fos.download', true);
+		$params->set('acl.fos.system', true);
 		$userManager->saveUser($user);
 
 		$this->out('All done');

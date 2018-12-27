@@ -1283,3 +1283,20 @@ function empty(mixed_var)
 
 	return false;
 }
+
+/**
+ * Submit a form, setting a specific task
+ *
+ * @param   formId  The ID of the form to submit
+ * @param   task    (optional) The task to set
+ */
+akeeba.System.submitForm = function (formId, task)
+{
+	if (!(typeof(task) === 'undefined'))
+	{
+		document.querySelector('#' + formId + ' input[name=\'task\']')
+			.setAttribute('value', task);
+	}
+
+	document.querySelector('#' + formId).submit();
+};

@@ -22,7 +22,7 @@ class UserPrivileges extends Privilege
 		$this->privileges = array(
 			'create'	=> false,
 			'configure'	=> false,
-			'download'	=> false,
+			'system'	=> false,
 		);
 	}
 } 

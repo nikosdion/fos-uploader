@@ -23,7 +23,7 @@ if (!empty($buttons) || !empty($submenu)): ?>
             <span class="akeeba-toolbar-title"><?php echo \Awf\Text\Text::_($title) ?></span>
 	        <?php endif; ?>
             <a href="#" class="akeeba-menu-button akeeba-hidden-desktop akeeba-hidden-tablet"
-               title="<?php echo \Awf\Text\Text::_('SOLO_COMMON_TOGGLENAV') ?>"><span class="akion-navicon-round"></span></a>
+               title="<?php echo \Awf\Text\Text::_('ADMIN_COMMON_TOGGLENAV') ?>"><span class="akion-navicon-round"></span></a>
         </div>
 
 		<?php if (($buttons = $this->getToolbar()->getButtons()) && count($buttons)):?>

@@ -50,9 +50,9 @@ switch ($exc->getCode())
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="shortcut icon" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/favicon.ico">
-	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/solo-152.png">
+	<link rel="apple-touch-icon-precomposed" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-152.png">
 	<meta name="msapplication-TileColor" content="#FFFFFF">
-	<meta name="msapplication-TileImage" content="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/solo-144.png">
+	<meta name="msapplication-TileImage" content="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-144.png">
 	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-152.png">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-144.png">
 	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo \Awf\Uri\Uri::base() ?>../media/logo/fos-120.png">
