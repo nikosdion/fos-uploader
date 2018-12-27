@@ -1,5 +1,0 @@
-{
-    "show":     ["events"],
-    "order":    60,
-    "privileges": ["fos.system"]
-}

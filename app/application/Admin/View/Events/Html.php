@@ -1,0 +1,69 @@
+<?php
+/**
+ * @package    fos-uploader
+ * @copyright  Copyright (c)2018-2018 Akeeba Ltd & Fos Photography
+ * @license    proprietary
+ *
+ * Developed by Akeeba Ltd <https://www.akeeba.com>.
+ */
+
+
+namespace Admin\View\Events;
+
+
+use Admin\View\CommonMediaTrait;
+use Awf\Mvc\DataView\Html as DataHtml;
+
+class Html extends DataHtml
+{
+	use CommonMediaTrait;
+
+	public function onBeforeBrowse()
+	{
+		$document = $this->container->application->getDocument();
+
+		// Buttons (new, edit, copy, delete)
+		$buttons = array(
+			array(
+				'title'   => 'ADMIN_BTN_ADD',
+				'class'   => 'akeeba-btn--green',
+				'onClick' => 'akeeba.System.submitForm(\'adminForm\', \'add\')',
+				'icon'    => 'akion-person-add'
+			),
+			array(
+				'title'   => 'ADMIN_BTN_EDIT',
+				'class'   => 'akeeba-btn--grey',
+				'onClick' => 'akeeba.System.submitForm(\'adminForm\', \'edit\')',
+				'icon'    => 'akion-edit'
+			),
+/*			array(
+				'title'   => 'ADMIN_BTN_DELETE',
+				'class'   => 'akeeba-btn--red',
+				'onClick' => 'akeeba.System.submitForm(\'adminForm\', \'remove\')',
+				'icon'    => 'akion-trash-b'
+			),*/
+			array(
+				'title'   => 'ADMIN_BTN_PUBLISH',
+				'class'   => 'akeeba-btn--dark',
+				'onClick' => 'akeeba.System.submitForm(\'adminForm\', \'publish\')',
+				'icon'    => 'akion-checkmark-circled'
+			),
+			array(
+				'title'   => 'ADMIN_BTN_UNPUBLISH',
+				'class'   => 'akeeba-btn--red',
+				'onClick' => 'akeeba.System.submitForm(\'adminForm\', \'unpublish\')',
+				'icon'    => 'akion-android-remove-circle'
+			),
+		);
+
+		$toolbar = $document->getToolbar();
+
+		foreach ($buttons as $button)
+		{
+			$toolbar->addButtonFromDefinition($button);
+		}
+
+		return parent::onBeforeBrowse();
+	}
+
+}

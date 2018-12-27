@@ -11,6 +11,7 @@
 namespace Admin\View;
 
 
+use Awf\Uri\Uri;
 use Awf\Utils\Template;
 
 trait CommonMediaTrait
@@ -45,8 +46,9 @@ trait CommonMediaTrait
 			return;
 		}
 
-		Template::addJs('media://js/modal.js', $this->container->application);
-		Template::addJs('media://js/ajax.js', $this->container->application);
-		Template::addJs('media://js/system.js', $this->container->application);
+		$baseUrl = Uri::base() . '../media/js/';
+		$document->addScript($baseUrl . 'modal.js');
+		$document->addScript($baseUrl . 'ajax.js');
+		$document->addScript($baseUrl . 'system.js');
 	}
 }
