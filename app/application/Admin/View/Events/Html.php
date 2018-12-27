@@ -66,4 +66,42 @@ class Html extends DataHtml
 		return parent::onBeforeBrowse();
 	}
 
+	protected function onBeforeAdd()
+	{
+		$this->buttonsForAddEdit();
+
+		return parent::onBeforeAdd();
+	}
+
+	protected function onBeforeEdit()
+	{
+		$this->buttonsForAddEdit();
+
+		return parent::onBeforeEdit();
+	}
+
+	protected function buttonsForAddEdit()
+	{
+		$buttons = array(
+			array(
+				'title'   => 'ADMIN_BTN_SAVECLOSE',
+				'class'   => 'akeeba-btn--green',
+				'onClick' => 'akeeba.System.submitForm(\'adminForm\', \'save\')',
+				'icon'    => 'akion-checkmark'
+			),
+			array(
+				'title'   => 'ADMIN_BTN_CANCEL',
+				'class'   => 'akeeba-btn--orange',
+				'onClick' => 'akeeba.System.submitForm(\'adminForm\', \'cancel\')',
+				'icon'    => 'akion-close-circled'
+			),
+		);
+
+		$toolbar = $this->container->application->getDocument()->getToolbar();
+
+		foreach ($buttons as $button)
+		{
+			$toolbar->addButtonFromDefinition($button);
+		}
+	}
 }

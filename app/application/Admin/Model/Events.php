@@ -18,13 +18,13 @@ use Awf\Mvc\DataModel;
  * Class Events
  * @package Admin\Model
  *
- * @property   int     $event_id
- * @property   string  $title
- * @property   string  $shortcode
- * @property   string  $folder
- * @property   int     $published
- * @property   string  $image
- * @property   string  $notes
+ * @property   int    $event_id
+ * @property   string $title
+ * @property   string $shortcode
+ * @property   string $folder
+ * @property   int    $published
+ * @property   string $image
+ * @property   string $notes
  *
  * @method   title(string $title)
  * @method   shortcode(string $shortcode)
@@ -36,7 +36,9 @@ class Events extends DataModel
 {
 	public function __construct(Container $container = null)
 	{
-		$this->tableName = '#__events';
+		$this->tableName        = '#__events';
+		$this->idFieldName      = 'event_id';
+		$this->fieldsSkipChecks = ['event_id'];
 
 		parent::__construct($container);
 

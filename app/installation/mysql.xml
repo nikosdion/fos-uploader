@@ -46,7 +46,7 @@ CREATE TABLE `#__events` (
   `title` varchar(255) NOT NULL,
   `shortcode` varchar(255) NOT NULL,
   `folder` varchar(255) NOT NULL,
-  `published` TINYINT(3) NOT NULL DEFAULT 1,
+  `enabled` TINYINT(3) NOT NULL DEFAULT 1,
   `image` varchar(255),
   `notes` longtext,
   PRIMARY KEY (`event_id`)

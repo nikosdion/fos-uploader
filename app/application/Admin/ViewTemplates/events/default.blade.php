@@ -12,6 +12,7 @@
 
 /** @var \Admin\Model\Events $model */
 $model = $this->getModel();
+$token = $this->getContainer()->session->getCsrfToken()->getValue();
 ?>
 
 <form action="@route('index.php?view=events')" method="post" name="adminForm" id="adminForm"
@@ -48,10 +49,10 @@ $model = $this->getModel();
                        onchange="this.form.submit();">
             </td>
             <td>
-                {{ \Admin\Helper\FEFSelect::published('published', [
+                {{ \Admin\Helper\FEFSelect::published('enabled', [
                 	'onclick' => 'document.forms.adminForm.submit()',
                 	'placeholder' => 'ADMIN_EVENTS_FIELD_PUBLISHED'
-                ], $model->getState('published', '')) }}
+                ], $model->getState('enabled', '')) }}
             </td>
         </tr>
         </thead>
@@ -93,17 +94,15 @@ $model = $this->getModel();
                 </a>
             </td>
             <td>
-                @if ($event->published)
-                    <a href="@route('index.php?view=Events&task=unpublish&id=' . $event->event_id)">
-                        <span class="akeeba-label--green">
-                            <span class="akion-checkmark-circled"></span>
-                        </span>
+                @if ($event->enabled)
+                    <a href="@route('index.php?view=Events&task=unpublish&id=' . $event->event_id . '&' . $token . '=1')"
+                       class="akeeba-btn--green--small">
+                        <span class="akion-checkmark-circled"></span>
                     </a>
                 @else
-                    <a href="@route('index.php?view=Events&task=publish&id=' . $event->event_id)">
-                        <span class="akeeba-label--red">
-                            <span class="akion-android-remove-circle"></span>
-                        </span>
+                    <a href="@route('index.php?view=Events&task=publish&id=' . $event->event_id . '&' . $token . '=1')"
+                       class="akeeba-btn--red--small">
+                        <span class="akion-android-remove-circle"></span>
                     </a>
                 @endif
             </td>
