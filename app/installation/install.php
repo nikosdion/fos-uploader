@@ -82,6 +82,7 @@ class InstallerApplication extends \Awf\Application\Cli
 		$manager->registerAuthenticationPlugin('password', '\\Admin\\Application\\UserAuthenticationPassword');
 
 		$db = $this->container->db;
+		$db->connect();
 
 		if (!$db->connected())
 		{
