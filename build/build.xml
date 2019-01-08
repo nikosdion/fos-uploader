@@ -15,10 +15,10 @@
 	<!-- The application -->
 	<fileset dir="${phing.dir}/.." id="app" expandsymboliclinks="true">
 		<include name="app/**"/>
-		<include name="vendor/**"/>
 
 		<!-- Skip the configuration -->
-		<exclude name="app/config/**"/>
+		<exclude name="app/config/.env"/>
+		<exclude name="app/config/.env.dev"/>
 	</fileset>
 
 	<!--
@@ -63,10 +63,10 @@
 	</target>
 
 	<target name="new-release-app" depends="new-common">
-		<echo>Removing Akeeba Solo files</echo>
+		<echo>Removing old distribution files</echo>
 		<delete quiet="true" includeemptydirs="true">
 			<fileset dir="${dirs.release}">
-				<include name="akeeba_solo-*.zip" />
+				<include name="app-*.zip" />
 			</fileset>
 		</delete>
 	</target>
