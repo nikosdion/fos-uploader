@@ -13,12 +13,12 @@
 	-->
 
 	<!-- The application -->
-	<fileset dir="${phing.dir}/.." id="app" expandsymboliclinks="true">
-		<include name="app/**"/>
+	<fileset dir="${phing.dir}/../app" id="app" expandsymboliclinks="true">
+		<include name="**"/>
 
 		<!-- Skip the configuration -->
-		<exclude name="app/config/.env"/>
-		<exclude name="app/config/.env.dev"/>
+		<exclude name="config/.env"/>
+		<exclude name="config/.env.dev"/>
 	</fileset>
 
 	<!--
