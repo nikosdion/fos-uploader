@@ -45,7 +45,7 @@ class Upload extends Controller
 			$task = 'main';
 		}
 
-		if (!in_array($task, ['main', 'presigned']))
+		if (!in_array($task, ['main', 'presigned', 'stats']))
 		{
 			return false;
 		}
@@ -120,7 +120,7 @@ class Upload extends Controller
 		$uri      = str_replace('%2F', '/', rawurlencode($uri));
 		$request  = new S3Request('PUT', $bucket, $uri, $s3Config);
 		$fakeData = '';
-		$input = Input::createFromData($fakeData);
+		$input    = Input::createFromData($fakeData);
 		$input->setType($mime);
 		$request->setInput($input);
 		$input->setSize($size);
@@ -133,6 +133,40 @@ class Upload extends Controller
 		echo '###' . json_encode($request->getAuthenticatedURL(60, true)) . '###';
 
 		$this->container->application->close();
+	}
+
+	/**
+	 * Store the total number and size of files being uploaded to the session
+	 *
+	 * @return  void
+	 */
+	public function stats()
+	{
+		if ($this->sanityChecksRequireRedirect())
+		{
+			@ob_end_clean();
+			echo '###' . json_encode(false) . '###';
+
+			$this->container->application->close();
+
+			return true;
+		}
+
+		$numFiles  = $this->input->getInt('files', 0);
+		$totalSize = $this->input->getInt('size', 0);
+
+		$segment = $this->container->segment;
+
+		$segment->set('totalfiles', $numFiles);
+		$segment->set('totalsize', $totalSize);
+
+		@ob_end_clean();
+		echo '###' . json_encode(true) . '###';
+
+		$this->container->application->close();
+
+		return true;
+
 	}
 
 	/**

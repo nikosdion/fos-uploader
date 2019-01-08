@@ -59,7 +59,32 @@ akeeba.Upload.updateUI = function () {
 
 	document.getElementById("numFiles").innerText  = akeeba.Upload.totalFiles;
 	document.getElementById("totalSize").innerText = bytesToSize(akeeba.Upload.totalSize);
+};
 
+akeeba.Upload.sendStatsToSession = function (successCallback) {
+	var data = {
+		files: akeeba.Upload.totalFiles,
+		size: akeeba.Upload.totalSize
+	};
+
+	akeeba.System.params.AjaxURL = '/upload/stats';
+	akeeba.System.doAjax(data, function (result) {
+		if (result === false)
+		{
+			console.log("Failed to send statistics to the session");
+
+			return;
+		}
+
+		console.log("Successfully sent statistics to the session");
+
+		akeeba.Ajax.triggerCallbacks(successCallback);
+	}, function (msg) {
+		akeeba.Upload.setUIDisplayState(true);
+
+		// FIXME Better error handling
+		akeeba.System.modalErrorHandler(msg);
+	});
 };
 
 /**
@@ -317,9 +342,10 @@ akeeba.Upload.uploadAllFiles = function () {
 	// Hide the UI
 	akeeba.Upload.setUIDisplayState(false);
 
-	window.setTimeout(function () {
+	// Set the stats of the files to be uploaded in the session...
+	akeeba.Upload.sendStatsToSession(function () {
 		akeeba.Upload.uploadNextFile();
-	}, 100);
+	});
 };
 
 akeeba.Upload.uploadNextFile = function () {
@@ -358,8 +384,7 @@ akeeba.Upload.uploadNextFile = function () {
 		akeeba.Upload.setUIDisplayState(true);
 		// FIXME Better error handling
 		akeeba.System.modalErrorHandler(msg);
-	})
-
+	});
 };
 
 /**

@@ -39,6 +39,16 @@
     }
   },
   {
+    "path": "upload/stats",
+    "matchVars": {
+      "view": "upload"
+    },
+    "pushVars": {
+      "view": "upload",
+      "task": "stats"
+    }
+  },
+  {
     "path": "thankyou",
     "matchVars": {
       "view": "thankyou"
