@@ -7,12 +7,9 @@
  * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
 
-
 namespace Site\Model;
 
-
 use Awf\Mvc\Model;
-use Awf\Utils\StringHandling;
 
 class Main extends Model
 {
@@ -25,8 +22,14 @@ class Main extends Model
 	 */
 	public function isValidShortcode(string $code): bool
 	{
-		// TODO Check the database. Get all codes, EXCEPT for expired events
-		$validCodes = ['TEST'];
+		// Get the currently valid shortcodes from the database
+		$db = $this->container->db;
+		$query = $db->getQuery(true)
+			->select([
+				$db->qn('shortcode')
+			])->from($db->qn('#__events'))
+			->where($db->qn('enabled') . ' = ' . $db->q('1'));
+		$validCodes = $db->setQuery($query)->loadColumn(0);
 
 		// Cast codes to lowercase for safe comparison
 		$validCodes = array_map('strtolower', $validCodes);
@@ -44,8 +47,14 @@ class Main extends Model
 	 */
 	public function isExpiredShortcode(string $code): bool
 	{
-		// TODO Check the database. Get only the codes for expired events.
-		$expiredCodes = ['EXPIRED'];
+		// Get the expired shortcodes from the database
+		$db = $this->container->db;
+		$query = $db->getQuery(true)
+			->select([
+				$db->qn('shortcode')
+			])->from($db->qn('#__events'))
+			->where($db->qn('enabled') . ' = ' . $db->q('0'));
+		$expiredCodes = $db->setQuery($query)->loadColumn(0);
 
 		// Cast codes to lowercase for safe comparison
 		$expiredCodes = array_map('strtolower', $expiredCodes);
@@ -63,9 +72,13 @@ class Main extends Model
 	 */
 	public function getProjectFolderName(string $code): string
 	{
-		// TODO Check the database. Get the folder name for the project.
-
-		return $code;
+		$db = $this->container->db;
+		$query = $db->getQuery(true)
+			->select([
+				$db->qn('folder')
+			])->from($db->qn('#__events'))
+			->where($db->qn('shortcode') . ' = ' . $db->q(trim($code)));
+		return $db->setQuery($query)->loadResult(0);
 	}
 
 	public function getFolderNameFromName(string $name)

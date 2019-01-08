@@ -22,15 +22,16 @@ use Awf\Mvc\DataModel;
  * @property   string $title
  * @property   string $shortcode
  * @property   string $folder
- * @property   int    $published
+ * @property   int    $enabled
  * @property   string $image
  * @property   string $notes
  *
- * @method   title(string $title)
- * @method   shortcode(string $shortcode)
- * @method   folder(string $folder)
- * @method   image(string $image)
- * @method   notes(string $notes)
+ * @method  $this  title(string $title)
+ * @method  $this  shortcode(string $shortcode)
+ * @method  $this  folder(string $folder)
+ * @method  $this  enabled(int $published)
+ * @method  $this  image(string $image)
+ * @method  $this  notes(string $notes)
  */
 class Events extends DataModel
 {
