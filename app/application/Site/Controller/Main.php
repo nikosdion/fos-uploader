@@ -20,7 +20,7 @@ class Main extends Controller
 	/**
 	 * Runs when executing a task. Used to verify that a valid shortcode exists.
 	 *
-	 * @param   string  $task
+	 * @param   string $task
 	 *
 	 * @return  bool|null
 	 *
@@ -39,6 +39,15 @@ class Main extends Controller
 			{
 				$msg     = Text::_('SITE_ERR_SHORTCODE_EXPIRED');
 				$msgType = 'info';
+			}
+
+			$redirection = $this->getRedirection();
+
+			if (!empty($redirection))
+			{
+				$redirectURL = $redirection;
+				$msg         = null;
+				$msgType     = null;
 			}
 
 			$this->setRedirect($redirectURL, $msg, $msgType);

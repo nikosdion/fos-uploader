@@ -24,6 +24,7 @@ use Awf\Mvc\DataModel;
  * @property   string $folder
  * @property   int    $enabled
  * @property   string $image
+ * @property   string $redirect
  * @property   string $notes
  *
  * @method  $this  title(string $title)
@@ -31,6 +32,7 @@ use Awf\Mvc\DataModel;
  * @method  $this  folder(string $folder)
  * @method  $this  enabled(int $published)
  * @method  $this  image(string $image)
+ * @method  $this  redirect(string $image)
  * @method  $this  notes(string $notes)
  */
 class Events extends DataModel

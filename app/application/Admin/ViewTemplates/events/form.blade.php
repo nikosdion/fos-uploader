@@ -78,6 +78,18 @@ $model = $this->getModel();
         </div>
 
         <div class="akeeba-form-group">
+            <label for="redirect">
+                @lang('ADMIN_EVENTS_FIELD_REDIRECT')
+            </label>
+            <input type="text" name="redirect" maxlength="255" size="50"
+                   value="{{{ $model->redirect }}}"
+                   class="form-control" required />
+            <p class="akeeba-help-text">
+                @lang('ADMIN_EVENTS_FIELD_REDIRECT_HELP')
+            </p>
+        </div>
+
+        <div class="akeeba-form-group">
             <label for="notes">
                 @lang('ADMIN_EVENTS_FIELD_NOTES')
             </label>

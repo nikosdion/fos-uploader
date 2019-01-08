@@ -60,6 +60,22 @@ trait RequireShortcode
 
 	}
 
+	protected function getRedirection(): ?string
+	{
+		$code = $this->getShortcode();
+
+		if (empty($code))
+		{
+			return null;
+		}
+
+		/** @var Main $model */
+		$model = Model::getInstance('Site', 'Main');
+
+		return $model->getRedirectionURL($code);
+
+	}
+
 	protected function getShortcode(): string
 	{
 		$requestCode = $this->input->getString('shortcode', '');

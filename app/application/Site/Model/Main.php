@@ -64,6 +64,26 @@ class Main extends Model
 	}
 
 	/**
+	 * Get the redirection URL for an expired event
+	 *
+	 * @param   string  $code
+	 *
+	 * @return  string|null
+	 */
+	public function getRedirectionURL(string $code): ?string
+	{
+		// Get the expired shortcodes from the database
+		$db = $this->container->db;
+		$query = $db->getQuery(true)
+			->select([
+				$db->qn('redirect')
+			])->from($db->qn('#__events'))
+			->where($db->qn('enabled') . ' = ' . $db->q('0'))
+			->where($db->qn('shortcode') . ' = ' . $db->q($code));
+		return $db->setQuery($query)->loadResult();
+	}
+
+	/**
 	 * Get the Amazon S3 folder name for this project
 	 *
 	 * @param   string  $code  The project code

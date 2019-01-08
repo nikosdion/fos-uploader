@@ -156,6 +156,15 @@ class Upload extends Controller
 				$msgType = 'info';
 			}
 
+			$redirection = $this->getRedirection();
+
+			if (!empty($redirection))
+			{
+				$redirectURL = $redirection;
+				$msg         = null;
+				$msgType     = null;
+			}
+
 			$this->setRedirect($redirectURL, $msg, $msgType);
 
 			return true;
