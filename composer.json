@@ -14,10 +14,12 @@
   },
   "require": {
     "php": ">=7.2.0",
-    "ext-curl": "*",
-    "ext-json": "*",
     "akeeba/s3": "dev-master",
     "akeeba/awf": "dev-development",
-    "symfony/dotenv": "v4.1.8"
+    "symfony/dotenv": "v4.1.8",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-fileinfo": "*",
+    "ext-gd": "*"
   }
 }

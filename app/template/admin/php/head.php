@@ -63,6 +63,7 @@ if(!empty($styles)) foreach($styles as $url => $params)
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo Uri::base(); ?>../media/css/fef.min.css?<?php echo $this->container->mediaQueryKey ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo \Awf\Uri\Uri::base(); ?>../media/css/app.css?<?php echo $this->container->mediaQueryKey ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo \Awf\Uri\Uri::base(); ?>../media/css/backend.css?<?php echo $this->container->mediaQueryKey ?>" />
 <?php
 // CSS files before the template CSS
 if(!empty($styles)) foreach($styles as $url => $params)

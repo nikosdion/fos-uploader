@@ -80,11 +80,14 @@ fabric.properties
 ### Application
 # Dot env files
 /app/config/.env.dev
-/app/config/.env.dev
+/app/config/.env
 /app/config/.env.ci
 
 # Temporary folder
 /app/tmp/*
+
+# Uploaded media files
+/app/media/images/events/
 
 ### Releases
 /release/*

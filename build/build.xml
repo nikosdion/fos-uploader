@@ -19,6 +19,9 @@
 		<!-- Skip the configuration -->
 		<exclude name="config/.env"/>
 		<exclude name="config/.env.dev"/>
+
+		<!-- Do not include uploaded images -->
+		<exclude name="media/images/events/**" />
 	</fileset>
 
 	<!--
