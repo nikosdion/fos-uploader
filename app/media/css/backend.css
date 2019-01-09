@@ -1,0 +1,21 @@
+/**
+ * @package    fos-uploader
+ * @copyright  Copyright (c)2018-2019 Akeeba Ltd & Fos Photography
+ * @license    proprietary
+ *
+ * Developed by Akeeba Ltd <https://www.akeeba.com>.
+ */
+
+a.media-image div.media-image-thumb
+{
+    display: block;
+    min-height: 120px;
+    width: 100%;
+    text-align: center;
+}
+
+div.media-image-filename
+{
+    max-width: 150px;
+    text-overflow: ellipsis;
+}
