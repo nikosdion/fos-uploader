@@ -13,6 +13,8 @@ use Awf\Text\Text;
 /** @var \Admin\Model\Events $model */
 $model = $this->getModel();
 ?>
+@js('media://../../media/js/events.js')
+
 <form name="adminForm" id="adminForm" action="@route('index.php?view=Events')" method="post"
       role="form" class="akeeba-form--horizontal">
 
@@ -69,9 +71,20 @@ $model = $this->getModel();
             <label for="image">
                 @lang('ADMIN_EVENTS_FIELD_IMAGE')
             </label>
-            <input type="text" name="image" maxlength="255" size="50"
-                   value="{{{ $model->image }}}"
-                   class="form-control" required />
+            <div class="akeeba-input-group">
+                <input type="text" name="image" id="image"
+                       maxlength="255" size="50"
+                       value="{{{ $model->image }}}"
+                       class="form-control" required
+                       disabled="disabled"
+                />
+                <span class="akeeba-input-group-btn">
+                    <button class="akeeba-btn" id="browseImage" onclick="akeeba.events.browse(); return false;">
+                        <span class="akion-folder"></span>
+                        @lang('ADMIN_EVENTS_FIELD_IMAGE_BTN')
+                    </button>
+                </span>
+            </div>
             <p class="akeeba-help-text">
                 @lang('ADMIN_EVENTS_FIELD_IMAGE_HELP')
             </p>
