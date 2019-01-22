@@ -50,10 +50,14 @@ akeeba.Upload.updateUI = function () {
 	if (akeeba.Upload.processingSelections)
 	{
 		document.getElementById('uploadButton').style.display = 'none';
+        document.getElementById('processingButton').style.display = 'block';
+        document.getElementById('uploadPrompt').style.display = 'none';
 	}
 	else
 	{
 		document.getElementById('uploadButton').style.display = 'block';
+        document.getElementById('processingButton').style.display = 'none';
+        document.getElementById('uploadPrompt').style.display = 'none';
 	}
 
 	document.getElementById("previewContainer").style.display = "flex";

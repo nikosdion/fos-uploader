@@ -203,7 +203,7 @@ p.help-text {
   margin-top:0;
   margin-bottom:2em;
 }
-button {
+button, label.button {
   background: #000;
   color: #fff;
   flex-grow:1;
@@ -222,10 +222,23 @@ button {
     color: #000;
     border:1px solid #000;
   }
+  &:disabled {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
   ion-icon {
     position: absolute;
     right:.5em;
     font-size: 1.25em;
+  }
+}
+label.button {
+  font-size: .8em;
+  padding: .5em 1em;
+  strong {
+    font-size: 1.2em;
+    padding-right: 5px;
   }
 }
 footer {
@@ -323,9 +336,13 @@ footer {
 }
 #previewContainer {
   flex-direction: column;
+}
+.thumbnail-wrapper {
+  margin: 1em 0;
+  padding: 30px + $border-width;
   text-align: center;
-  padding:$border-width;
   box-sizing: border-box;
+  position:relative;
 
   &:before, &:after, &>:first-child:before, &>:first-child:after {
 
@@ -346,16 +363,45 @@ footer {
   display:flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-items: center;
+  align-content: space-around;
+  justify-content: center;
   .thumbcontainer {
-    margin: 10px;
-    width: 100px;
-    height: 100px;
+    margin: 8px;
+    width: 120px;
+    height: 120px;
     overflow: hidden;
     position: relative;
     text-align:center;
+    border: 1px solid #000;
+    display: flex;
+    align-content: center;
+    justify-content: center;
     img.thumbPreview {
       height:100%;
     }
+    &:after {
+      width: 100%;
+      height:100%;
+      background-color: rgba(0,0,0,.4);
+      background-blend-mode: luminosity;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 999;
+    }
+    img.thumbRemove {
+      z-index:1000;
+      &:hover {
+        cursor:pointer;
+      }
+    }
+  }
+}
+#selected {
+  text-align: center;
+  font-size: 1.2em;
+  strong {
+    font-weight: 600;
   }
 }

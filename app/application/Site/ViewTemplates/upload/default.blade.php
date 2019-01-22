@@ -25,13 +25,13 @@
 <section class="main">
 	<div class="" id="uploadWrapper">
 		<h3>@lang('SITE_UPLOAD_HEAD_CHOOSE_PHOTOS')</h3>
-		<div id="selected">
-			<span id="numFiles"></span> @lang('SITE_UPLOAD_LBL_TOTAL')&nbsp;
+		<div id="selected" style="display: none;">
+			<strong><span id="numFiles"></span></strong> @lang('SITE_UPLOAD_LBL_TOTAL')&nbsp;
 			<label for="images" class="button">
 				<strong>+</strong> @lang('SITE_UPLOAD_LBL_ADD_MORE')
 			</label>
 		</div>
-		<div class="photo-upload-box">
+		<div class="photo-upload-box" id="uploadPrompt">
 			<label for="images" class="empty-state">
 				<ion-icon name="ios-cloud-upload"></ion-icon> <br />
 				@lang('SITE_UPLOAD_LBL_CHOOSE_PHOTOS')
@@ -50,9 +50,18 @@
 	</div>
 
 	<div id="previewContainer" style="display: none;">
-		<div id="thumbnails">
+		<div class="thumbnail-wrapper">
+			<div id="thumbnails">
 
+			</div>
 		</div>
+		<button
+				type="button" id="processingButton"
+				disabled
+		>
+			@lang('SITE_UPLOAD_BTN_PROCESSING')
+		</button>
+
 		<button
 					type="submit" id="uploadButton"
 					onclick="akeeba.Upload.uploadAllFiles(); return false;"
