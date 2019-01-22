@@ -55,6 +55,10 @@ class Main extends Controller
 			return true;
 		}
 
+		$event = $this->getEvent();
+		$view  = $this->getView();
+		$view->setModel('event', $event);
+
 		return parent::execute($task);
 	}
 

@@ -9,6 +9,8 @@
 
 namespace Site\View\Main;
 
+use Admin\Model\Events;
+
 class Html extends \Awf\Mvc\View
 {
 	/** @var string The full name of the user */
@@ -16,6 +18,9 @@ class Html extends \Awf\Mvc\View
 
 	/** @var bool Has the user accepted the terms of service and privacy policy? */
 	public $accept = false;
+
+	/** @var Events Event information */
+	public $event = null;
 
 	/**
 	 * Runs before showing the page where you enter your name and agree to TOS.
@@ -25,10 +30,9 @@ class Html extends \Awf\Mvc\View
 	public function onBeforeMain(?string &$tpl = null): bool
 	{
 		$session        = $this->container->segment;
-		$fullName       = $session->get('name', '');
-		$acceptTOS      = $session->get('agree', false);
-		$this->fullname = $fullName;
-		$this->accept   = $acceptTOS;
+		$this->fullname = $session->get('name', '');
+		$this->accept   = $session->get('agree', false);
+		$this->event    = $this->getModel('event');
 
 		$tpl = null;
 

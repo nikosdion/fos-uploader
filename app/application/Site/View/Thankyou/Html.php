@@ -9,6 +9,8 @@
 
 namespace Site\View\Thankyou;
 
+use Admin\Model\Events;
+
 class Html extends \Awf\Mvc\View
 {
 	/**
@@ -25,12 +27,18 @@ class Html extends \Awf\Mvc\View
 	 */
 	public $totalSize = 0;
 
-	public function onBeforeMain()
+	/** @var Events Event information */
+	public $event = null;
+
+	public function onBeforeMain(?string &$tpl = null): bool
 	{
 		$segment = $this->container->segment;
 
 		$this->totalFiles = $segment->get('totalfiles', 0);
 		$this->totalSize  = $segment->get('totalsize', 0);
+		$this->event      = $this->getModel('event');
+
+		$tpl = null;
 
 		return true;
 	}
