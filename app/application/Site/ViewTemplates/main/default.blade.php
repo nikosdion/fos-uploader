@@ -10,15 +10,18 @@
 /** @var  \Site\View\Main\Html $this */
 ?>
 
-<header>
+<header  style="background-image:url('/media/images/events/{{{ $this->event->image }}}')">
 	<div class="fos-image">
 		<h1>
-			event title
+			{{{ $this->event->title }}}
 		</h1>
 	</div>
 </header>
 <section class="main">
-	<h3>@lang('SITE_MAIN_HEADER') <span>@lang('SITE_MAIN_HEADER_READMORE')</span></h3>
+	<h3>
+		@lang('SITE_MAIN_HEADER')
+		<a href="#"><span>@lang('SITE_MAIN_HEADER_READMORE')</span></a>
+	</h3>
 	<hr />
 	<form action="@route('index.php?view=main&task=setinfo')"
 		  method="POST" class="">
@@ -30,12 +33,12 @@
 			<input type="text" name="fullname" id="fullname" value="{{{ $this->fullname }}}">
 
 		</div>
-		<p>
+		<p class="help-text">
 			@lang('SITE_MAIN_NAME_HELP')
 		</p>
-		<div>
+		<div class="checkbox">
+			<input type="checkbox" name="agreetotos" id="agreetotos" {{ $this->accept ? 'checked="checked"' : '' }}>
 			<label for="agreetotos">
-				<input type="checkbox" name="agreetotos" id="agreetotos" {{ $this->accept ? 'checked="checked"' : '' }}>
 				@sprintf('SITE_MAIN_TOS_LABEL', 'tos.html', 'privacy.html')
 			</label>
 		</div>
