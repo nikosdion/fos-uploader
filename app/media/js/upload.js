@@ -43,6 +43,7 @@ akeeba.Upload.updateUI = function () {
 	{
 		document.getElementById("previewContainer").style.display = "none";
         document.getElementById("selected").style.display = "none";
+        document.getElementById("uploadPrompt").style.display = "flex";
 
 		return;
 	}
@@ -197,11 +198,11 @@ akeeba.Upload.appendThumb = function (url, file, appendTo) {
 
 	// Create a progress bar
 	var elProgress           = document.createElement("div");
-	elProgress.className     = 'akeeba-progress thumbProgress';
+	elProgress.className     = 'thumbProgress';
 	elProgress.style.display = 'none';
 
 	var elProgressFill         = document.createElement('div');
-	elProgressFill.className   = 'akeeba-progress-fill thumbProgressFill';
+	elProgressFill.className   = 'thumbProgressFill';
 	elProgressFill.style.width = '0';
 	elProgress.appendChild(elProgressFill);
 
@@ -449,7 +450,7 @@ akeeba.Upload.uploadFile = function (file, presignedURL, elContainer) {
 				var percent = Math.round((event.loaded / event.total) * 100);
 				console.log('Uploaded ' + percent + '%');
 
-				elPBFill.style.width = 120 * percent / 100;
+				elPBFill.style.width = 105 * percent / 100;
 			}
 		}
 	};

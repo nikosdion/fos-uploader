@@ -396,6 +396,24 @@ footer {
         cursor:pointer;
       }
     }
+    .thumbProgress {
+      z-index: 1000;
+      border: 1px solid #fff;
+      background: transparent;
+      position: absolute;
+      width: 105px;
+      margin: 5px;
+      bottom: 0;
+      border: 1px solid #fff;
+      z-index: 1000;
+      height: 20px;
+
+      .thumbProgressFill {
+        background: #fff;
+        height: 100%;
+        position:relative;
+      }
+    }
   }
 }
 #selected {
