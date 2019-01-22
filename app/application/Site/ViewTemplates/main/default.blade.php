@@ -15,6 +15,7 @@
 		<h1>
 			{{{ $this->event->title }}}
 		</h1>
+		<div class="triangle"><img src="/media/images/logo.svg" alt="Fos Photography" width="50"/></div>
 	</div>
 </header>
 <section class="main">
@@ -31,7 +32,7 @@
 				@lang('SITE_MAIN_NAME_LABEL')
 			</label>
 			<input type="text" name="fullname" id="fullname" value="{{{ $this->fullname }}}">
-
+			<a href="#"><ion-icon name="ios-help" style="border-bottom:1px solid #000;"></ion-icon></a>
 		</div>
 		<p class="help-text">
 			@lang('SITE_MAIN_NAME_HELP')
@@ -45,6 +46,7 @@
 		<div>
 			<button type="submit">
 				@lang('SITE_MAIN_BTN_SUBMIT')
+				<ion-icon name="arrow-forward"></ion-icon>
 			</button>
 		</div>
 	</form>

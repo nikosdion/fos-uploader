@@ -76,7 +76,6 @@ $model = $this->getModel();
                        maxlength="255" size="50"
                        value="{{{ $model->image }}}"
                        class="form-control" required
-                       disabled="disabled"
                 />
                 <span class="akeeba-input-group-btn">
                     <button class="akeeba-btn" id="browseImage" onclick="akeeba.events.browse(); return false;">
