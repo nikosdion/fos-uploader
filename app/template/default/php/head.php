@@ -82,10 +82,13 @@ if (!empty($styles))
 	}
 }
 ?>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,700&amp;subset=greek,greek-ext" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
           href="<?php echo Uri::base(); ?>/media/css/fef.min.css?<?php echo $this->container->mediaQueryKey ?>"/>
     <link rel="stylesheet" type="text/css"
 		  href="<?php echo Uri::base(); ?>/media/css/app.css?<?php echo $this->container->mediaQueryKey ?>"/>
+    <link rel="stylesheet" type="text/css"
+          href="<?php echo Uri::base(); ?>/media/css/front-end.css?<?php echo $this->container->mediaQueryKey ?>"/>
 <?php if (defined('AKEEBADEBUG') && AKEEBADEBUG && @file_exists(APATH_BASE . '/media/css/theme.css')): ?>
     <link rel="stylesheet" type="text/css"
           href="<?php echo \Awf\Uri\Uri::base(); ?>/media/css/theme.css?<?php echo $this->container->mediaQueryKey ?>"/>

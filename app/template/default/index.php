@@ -34,9 +34,9 @@ $this->outputHTTPHeaders();
 <?php include __DIR__ . '/php/head.php' ?>
 
 </head>
-<body class="akeeba-renderer-fef">
+<body class="">
 <?php if (\Awf\Application\Application::getInstance()->getContainer()->input->getCmd('tmpl', '') != 'component'): ?>
-<div class="akeeba-maxwidth">
+<div class="">
 <?php endif; ?>
 
 <?php include __DIR__ . '/php/messages.php' ?>
@@ -44,10 +44,20 @@ $this->outputHTTPHeaders();
 
 <?php if (\Awf\Application\Application::getInstance()->getContainer()->input->getCmd('tmpl', '') != 'component'): ?>
 </div>
-<footer id="akeeba-footer">
-    <div class="akeeba-maxwidth">
-        <p class="muted credit">
-            Copyright &copy;2018 &ndash; <?php echo date('Y') ?> <a href="https://www.akeeba.com">Akeeba Ltd</a>. All legal rights reserved.
+<footer id="">
+    <div class="h">
+        <p class="soc">
+            <a href="https://www.facebook.com/pg/fosphotographycinematography/posts/"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="https://www.instagram.com/fos_photography/"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://vimeo.com/user52027932"><ion-icon name="logo-vimeo"></ion-icon></a>
+        </p>
+        <p class="links">
+            <a href="#">What is this?</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+        </p>
+        <p class="">
+             &copy; 2018 &ndash; <?php echo date('Y') ?> <a href="https://fosproductions.gr/">Fos Productions</a>. All legal rights reserved.
         </p>
 	    <?php if (defined('AKEEBADEBUG')): ?>
             <p class="small">
@@ -68,5 +78,6 @@ $this->outputHTTPHeaders();
 		}
 	});
 </script>
+<script src="https://unpkg.com/ionicons@4.5.1/dist/ionicons.js"></script>
 </body>
 </html>
