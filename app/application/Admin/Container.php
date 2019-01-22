@@ -9,8 +9,6 @@
 
 namespace Admin;
 
-use Akeeba\Engine\Postproc\Connector\S3v4\Connector as S3Connector;
-use Akeeba\Engine\Postproc\Connector\S3v4\Configuration as S3Config;
 use Admin\Application\Configuration;
 
 class Container extends \Site\Container

@@ -11,9 +11,12 @@ namespace Site\Controller;
 
 use Awf\Container\Container;
 use Awf\Mvc\Controller;
+use Site\Controller\ControllerTraits\RequireShortcode;
 
 class Thankyou extends Controller
 {
+	use RequireShortcode;
+
 	public function __construct(Container $container = null)
 	{
 		$this->modelName = 'main';
@@ -21,4 +24,10 @@ class Thankyou extends Controller
 		parent::__construct($container);
 	}
 
+	public function onAfterMain()
+	{
+		$event = $this->getEvent();
+		$view  = $this->getView();
+		$view->setModel('event', $event);
+	}
 }

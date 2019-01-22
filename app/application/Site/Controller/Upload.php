@@ -71,6 +71,10 @@ class Upload extends Controller
 		$folderName = $model->getFolderNameFromName($name);
 		$this->container->segment->set('foldername', $folderName);
 
+		$event = $this->getEvent();
+		$view  = $this->getView();
+		$view->setModel('event', $event);
+
 		parent::main();
 	}
 

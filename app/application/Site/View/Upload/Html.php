@@ -9,6 +9,24 @@
 
 namespace Site\View\Upload;
 
+use Admin\Model\Events;
+
 class Html extends \Awf\Mvc\View
 {
+	/** @var Events Event information */
+	public $event = null;
+
+	/**
+	 * Runs before showing the Thank You page
+	 *
+	 * @return  bool
+	 */
+	public function onBeforeMain(?string &$tpl = null): bool
+	{
+		$this->event = $this->getModel('event');
+
+		$tpl = null;
+
+		return true;
+	}
 }

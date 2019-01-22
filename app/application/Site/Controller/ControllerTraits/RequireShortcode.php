@@ -9,6 +9,8 @@
 
 namespace Site\Controller\ControllerTraits;
 
+use Admin\Container;
+use Admin\Model\Events;
 use Awf\Mvc\Model;
 use Site\Model\Main;
 
@@ -86,5 +88,23 @@ trait RequireShortcode
 		}
 
 		return $this->container->segment->get('shortcode', '');
+	}
+
+	protected function getEvent(?string $code = null): Events
+	{
+		if (is_null($code))
+		{
+			$code = $this->getShortcode();
+		}
+
+		/** @var Events $model */
+		$backendContainer = new Container([
+			'db' => $this->container->db
+		]);
+		$model            = Model::getInstance('Admin', 'Events', $backendContainer);
+
+		return $model->findOrFail([
+			'code' => $code
+		]);
 	}
 }
