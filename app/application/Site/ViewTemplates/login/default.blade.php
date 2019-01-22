@@ -10,7 +10,7 @@
 <div class="page-home">
 	<header>
 		<div class="fos-image">
-			<img src="/media/images/logo.svg" alt="Fos Photography" width="150" />
+			<div><img src="/media/images/logo.svg" alt="Fos Photography" width="150" /></div>
 			<h1>@lang('SITE_LOGIN_HEADER')</h1>
 		</div>
 	</header>

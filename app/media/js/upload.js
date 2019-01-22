@@ -42,6 +42,7 @@ akeeba.Upload.updateUI = function () {
 	if (akeeba.Upload.totalFiles === 0)
 	{
 		document.getElementById("previewContainer").style.display = "none";
+        document.getElementById("selected").style.display = "none";
 
 		return;
 	}
@@ -55,7 +56,8 @@ akeeba.Upload.updateUI = function () {
 		document.getElementById('uploadButton').style.display = 'block';
 	}
 
-	document.getElementById("previewContainer").style.display = "block";
+	document.getElementById("previewContainer").style.display = "flex";
+    document.getElementById("selected").style.display = "block";
 
 	document.getElementById("numFiles").innerText  = akeeba.Upload.totalFiles;
 	document.getElementById("totalSize").innerText = bytesToSize(akeeba.Upload.totalSize);

@@ -96,40 +96,42 @@ header {
   background-repeat: no-repeat;
   background-position: center;
   background-color:#000;
+  text-transform: uppercase;
+  padding:2em;
 
-
-  &:before, &:after, &>:first-child:before, &>:first-child:after {
-
-    position:absolute;
-    width:40px;
-    height: 40px;
-    border-color:#fff;
-    border-style:solid;
-    content: ' ';
-    z-index: 1000;
+  h1 {
+    font-weight: 600;
+    margin:0;
+    margin-right:45px;
+    font-size: 1.85em;
   }
-  &:before {top:$distance-from-edge;left:$distance-from-edge;border-width: $border-width 0 0 $border-width}
-  &:after {top:$distance-from-edge;right:$distance-from-edge;border-width: $border-width $border-width 0 0}
-  &>:first-child:before {bottom:$distance-from-edge;right:$distance-from-edge;border-width: 0 $border-width $border-width 0}
-  &>:first-child:after {bottom:$distance-from-edge;left:$distance-from-edge;border-width: 0 0 $border-width $border-width}
-
   .fos-image {
     background-color: rgba(0,0,0,.6);
     position:relative;
-    width: 100%;
+   // width: 100%;
     min-height: 250px;
     padding: 2.5em 3em;
+    margin:-2em;
     box-sizing: border-box;
-    text-transform: uppercase;
     display:flex;
     background-blend-mode: luminosity;
     align-items: end;
+    &:before, &:after, &>:first-child:before, &>:first-child:after {
 
-    h1 {
-      font-weight: 600;
-      margin:0;
-      margin-right:45px;
+      position:absolute;
+      width:40px;
+      height: 40px;
+      border-color:#fff;
+      border-style:solid;
+      content: ' ';
+      z-index: 1000;
     }
+    &:before {top:$distance-from-edge;left:$distance-from-edge;border-width: $border-width 0 0 $border-width}
+    &:after {top:$distance-from-edge;right:$distance-from-edge;border-width: $border-width $border-width 0 0}
+    &>:first-child:before {bottom:$distance-from-edge;right:$distance-from-edge;border-width: 0 $border-width $border-width 0}
+    &>:first-child:after {bottom:$distance-from-edge;left:$distance-from-edge;border-width: 0 0 $border-width $border-width}
+
+
   }
   .triangle {
     background: #000;
@@ -259,5 +261,101 @@ footer {
   }
   input[type=text] {
     text-transform: uppercase;
+  }
+}
+#uploadWrapper h3 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.6em;
+  font-weight:300;
+}
+.photo-upload-box {
+  position: relative;
+  min-height:350px;
+  display:flex;
+  text-align: center;
+  padding:$border-width;
+  box-sizing: border-box;
+  //flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  label {
+    flex-grow:1;
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    font-size: 1.25em;
+    padding: 20px;
+    z-index: 1000;
+    ion-icon {
+      margin: 0 auto 20px auto;
+      font-size: 80px;
+    }
+
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &:before, &:after, &>:first-child:before, &>:first-child:after {
+
+    position:absolute;
+    width:40px;
+    height: 40px;
+    border-color:#000;
+    border-style:solid;
+    content: ' ';
+    z-index: 999;
+  }
+  &:before {top:0;left:0;border-width: $border-width 0 0 $border-width}
+  &:after {top:0;right:0;border-width: $border-width $border-width 0 0}
+  &>:first-child:before {bottom:0;right:0;border-width: 0 $border-width $border-width 0}
+  &>:first-child:after {bottom:0;left:0;border-width: 0 0 $border-width $border-width}
+}
+#previewContainer {
+  flex-direction: column;
+  text-align: center;
+  padding:$border-width;
+  box-sizing: border-box;
+
+  &:before, &:after, &>:first-child:before, &>:first-child:after {
+
+    position:absolute;
+    width:40px;
+    height: 40px;
+    border-color:#000;
+    border-style:solid;
+    content: ' ';
+    z-index: 999;
+  }
+  &:before {top:0;left:0;border-width: $border-width 0 0 $border-width}
+  &:after {top:0;right:0;border-width: $border-width $border-width 0 0}
+  &>:first-child:before {bottom:0;right:0;border-width: 0 $border-width $border-width 0}
+  &>:first-child:after {bottom:0;left:0;border-width: 0 0 $border-width $border-width}
+}
+#thumbnails {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-items: center;
+  .thumbcontainer {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    text-align:center;
+    img.thumbPreview {
+      height:100%;
+    }
   }
 }
