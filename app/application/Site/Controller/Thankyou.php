@@ -24,10 +24,12 @@ class Thankyou extends Controller
 		parent::__construct($container);
 	}
 
-	public function onAfterMain()
+	public function onBeforeMain()
 	{
 		$event = $this->getEvent();
 		$view  = $this->getView();
 		$view->setModel('event', $event);
+
+		return true;
 	}
 }
