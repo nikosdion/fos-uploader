@@ -410,7 +410,7 @@ akeeba.Upload.uploadFile = function (file, presignedURL, elContainer) {
 		// Update the UI
 		akeeba.Upload.totalSize -= file.size;
 		akeeba.Upload.totalFiles--;
-		akeeba.Upload.updateUI();
+		//akeeba.Upload.updateUI();
 
 		elContainer.parentElement.removeChild(elContainer);
 
