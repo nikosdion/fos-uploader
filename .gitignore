@@ -89,5 +89,8 @@ fabric.properties
 # Uploaded media files
 /app/media/images/events/
 
+# Generated CSS map file
+/app/media/css/front-end.css.map
+
 ### Releases
 /release/*
