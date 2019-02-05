@@ -12,6 +12,8 @@
 html,
 body {
     height: 100%;
+    padding:0;
+    margin:0;
     /* The html and body elements cannot have any padding or margin. */
 }
 
@@ -138,4 +140,18 @@ form#loginForm {
     margin-right: auto;
 
     max-width: 30em;
+}
+/***********************************************************************************************************************
+ * Admin area
+ **********************************************************************************************************************/
+
+
+.akeeba-renderer-fef .akeeba-navbar {
+    margin-bottom:0;
+}
+.akeeba-renderer-fef .akeeba-toolbar {
+    margin-bottom:2em;
+}
+.akeeba-renderer-fef .akeeba-maxwidth {
+    padding: 0 2em;
 }
