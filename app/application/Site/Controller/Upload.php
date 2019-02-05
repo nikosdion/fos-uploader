@@ -86,7 +86,7 @@ class Upload extends Controller
 	public function presigned()
 	{
 		$folderName = $this->container->segment->get('foldername', '');
-		$fileName   = $this->input->post->getPath('filename', '');
+		$fileName   = $this->input->post->getString('filename', '');
 		$mime       = $this->input->post->getString('mime', '');
 		$size       = $this->input->post->getInt('size', 0);
 

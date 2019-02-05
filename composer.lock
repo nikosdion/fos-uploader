@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/akeeba/awf.git",
-                "reference": "4d20555f6ade998fdc2b9295b1b6b55031a58741"
+                "reference": "094c6597ade2b61e8bdd9eebd4f0de92e24cf1a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/akeeba/awf/zipball/4d20555f6ade998fdc2b9295b1b6b55031a58741",
-                "reference": "4d20555f6ade998fdc2b9295b1b6b55031a58741",
+                "url": "https://api.github.com/repos/akeeba/awf/zipball/094c6597ade2b61e8bdd9eebd4f0de92e24cf1a3",
+                "reference": "094c6597ade2b61e8bdd9eebd4f0de92e24cf1a3",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "joomla",
                 "wordpress"
             ],
-            "time": "2019-01-16T07:07:46+00:00"
+            "time": "2019-02-01T21:26:31+00:00"
         },
         {
             "name": "akeeba/s3",
