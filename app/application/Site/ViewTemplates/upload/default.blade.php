@@ -15,53 +15,62 @@
 
 @include('common/error_modal')
 
-<div class="AKEEBA_MASTER_FORM_STYLING akeeba-form--stretch">
-	<div class="akeeba-panel--teal" id="uploadWrapper">
-		<header class="akeeba-block-header">
-			<h1>
-				@lang('SITE_UPLOAD_HEAD_CHOOSE_PHOTOS')
-			</h1>
-		</header>
-		<div class="akeeba-form-group">
-			<label for="images">
+<header>
+		<h1>
+			{{{ $this->event->title }}}
+		</h1>
+		<div class="triangle"><img src="/media/images/logo.svg" alt="Fos Photography" width="50"/></div>
+</header>
+
+<section class="main">
+	<div class="" id="uploadWrapper">
+		<h3>@lang('SITE_UPLOAD_HEAD_CHOOSE_PHOTOS')</h3>
+		<div id="selected" style="display: none;">
+			<strong><span id="numFiles"></span></strong> @lang('SITE_UPLOAD_LBL_TOTAL')&nbsp;
+			<label for="images" class="button">
+				<strong>+</strong> @lang('SITE_UPLOAD_LBL_ADD_MORE')
+			</label>
+		</div>
+		<div class="photo-upload-box" id="uploadPrompt">
+			<label for="images" class="empty-state">
+				<img src="/media/images/upload.svg"/> <br />
 				@lang('SITE_UPLOAD_LBL_CHOOSE_PHOTOS')
 			</label>
+
+
 			<input type="file" multiple name="images" id="images"
 				   accept=".jpg,.jpeg.,.gif,.png,.mov,.mp4"
 				   onchange="akeeba.Upload.handleFiles(this.files, document.getElementById('thumbnails'))"
 			>
-			<p class="akeeba-help-text">
+			<!--p class="akeeba-help-text">
 				@lang('SITE_UPLOAD_HELP_CHOOSE_PHOTOS')
-			</p>
+			</p-->
 		</div>
+
 	</div>
 
-	<div class="akeeba-panel--info" id="previewContainer" style="display: none;">
-		<header class="akeeba-block-header">
-			<h3>
-				@lang('SITE_UPLOAD_HEAD_SELECTED_IMAGES')
-			</h3>
-		</header>
+	<div id="previewContainer" style="display: none;">
+		<div class="thumbnail-wrapper">
+			<div id="thumbnails">
 
-		<p>
-			@lang('SITE_UPLOAD_LBL_TOTAL')&nbsp;
-			<span id="numFiles"></span>
-			@lang('SITE_UPLOAD_LBL_ITEMS'),&nbsp;
-			<span id="totalSize"></span>
-		</p>
+			</div>
+		</div>
+		<button
+				type="button" id="processingButton"
+				disabled
+		>
+			@lang('SITE_UPLOAD_BTN_PROCESSING')
+		</button>
 
-		<p id="uploadButton">
-			<button
-					type="submit" class="akeeba-btn--green--big"
+		<button
+					type="submit" id="uploadButton"
 					onclick="akeeba.Upload.uploadAllFiles(); return false;"
 			>
 				@lang('SITE_UPLOAD_BTN_UPLOAD')
+				<strong>(<span id="totalSize"></span>)</strong>
 			</button>
-		</p>
 
 
-		<div id="thumbnails" class="akeeba-grid--small">
 
-		</div>
 	</div>
-</div>
+</section>

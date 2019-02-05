@@ -341,7 +341,7 @@ if (typeof akeeba.Modal === 'undefined')
 		/** The following lines are required for WordPress compatibility **/
 		// Use Bootstrap styling (akeeba-bootstrap). Make sure the modal is aligned to the entire WordPress backend
 		// (akeeba-wp).
-		modalContainer.className = 'akeeba-renderer-fef akeeba-wp';
+		modalContainer.className = 'akeeba-renderer-fef';
 		// Make sure the modal is ABOVE the WordPress sidebar
 		modalContainer.style.zIndex = '10000';
 		// Make sure the overlay is ABOVE the WordPress sidebar

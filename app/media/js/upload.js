@@ -42,6 +42,8 @@ akeeba.Upload.updateUI = function () {
 	if (akeeba.Upload.totalFiles === 0)
 	{
 		document.getElementById("previewContainer").style.display = "none";
+        document.getElementById("selected").style.display = "none";
+        document.getElementById("uploadPrompt").style.display = "flex";
 
 		return;
 	}
@@ -49,13 +51,18 @@ akeeba.Upload.updateUI = function () {
 	if (akeeba.Upload.processingSelections)
 	{
 		document.getElementById('uploadButton').style.display = 'none';
+        document.getElementById('processingButton').style.display = 'block';
+        document.getElementById('uploadPrompt').style.display = 'none';
 	}
 	else
 	{
 		document.getElementById('uploadButton').style.display = 'block';
+        document.getElementById('processingButton').style.display = 'none';
+        document.getElementById('uploadPrompt').style.display = 'none';
 	}
 
-	document.getElementById("previewContainer").style.display = "block";
+	document.getElementById("previewContainer").style.display = "flex";
+    document.getElementById("selected").style.display = "block";
 
 	document.getElementById("numFiles").innerText  = akeeba.Upload.totalFiles;
 	document.getElementById("totalSize").innerText = bytesToSize(akeeba.Upload.totalSize);
@@ -191,11 +198,11 @@ akeeba.Upload.appendThumb = function (url, file, appendTo) {
 
 	// Create a progress bar
 	var elProgress           = document.createElement("div");
-	elProgress.className     = 'akeeba-progress thumbProgress';
+	elProgress.className     = 'thumbProgress';
 	elProgress.style.display = 'none';
 
 	var elProgressFill         = document.createElement('div');
-	elProgressFill.className   = 'akeeba-progress-fill thumbProgressFill';
+	elProgressFill.className   = 'thumbProgressFill';
 	elProgressFill.style.width = '0';
 	elProgress.appendChild(elProgressFill);
 
@@ -323,7 +330,7 @@ akeeba.Upload.getVideoThumb = function (file, appendTo) {
  * @param   {boolean}  displayed
  */
 akeeba.Upload.setUIDisplayState = function (displayed) {
-	var display = displayed ? 'inline-block' : 'none';
+	var display = displayed ? 'block' : 'none';
 
 	document.getElementById('uploadWrapper').style.display = display;
 	document.getElementById('uploadButton').style.display  = display;
@@ -403,7 +410,7 @@ akeeba.Upload.uploadFile = function (file, presignedURL, elContainer) {
 		// Update the UI
 		akeeba.Upload.totalSize -= file.size;
 		akeeba.Upload.totalFiles--;
-		akeeba.Upload.updateUI();
+		//akeeba.Upload.updateUI();
 
 		elContainer.parentElement.removeChild(elContainer);
 
@@ -443,7 +450,7 @@ akeeba.Upload.uploadFile = function (file, presignedURL, elContainer) {
 				var percent = Math.round((event.loaded / event.total) * 100);
 				console.log('Uploaded ' + percent + '%');
 
-				elPBFill.style.width = 120 * percent / 100;
+				elPBFill.style.width = 105 * percent / 100;
 			}
 		}
 	};

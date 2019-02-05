@@ -1,83 +1,45 @@
-/* variables */
-$border-width: 4px;
-$distance-from-edge: 15px;
+/**
+ * @package    fos-uploader
+ * @copyright  Copyright (c)2018-2019 Akeeba Ltd & Fos Photography
+ * @license    proprietary
+ *
+ * Developed by Akeeba Ltd <https://www.akeeba.com>.
+ */
+
+/***********************************************************************************************************************
+ * Variables
+ **********************************************************************************************************************/
+
+$border-width: 4px; // how thick the corner brackets should be
+$distance-from-edge: 15px; // how far from the edge of the page the corner brackets should be
+
+
+/***********************************************************************************************************************
+ * General
+ **********************************************************************************************************************/
 
 body, html {
   margin:0;
   padding:0;
   font-family: 'Fira Sans', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
+  height: 100%;
 }
 body {
   min-height:100%;
   display:flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; // the flex styles allow us to mimic the behavior of a native app
 }
-a {
-  color: #000000;
-  transition: all .2s ease-in-out;
-  &:hover {color: #caa378;}
-}
-h3 {
-  font-weight:400;
-  margin-top:0;
-  span {
-    font-style: italic;
-    color: #666666;
-
-  }
+ion-icon { // this is a valid element despite what phpstorm says. If we remove ionicon, we can remove this.
+  font-size:1.75em;
 }
 hr {
   border: 0;
   border-top: 1px solid #ccc;
   margin: 1em 0;
 }
-header {
-
-  color: #fff;
-  position:relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color:#000;
-
-
-  &:before, &:after, &>:first-child:before, &>:first-child:after {
-
-    position:absolute;
-    width:40px;
-    height: 40px;
-    border-color:#fff;
-    border-style:solid;
-    content: ' ';
-    z-index: 1000;
-  }
-  &:before {top:$distance-from-edge;left:$distance-from-edge;border-width: $border-width 0 0 $border-width}
-  &:after {top:$distance-from-edge;right:$distance-from-edge;border-width: $border-width $border-width 0 0}
-  &>:first-child:before {bottom:$distance-from-edge;right:$distance-from-edge;border-width: 0 $border-width $border-width 0}
-  &>:first-child:after {bottom:$distance-from-edge;left:$distance-from-edge;border-width: 0 0 $border-width $border-width}
-
-  .fos-image {
-    background-color: rgba(0,0,0,.6);
-    position:relative;
-    width: 100%;
-    min-height: 300px;
-    padding: 2em 2.5em;
-    box-sizing: border-box;
-    text-transform: uppercase;
-    display:flex;
-    background-blend-mode: luminosity;
-    align-items: end;
-
-    h1 {
-      font-weight: 600;
-      margin:0;
-    }
-  }
-}
-
 .main {
   padding: 40px;
   font-weight: 300;
@@ -86,11 +48,109 @@ header {
     margin-bottom:1em;
     justify-content: stretch;
     align-items: end;
+    .icon img {
+      width: 1.5em;
+    }
   }
   max-width: 500px;
   margin:0 auto;
 }
 
+
+/***********************************************************************************************************************
+ * Typography
+ **********************************************************************************************************************/
+
+a {
+  color: #000000;
+  transition: all .2s ease-in-out;
+  &:hover {color: #caa378;} // this color came from the fos website, it seems to be an acceptable secondary color
+}
+h2 {
+  font-weight:300;
+  text-align:center;
+  line-height: 1.5em;
+  strong {
+    font-weight:700;
+  }
+}
+h3 {
+  font-weight:400;
+  margin-top:0;
+  span {
+    font-style: italic;
+    color: #666666;
+    font-size: .7em;
+  }
+}
+h4 {
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom:0;
+  + p {
+    margin-top:.5em;
+    line-height: 1.5em;
+    font-weight:300;
+  }
+}
+
+
+
+/***********************************************************************************************************************
+ * Forms
+ **********************************************************************************************************************/
+
+.checkbox {
+  input[type="checkbox"] {
+    opacity: 0;
+  }
+  label {
+    position:relative;
+    padding-left: 1em;
+    &::before{ // checkbox
+      content: "";
+      display: inline-block;
+
+      height: 20px;
+      width: 20px;
+
+      border: 1px solid #666;
+
+      position: absolute;
+      top: 0;
+      left:-20px;
+    }
+    &::after { //checkmark
+      content: none;
+      display: inline-block;
+
+      height: 6px;
+      width: 15px;
+      border-left: 2px solid;
+      border-bottom: 2px solid;
+
+      transform: rotate(-45deg);
+
+      position: absolute;
+
+      left: -15px;
+      top: 4px;
+    }
+  }
+}
+/*Hide the checkmark by default*/
+.checkbox input[type="checkbox"] + label::after {
+  content: none;
+}
+
+/*Unhide the checkmark on the checked state*/
+.checkbox input[type="checkbox"]:checked + label::after {
+  content: "";
+}
+/*Adding focus styles on the outer-box of the fake checkbox*/
+.checkbox input[type="checkbox"]:focus + label::before {
+  outline: rgb(59, 153, 252) auto 5px;
+}
 input[type=text] {
   flex-grow: 1;
   margin-left:.5em;
@@ -108,40 +168,186 @@ input[type=text] {
     color: #888;
   }
 }
-button {
-  background: #000;
-  color: #fff;
-  flex-grow:1;
-  font-size:1em;
-  border:1px solid #000;
-  padding: .5em;
-  text-transform: uppercase;
-  font-family: 'Fira Sans', sans serif;
-  font-weight: 400;
-  transition: all .2s ease-in-out;
-  &:hover {
-    cursor: pointer;
-    background: #fff;
-    color: #000;
-    border:1px solid #000;
-  }
+p.help-text {
+  font-size: .85em;
+  color: #666;
+  font-style: italic;
+  margin-top:0;
+  margin-bottom:2em;
 }
+
+
+/***********************************************************************************************************************
+ * Header styles
+ **********************************************************************************************************************/
+
+header {
+
+  color: #fff;
+  position:relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color:#000;
+  text-transform: uppercase;
+  padding:2em;
+
+  h1 {
+    font-weight: 600;
+    margin:0;
+    margin-right:45px;
+    font-size: 1.85em;
+  }
+  .fos-image {
+    background-color: rgba(0,0,0,.6);
+    position:relative;
+    min-height: 250px;
+    padding: 2.5em 3em;
+    margin:-2em;
+    box-sizing: border-box;
+    display:flex;
+    background-blend-mode: luminosity;
+    align-items: end;
+
+    /* begin corner bracket magic */
+    &:before, &:after, &>:first-child:before, &>:first-child:after {
+
+      position:absolute;
+      width:40px;
+      height: 40px;
+      border-color:#fff;
+      border-style:solid;
+      content: ' ';
+      z-index: 1000;
+    }
+    &:before {top:$distance-from-edge;left:$distance-from-edge;border-width: $border-width 0 0 $border-width}
+    &:after {top:$distance-from-edge;right:$distance-from-edge;border-width: $border-width $border-width 0 0}
+    &>:first-child:before {bottom:$distance-from-edge;right:$distance-from-edge;border-width: 0 $border-width $border-width 0}
+    &>:first-child:after {bottom:$distance-from-edge;left:$distance-from-edge;border-width: 0 0 $border-width $border-width}
+    /* end corner bracket magic */
+
+  }
+
+  /* begin triangle logo magic */
+  .triangle {
+    background: #000;
+    position:absolute;
+    right:0;
+    bottom:0;
+    padding:0 28px 23px 0;
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 39px solid transparent;
+      border-right: 39px solid #000;
+      border-top: 32px solid transparent;
+      border-bottom: 32px solid #000;
+      position: absolute;
+      top: -64px;
+      right: 0;
+    }
+    &:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 41px solid transparent;
+      border-right: 41px solid #000;
+      border-top: 35px solid transparent;
+      border-bottom: 35px solid #000;
+      position: absolute;
+      bottom:0;
+      right: 78px;
+    }
+  }
+  /* end triangle logo magic */
+}
+
+
+
+/***********************************************************************************************************************
+ * Footer styles
+ **********************************************************************************************************************/
+
 footer {
   text-align: center;
-  font-size: .75em;
+  font-size: .8em;
   padding-bottom: 1em;
   p {
     margin:.5em;
   }
-  .soc {
-    font-size: 25px;
+  .soc .ion-icon {
+    width: 25px;
     margin:0;
   }
   .links a{
     margin: 1em 20px;
   }
 }
-/* PAGE SPECIFIC STYLES */
+
+
+/***********************************************************************************************************************
+ * Button styles
+ **********************************************************************************************************************/
+
+button, label.button, a.button {
+  background: #000;
+  color: #fff;
+  flex-grow:1;
+  border:1px solid #000;
+  padding: .5em;
+  text-transform: uppercase;
+  font-family: 'Fira Sans', sans serif;
+  font-weight: 400;
+  transition: all .2s ease-in-out;
+  font-size: 1.2em;
+  position: relative;
+  margin: .75em 0;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    background: #fff;
+    color: #000;
+    border:1px solid #000;
+    .icon {
+      filter: invert(0); // this allows us to invert the svg img instead of having to embed the svg to change color
+    }
+  }
+  &:disabled {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
+  .icon {
+    position: absolute;
+    right:.5em;
+    top:.34em;
+    width: 1.5em;
+    filter: invert(1); // this allows us to invert the svg img instead of having to embed the svg to change color
+  }
+}
+a.button {
+  margin: 1.5em auto;
+  padding: .5em 2em;
+  font-size: 1em;
+  display:table; // idk why this works to make the button center but it does. /shrug
+}
+label.button {
+  font-size: .8em;
+  padding: .5em 1em;
+  strong {
+    font-size: 1.2em;
+    padding-right: 5px;
+  }
+}
+
+
+
+/***********************************************************************************************************************
+ * Page-specific styles
+/***********************************************************************************************************************
+ * Home page styles
+ **********************************************************************************************************************/
 
 .page-home {
   header {
@@ -154,9 +360,187 @@ footer {
       justify-content: space-around;
       min-height: 400px;
       padding: 3.5em;
+      h1 {margin-right:0}
     }
   }
   input[type=text] {
     text-transform: uppercase;
+  }
+}
+
+
+
+/***********************************************************************************************************************
+ * Upload Page styles
+ **********************************************************************************************************************/
+
+#selected {
+  text-align: center;
+  font-size: 1.2em;
+  strong {
+    font-weight: 600;
+  }
+}
+
+#uploadWrapper h3 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.6em;
+  font-weight:300;
+}
+.photo-upload-box {
+  position: relative;
+  min-height:350px;
+  display:flex;
+  text-align: center;
+  padding:$border-width;
+  box-sizing: border-box;
+  align-content: center;
+  justify-content: center;
+  input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  label {
+    flex-grow:1;
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    font-size: 1.25em;
+    padding: 20px;
+    z-index: 997;
+    img {
+      margin: 0 auto 20px auto;
+      width: 80px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  /* more corner bracket magic */
+  &:before, &:after, &>:first-child:before, &>:first-child:after {
+
+    position:absolute;
+    width:40px;
+    height: 40px;
+    border-color:#000;
+    border-style:solid;
+    content: ' ';
+    z-index: 997;
+  }
+  &:before {top:0;left:0;border-width: $border-width 0 0 $border-width}
+  &:after {top:0;right:0;border-width: $border-width $border-width 0 0}
+  &>:first-child:before {bottom:0;right:0;border-width: 0 $border-width $border-width 0}
+  &>:first-child:after {bottom:0;left:0;border-width: 0 0 $border-width $border-width}
+  /* end corner bracket magic */
+}
+#previewContainer {
+  flex-direction: column;
+}
+.thumbnail-wrapper {
+  margin: 1em 0;
+  padding: 30px + $border-width;
+  text-align: center;
+  box-sizing: border-box;
+  position:relative;
+
+  /* more corner bracket magic */
+  &:before, &:after, &>:first-child:before, &>:first-child:after {
+    position:absolute;
+    width:40px;
+    height: 40px;
+    border-color:#000;
+    border-style:solid;
+    content: ' ';
+    z-index: 997;
+  }
+  &:before {top:0;left:0;border-width: $border-width 0 0 $border-width}
+  &:after {top:0;right:0;border-width: $border-width $border-width 0 0}
+  &>:first-child:before {bottom:0;right:0;border-width: 0 $border-width $border-width 0}
+  &>:first-child:after {bottom:0;left:0;border-width: 0 0 $border-width $border-width}
+  /* end corner bracket magic */
+}
+
+#thumbnails {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-around;
+  justify-content: center;
+  .thumbcontainer {
+    margin: 8px;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+    text-align:center;
+    border: 1px solid #000;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    img.thumbPreview {
+      height:100%;
+    }
+    &:after {
+      width: 100%;
+      height:100%;
+      background-color: rgba(0,0,0,.4);
+      background-blend-mode: luminosity;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 997;
+    }
+    img.thumbRemove {
+      z-index:998;
+      &:hover {
+        cursor:pointer;
+      }
+    }
+    .thumbProgress {
+      z-index: 998;
+      border: 1px solid #fff;
+      background: transparent;
+      position: absolute;
+      width: 105px;
+      margin: 5px;
+      bottom: 0;
+      height: 20px;
+
+      .thumbProgressFill {
+        background: #fff;
+        height: 100%;
+        position:relative;
+      }
+    }
+  }
+}
+
+/***********************************************************************************************************************
+ * Modal dialogs styles to make them fit Fos branding
+ **********************************************************************************************************************/
+
+#akeeba-modal-container {
+  font-family: "Fira Sans", sans-serif;
+  #akeeba-modal-content {
+    display: block;
+    padding: .5em 2em 2.5em 2em;
+    z-index: 999;
+    h4 {
+      border-bottom:0;
+      font-size: 1.5em;
+      font-family: "Fira Sans", sans-serif;
+    }
+    p {
+      font-family: "Fira Sans", sans-serif;
+    }
   }
 }

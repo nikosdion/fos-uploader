@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <project name="AkeebaSolo" description="Akeeba Solo" default="git">
+	<property name="build.scss_bin" value="sass" />
 
 	<import file="${phing.dir}/../../../akeeba/buildfiles/phing/common.xml"/>
 
@@ -13,7 +14,7 @@
 	-->
 
 	<!-- The application -->
-	<fileset dir="${phing.dir}/../app" id="app" expandsymboliclinks="true">
+	<fileset dir="${dirs.phpapp}" id="app" expandsymboliclinks="true">
 		<include name="**"/>
 
 		<!-- Skip the configuration -->
@@ -103,11 +104,19 @@
 	====================================================================================================
 	-->
 
+	<target name="compile-frontend-css" description="Compiles the frontend CSS">
+		<exec
+				command="${build.scss_bin} ${dirs.root}/app/media/sass/front-end.scss ${dirs.root}/app/media/css/front-end.css -s compressed"
+				passthru="true"
+				dir="${dirs.root}"
+		/>
+	</target>
+
 	<target name="app-package" description="Component package build"
-			depends="new-release-app,setup-properties">
+			depends="new-release-app,setup-properties,compile-frontend-css">
 
 		<!-- Create the application package (PRO) -->
-		<zipme basedir="${phing.dir}/.." destfile="${dirs.release}/app-${version}.zip"
+		<zipme basedir="${phing.dir}/../app" destfile="${dirs.release}/app-${version}.zip"
 			   includeemptydirs="true">
 			<fileset refid="app"/>
 		</zipme>
