@@ -32,7 +32,7 @@
 				@lang('SITE_MAIN_NAME_LABEL')
 			</label>
 			<input type="text" name="fullname" id="fullname" value="{{{ $this->fullname }}}">
-			<a href="#"><ion-icon name="ios-help" style="border-bottom:1px solid #000;"></ion-icon></a>
+			<a href="#"><span class="icon"><img src="/media/images/help.svg" style="border-bottom:1px solid #000;"/></span></a>
 		</div>
 		<p class="help-text">
 			@lang('SITE_MAIN_NAME_HELP')
@@ -46,7 +46,7 @@
 		<div>
 			<button type="submit">
 				@lang('SITE_MAIN_BTN_SUBMIT')
-				<ion-icon name="arrow-forward"></ion-icon>
+				<span class="icon"><img src="/media/images/forward.svg"/></span>
 			</button>
 		</div>
 	</form>

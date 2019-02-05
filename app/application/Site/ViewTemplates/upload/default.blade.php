@@ -33,7 +33,7 @@
 		</div>
 		<div class="photo-upload-box" id="uploadPrompt">
 			<label for="images" class="empty-state">
-				<ion-icon name="ios-cloud-upload"></ion-icon> <br />
+				<img src="/media/images/upload.svg"/> <br />
 				@lang('SITE_UPLOAD_LBL_CHOOSE_PHOTOS')
 			</label>
 
