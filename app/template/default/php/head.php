@@ -7,8 +7,13 @@
  * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
 
-use Awf\Document\Document;
 use Awf\Uri\Uri;
+
+\Awf\Utils\Template::addJs('media://js/system.js');
+\Awf\Utils\Template::addJs('media://js/ajax.js');
+\Awf\Utils\Template::addJs('media://js/modal.js');
+\Awf\Utils\Template::addJs('media://js/menu.js');
+\Awf\Utils\Template::addJs('media://js/tabs.js');
 
 $scripts            = $this->getScripts();
 $scriptDeclarations = $this->getScriptDeclarations();
@@ -39,10 +44,6 @@ if (!empty($scripts))
 			akeeba.loadScripts = [];
 		}
     </script>
-    <script type="text/javascript"
-            src="<?php echo Uri::base(); ?>media/js/menu.min.js?<?php echo $this->container->mediaQueryKey ?>"></script>
-    <script type="text/javascript"
-            src="<?php echo Uri::base(); ?>media/js/tabs.min.js?<?php echo $this->container->mediaQueryKey ?>"></script>
     <script type="text/javascript">window.addEventListener("DOMContentLoaded", function (event) {
 			akeeba.fef.menuButton();
 			akeeba.fef.tabs();
@@ -89,13 +90,6 @@ if (!empty($styles))
 		  href="<?php echo Uri::base(); ?>/media/css/app.css?<?php echo $this->container->mediaQueryKey ?>"/>
     <link rel="stylesheet" type="text/css"
           href="<?php echo Uri::base(); ?>/media/css/front-end.css?<?php echo $this->container->mediaQueryKey ?>"/>
-<?php if (defined('AKEEBADEBUG') && AKEEBADEBUG && @file_exists(APATH_BASE . '/media/css/theme.css')): ?>
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo \Awf\Uri\Uri::base(); ?>/media/css/theme.css?<?php echo $this->container->mediaQueryKey ?>"/>
-<?php else: ?>
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo \Awf\Uri\Uri::base(); ?>/media/css/theme.min.css?<?php echo $this->container->mediaQueryKey ?>"/>
-<?php endif; ?>
 <?php
 // CSS files before the template CSS
 if (!empty($styles))

@@ -1300,3 +1300,13 @@ akeeba.System.submitForm = function (formId, task)
 
 	document.querySelector('#' + formId).submit();
 };
+
+akeeba.System.modalWhatIsThis = function (error)
+{
+	var dialog_element = document.getElementById('WhatIsThismodal');
+
+	akeeba.Modal.open({
+		content: dialog_element.innerHTML,
+		width:   '80%'
+	});
+};

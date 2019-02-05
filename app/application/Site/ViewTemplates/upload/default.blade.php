@@ -8,9 +8,6 @@
  */
 
 ?>
-@js('media://js/system.js')
-@js('media://js/ajax.js')
-@js('media://js/modal.js')
 @js('media://js/upload.js')
 
 @include('common/error_modal')

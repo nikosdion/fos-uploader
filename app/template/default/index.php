@@ -52,9 +52,9 @@ $this->outputHTTPHeaders();
             <a href="https://vimeo.com/user52027932"><ion-icon name="logo-vimeo"></ion-icon></a>
         </p>
         <p class="links">
-            <a href="#"><?php echo \Awf\Text\Text::_('SITE_FOOTER_EXPLANATION_LINK') ?></a>
-            <?php echo \Awf\Text\Text::_('SITE_FOOTER_TERMSOFSERVICE') ?>
-            <?php echo \Awf\Text\Text::_('SITE_FOOTER_PRIVACY') ?>
+            <a href="javascript:akeeba.System.modalWhatIsThis();"><?php echo \Awf\Text\Text::_('SITE_FOOTER_EXPLANATION_LINK') ?></a>
+			<a href="#"><?php echo \Awf\Text\Text::_('SITE_FOOTER_TERMSOFSERVICE') ?></a>
+			<a href="#"><?php echo \Awf\Text\Text::_('SITE_FOOTER_PRIVACY') ?></a>
         </p>
         <p class="">
              &copy; 2018 &ndash; <?php echo date('Y') ?> <a href="https://fosproductions.gr/">Fos Productions</a>. All legal rights reserved.
@@ -71,7 +71,7 @@ $this->outputHTTPHeaders();
 
 <?php endif; ?>
 
-<div id="WhatIsThismodal" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="WhatIsThismodal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
     <div class="akeeba-renderer-fef">
         <h4 id="errorDialogLabel">
             <?php echo \Awf\Text\Text::_('SITE_EXPLANATION_HEADER') ?>
