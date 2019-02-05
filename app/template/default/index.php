@@ -52,9 +52,9 @@ $this->outputHTTPHeaders();
             <a href="https://vimeo.com/user52027932"><ion-icon name="logo-vimeo"></ion-icon></a>
         </p>
         <p class="links">
-            <a href="#">What is this?</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Privacy Policy</a>
+            <a href="#"><?php echo \Awf\Text\Text::_('SITE_FOOTER_EXPLANATION_LINK') ?></a>
+            <?php echo \Awf\Text\Text::_('SITE_FOOTER_TERMSOFSERVICE') ?>
+            <?php echo \Awf\Text\Text::_('SITE_FOOTER_PRIVACY') ?>
         </p>
         <p class="">
              &copy; 2018 &ndash; <?php echo date('Y') ?> <a href="https://fosproductions.gr/">Fos Productions</a>. All legal rights reserved.
@@ -68,7 +68,20 @@ $this->outputHTTPHeaders();
 	    <?php endif; ?>
     </div>
 </footer>
+
 <?php endif; ?>
+
+<div id="WhatIsThismodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="akeeba-renderer-fef">
+        <h4 id="errorDialogLabel">
+            <?php echo \Awf\Text\Text::_('SITE_EXPLANATION_HEADER') ?>
+        </h4>
+
+        <p>
+            <?php echo \Awf\Text\Text::_('SITE_EXPLANATION_TEXT') ?>
+        </p>
+    </div>
+</div>
 
 <script type="text/javascript">
 	akeeba.System.documentReady(function(){
