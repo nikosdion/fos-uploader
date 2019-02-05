@@ -330,7 +330,7 @@ akeeba.Upload.getVideoThumb = function (file, appendTo) {
  * @param   {boolean}  displayed
  */
 akeeba.Upload.setUIDisplayState = function (displayed) {
-	var display = displayed ? 'inline-block' : 'none';
+	var display = displayed ? 'block' : 'none';
 
 	document.getElementById('uploadWrapper').style.display = display;
 	document.getElementById('uploadButton').style.display  = display;
