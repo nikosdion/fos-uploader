@@ -341,7 +341,7 @@ footer {
     justify-content: center;
     font-size: 1.25em;
     padding: 20px;
-    z-index: 1000;
+    z-index: 997;
     img {
       margin: 0 auto 20px auto;
       width: 80px;
@@ -360,7 +360,7 @@ footer {
     border-color:#000;
     border-style:solid;
     content: ' ';
-    z-index: 999;
+    z-index: 997;
   }
   &:before {top:0;left:0;border-width: $border-width 0 0 $border-width}
   &:after {top:0;right:0;border-width: $border-width $border-width 0 0}
@@ -385,7 +385,7 @@ footer {
     border-color:#000;
     border-style:solid;
     content: ' ';
-    z-index: 999;
+    z-index: 997;
   }
   &:before {top:0;left:0;border-width: $border-width 0 0 $border-width}
   &:after {top:0;right:0;border-width: $border-width $border-width 0 0}
@@ -421,24 +421,22 @@ footer {
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 998;
+      z-index: 997;
     }
     img.thumbRemove {
-      z-index:1000;
+      z-index:998;
       &:hover {
         cursor:pointer;
       }
     }
     .thumbProgress {
-      z-index: 1000;
+      z-index: 998;
       border: 1px solid #fff;
       background: transparent;
       position: absolute;
       width: 105px;
       margin: 5px;
       bottom: 0;
-      border: 1px solid #fff;
-      z-index: 999;
       height: 20px;
 
       .thumbProgressFill {
@@ -456,3 +454,5 @@ footer {
     font-weight: 600;
   }
 }
+
+/**** Modal styles ****/

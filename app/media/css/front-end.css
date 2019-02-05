@@ -358,7 +358,7 @@ footer .links a {
   justify-content: center;
   font-size: 1.25em;
   padding: 20px;
-  z-index: 1000;
+  z-index: 997;
 }
 .photo-upload-box label img {
   margin: 0 auto 20px auto;
@@ -374,7 +374,7 @@ footer .links a {
   border-color: #000;
   border-style: solid;
   content: " ";
-  z-index: 999;
+  z-index: 997;
 }
 .photo-upload-box:before {
   top: 0;
@@ -415,7 +415,7 @@ footer .links a {
   border-color: #000;
   border-style: solid;
   content: " ";
-  z-index: 999;
+  z-index: 997;
 }
 .thumbnail-wrapper:before {
   top: 0;
@@ -469,24 +469,22 @@ footer .links a {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 998;
+  z-index: 997;
 }
 #thumbnails .thumbcontainer img.thumbRemove {
-  z-index: 1000;
+  z-index: 998;
 }
 #thumbnails .thumbcontainer img.thumbRemove:hover {
   cursor: pointer;
 }
 #thumbnails .thumbcontainer .thumbProgress {
-  z-index: 1000;
+  z-index: 998;
   border: 1px solid #fff;
   background: transparent;
   position: absolute;
   width: 105px;
   margin: 5px;
   bottom: 0;
-  border: 1px solid #fff;
-  z-index: 999;
   height: 20px;
 }
 #thumbnails .thumbcontainer .thumbProgress .thumbProgressFill {
@@ -502,5 +500,7 @@ footer .links a {
 #selected strong {
   font-weight: 600;
 }
+
+/**** Modal styles ****/
 
 /*# sourceMappingURL=front-end.css.map */
