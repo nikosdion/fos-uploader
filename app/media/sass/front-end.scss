@@ -20,6 +20,14 @@ a {
   transition: all .2s ease-in-out;
   &:hover {color: #caa378;}
 }
+h2 {
+  font-weight:300;
+  text-align:center;
+  line-height: 1.5em;
+  strong {
+    font-weight:700;
+  }
+}
 h3 {
   font-weight:400;
   margin-top:0;
@@ -27,6 +35,16 @@ h3 {
     font-style: italic;
     color: #666666;
     font-size: .7em;
+  }
+}
+h4 {
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom:0;
+  + p {
+    margin-top:.5em;
+    line-height: 1.5em;
+    font-weight:300;
   }
 }
 ion-icon {
@@ -206,7 +224,7 @@ p.help-text {
   margin-top:0;
   margin-bottom:2em;
 }
-button, label.button {
+button, label.button, a.button {
   background: #000;
   color: #fff;
   flex-grow:1;
@@ -219,6 +237,7 @@ button, label.button {
   font-size: 1.2em;
   position: relative;
   margin: .75em 0;
+  text-decoration: none;
   &:hover {
     cursor: pointer;
     background: #fff;
@@ -240,6 +259,12 @@ button, label.button {
     width: 1.5em;
     filter: invert(1);
   }
+}
+a.button {
+  margin: 1.5em auto;
+  padding: .5em 2em;
+  font-size: 1em;
+  display:table;
 }
 label.button {
   font-size: .8em;

@@ -11,12 +11,12 @@
 ?>
 
 <header  style="background-image:url('/media/images/events/{{{ $this->event->image }}}')">
-	<div class="fos-image">
-		<h1>
-			{{{ $this->event->title }}}
-		</h1>
-		<div class="triangle"><img src="/media/images/logo.svg" alt="Fos Photography" width="50"/></div>
-	</div>
+    <div class="fos-image">
+        <h1>
+            {{{ $this->event->title }}}
+        </h1>
+        <div class="triangle"><img src="/media/images/logo.svg" alt="Fos Photography" width="50"/></div>
+    </div>
 </header>
 <section class="main">
 	<h3>
