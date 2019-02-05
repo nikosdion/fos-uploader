@@ -6,9 +6,11 @@
  * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
 /***********************************************************************************************************************
+ * Variables
+ **********************************************************************************************************************/
+/***********************************************************************************************************************
  * General
  **********************************************************************************************************************/
-/* variables */
 body, html {
   margin: 0;
   padding: 0;
@@ -16,7 +18,6 @@ body, html {
   font-size: 16px;
   position: relative;
   height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
 }
 
 body {
@@ -26,6 +27,35 @@ body {
   justify-content: space-between;
 }
 
+ion-icon {
+  font-size: 1.75em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
+
+.main {
+  padding: 40px;
+  font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.main form > div {
+  display: flex;
+  margin-bottom: 1em;
+  justify-content: stretch;
+  align-items: end;
+}
+.main form > div .icon img {
+  width: 1.5em;
+}
+
+/***********************************************************************************************************************
+ * Typography
+ **********************************************************************************************************************/
 a {
   color: #000000;
   transition: all 0.2s ease-in-out;
@@ -64,16 +94,9 @@ h4 + p {
   font-weight: 300;
 }
 
-ion-icon {
-  font-size: 1.75em;
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-}
-
+/***********************************************************************************************************************
+ * Forms
+ **********************************************************************************************************************/
 .checkbox input[type=checkbox] {
   opacity: 0;
 }
@@ -88,7 +111,7 @@ hr {
   width: 20px;
   border: 1px solid #666;
   position: absolute;
-  top: 0px;
+  top: 0;
   left: -20px;
 }
 .checkbox label::after {
@@ -119,6 +142,35 @@ hr {
   outline: #3b99fc auto 5px;
 }
 
+input[type=text] {
+  flex-grow: 1;
+  margin-left: 0.5em;
+  padding-bottom: 1px;
+  display: block;
+  border: none;
+  border-radius: 0;
+  border-bottom: solid 1px #000;
+  color: #000;
+  background: #fff;
+  font-size: 1em;
+  box-sizing: border-box;
+  font-weight: 300;
+}
+input[type=text]::placeholder {
+  color: #888;
+}
+
+p.help-text {
+  font-size: 0.85em;
+  color: #666;
+  font-style: italic;
+  margin-top: 0;
+  margin-bottom: 2em;
+}
+
+/***********************************************************************************************************************
+ * Header styles
+ **********************************************************************************************************************/
 header {
   color: #fff;
   position: relative;
@@ -128,6 +180,8 @@ header {
   background-color: #000;
   text-transform: uppercase;
   padding: 2em;
+  /* begin triangle logo magic */
+  /* end triangle logo magic */
 }
 header h1 {
   font-weight: 600;
@@ -145,6 +199,8 @@ header .fos-image {
   display: flex;
   background-blend-mode: luminosity;
   align-items: end;
+  /* begin corner bracket magic */
+  /* end corner bracket magic */
 }
 header .fos-image:before, header .fos-image:after, header .fos-image > :first-child:before, header .fos-image > :first-child:after {
   position: absolute;
@@ -207,48 +263,28 @@ header .triangle:before {
   right: 78px;
 }
 
-.main {
-  padding: 40px;
-  font-weight: 300;
-  max-width: 500px;
-  margin: 0 auto;
+/***********************************************************************************************************************
+ * Footer styles
+ **********************************************************************************************************************/
+footer {
+  text-align: center;
+  font-size: 0.8em;
+  padding-bottom: 1em;
 }
-.main form > div {
-  display: flex;
-  margin-bottom: 1em;
-  justify-content: stretch;
-  align-items: end;
+footer p {
+  margin: 0.5em;
 }
-.main form > div .icon img {
-  width: 1.5em;
+footer .soc .ion-icon {
+  width: 25px;
+  margin: 0;
 }
-
-input[type=text] {
-  flex-grow: 1;
-  margin-left: 0.5em;
-  padding-bottom: 1px;
-  display: block;
-  border: none;
-  border-radius: 0;
-  border-bottom: solid 1px #000;
-  color: #000;
-  background: #fff;
-  font-size: 1em;
-  box-sizing: border-box;
-  font-weight: 300;
-}
-input[type=text]::placeholder {
-  color: #888;
+footer .links a {
+  margin: 1em 20px;
 }
 
-p.help-text {
-  font-size: 0.85em;
-  color: #666;
-  font-style: italic;
-  margin-top: 0;
-  margin-bottom: 2em;
-}
-
+/***********************************************************************************************************************
+ * Button styles
+ **********************************************************************************************************************/
 button, label.button, a.button {
   background: #000;
   color: #fff;
@@ -302,23 +338,11 @@ label.button strong {
   padding-right: 5px;
 }
 
-footer {
-  text-align: center;
-  font-size: 0.8em;
-  padding-bottom: 1em;
-}
-footer p {
-  margin: 0.5em;
-}
-footer .soc img {
-  width: 25px;
-  margin: 0;
-}
-footer .links a {
-  margin: 1em 20px;
-}
-
-/* PAGE SPECIFIC STYLES */
+/***********************************************************************************************************************
+ * Page-specific styles
+/***********************************************************************************************************************
+ * Home page styles
+ **********************************************************************************************************************/
 .page-home header {
   text-align: center;
   background-image: url("../images/home-header.jpg");
@@ -337,6 +361,17 @@ footer .links a {
   text-transform: uppercase;
 }
 
+/***********************************************************************************************************************
+ * Upload Page styles
+ **********************************************************************************************************************/
+#selected {
+  text-align: center;
+  font-size: 1.2em;
+}
+#selected strong {
+  font-weight: 600;
+}
+
 #uploadWrapper h3 {
   text-align: center;
   text-transform: uppercase;
@@ -353,6 +388,8 @@ footer .links a {
   box-sizing: border-box;
   align-content: center;
   justify-content: center;
+  /* more corner bracket magic */
+  /* end corner bracket magic */
 }
 .photo-upload-box input {
   width: 0.1px;
@@ -419,6 +456,8 @@ footer .links a {
   text-align: center;
   box-sizing: border-box;
   position: relative;
+  /* more corner bracket magic */
+  /* end corner bracket magic */
 }
 .thumbnail-wrapper:before, .thumbnail-wrapper:after, .thumbnail-wrapper > :first-child:before, .thumbnail-wrapper > :first-child:after {
   position: absolute;
@@ -505,16 +544,8 @@ footer .links a {
   position: relative;
 }
 
-#selected {
-  text-align: center;
-  font-size: 1.2em;
-}
-#selected strong {
-  font-weight: 600;
-}
-
 /***********************************************************************************************************************
- * Modal dialogs using jsModal. Light version (should fit most, if not all, administrator themes)
+ * Modal dialogs styles to make them fit Fos branding
  **********************************************************************************************************************/
 #akeeba-modal-container {
   font-family: "Fira Sans", sans-serif;

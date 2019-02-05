@@ -7,12 +7,16 @@
  */
 
 /***********************************************************************************************************************
- * General
+ * Variables
  **********************************************************************************************************************/
 
-/* variables */
-$border-width: 4px;
-$distance-from-edge: 15px;
+$border-width: 4px; // how thick the corner brackets should be
+$distance-from-edge: 15px; // how far from the edge of the page the corner brackets should be
+
+
+/***********************************************************************************************************************
+ * General
+ **********************************************************************************************************************/
 
 body, html {
   margin:0;
@@ -21,18 +25,46 @@ body, html {
   font-size: 16px;
   position: relative;
   height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
 }
 body {
   min-height:100%;
   display:flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; // the flex styles allow us to mimic the behavior of a native app
 }
+ion-icon { // this is a valid element despite what phpstorm says. If we remove ionicon, we can remove this.
+  font-size:1.75em;
+}
+hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
+.main {
+  padding: 40px;
+  font-weight: 300;
+  form > div {
+    display:flex;
+    margin-bottom:1em;
+    justify-content: stretch;
+    align-items: end;
+    .icon img {
+      width: 1.5em;
+    }
+  }
+  max-width: 500px;
+  margin:0 auto;
+}
+
+
+/***********************************************************************************************************************
+ * Typography
+ **********************************************************************************************************************/
+
 a {
   color: #000000;
   transition: all .2s ease-in-out;
-  &:hover {color: #caa378;}
+  &:hover {color: #caa378;} // this color came from the fos website, it seems to be an acceptable secondary color
 }
 h2 {
   font-weight:300;
@@ -61,14 +93,13 @@ h4 {
     font-weight:300;
   }
 }
-ion-icon {
-  font-size:1.75em;
-}
-hr {
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-}
+
+
+
+/***********************************************************************************************************************
+ * Forms
+ **********************************************************************************************************************/
+
 .checkbox {
   input[type="checkbox"] {
     opacity: 0;
@@ -86,7 +117,7 @@ hr {
       border: 1px solid #666;
 
       position: absolute;
-      top: 0px;
+      top: 0;
       left:-20px;
     }
     &::after { //checkmark
@@ -120,6 +151,36 @@ hr {
 .checkbox input[type="checkbox"]:focus + label::before {
   outline: rgb(59, 153, 252) auto 5px;
 }
+input[type=text] {
+  flex-grow: 1;
+  margin-left:.5em;
+  padding-bottom: 1px;
+  display:block;
+  border: none;
+  border-radius: 0; // For iOS
+  border-bottom: solid 1px #000;
+  color: #000;
+  background: #fff;
+  font-size: 1em;
+  box-sizing: border-box;
+  font-weight: 300;
+  &::placeholder {
+    color: #888;
+  }
+}
+p.help-text {
+  font-size: .85em;
+  color: #666;
+  font-style: italic;
+  margin-top:0;
+  margin-bottom:2em;
+}
+
+
+/***********************************************************************************************************************
+ * Header styles
+ **********************************************************************************************************************/
+
 header {
 
   color: #fff;
@@ -140,7 +201,6 @@ header {
   .fos-image {
     background-color: rgba(0,0,0,.6);
     position:relative;
-   // width: 100%;
     min-height: 250px;
     padding: 2.5em 3em;
     margin:-2em;
@@ -148,6 +208,8 @@ header {
     display:flex;
     background-blend-mode: luminosity;
     align-items: end;
+
+    /* begin corner bracket magic */
     &:before, &:after, &>:first-child:before, &>:first-child:after {
 
       position:absolute;
@@ -162,9 +224,11 @@ header {
     &:after {top:$distance-from-edge;right:$distance-from-edge;border-width: $border-width $border-width 0 0}
     &>:first-child:before {bottom:$distance-from-edge;right:$distance-from-edge;border-width: 0 $border-width $border-width 0}
     &>:first-child:after {bottom:$distance-from-edge;left:$distance-from-edge;border-width: 0 0 $border-width $border-width}
-
+    /* end corner bracket magic */
 
   }
+
+  /* begin triangle logo magic */
   .triangle {
     background: #000;
     position:absolute;
@@ -196,48 +260,36 @@ header {
       right: 78px;
     }
   }
+  /* end triangle logo magic */
 }
 
-.main {
-  padding: 40px;
-  font-weight: 300;
-  form > div {
-    display:flex;
-    margin-bottom:1em;
-    justify-content: stretch;
-    align-items: end;
-    .icon img {
-      width: 1.5em;
-    }
+
+
+/***********************************************************************************************************************
+ * Footer styles
+ **********************************************************************************************************************/
+
+footer {
+  text-align: center;
+  font-size: .8em;
+  padding-bottom: 1em;
+  p {
+    margin:.5em;
   }
-  max-width: 500px;
-  margin:0 auto;
+  .soc .ion-icon {
+    width: 25px;
+    margin:0;
+  }
+  .links a{
+    margin: 1em 20px;
+  }
 }
 
-input[type=text] {
-  flex-grow: 1;
-  margin-left:.5em;
-  padding-bottom: 1px;
-  display:block;
-  border: none;
-  border-radius: 0; // For iOS
-  border-bottom: solid 1px #000;
-  color: #000;
-  background: #fff;
-  font-size: 1em;
-  box-sizing: border-box;
-  font-weight: 300;
-  &::placeholder {
-    color: #888;
-  }
-}
-p.help-text {
-  font-size: .85em;
-  color: #666;
-  font-style: italic;
-  margin-top:0;
-  margin-bottom:2em;
-}
+
+/***********************************************************************************************************************
+ * Button styles
+ **********************************************************************************************************************/
+
 button, label.button, a.button {
   background: #000;
   color: #fff;
@@ -258,7 +310,7 @@ button, label.button, a.button {
     color: #000;
     border:1px solid #000;
     .icon {
-      filter: invert(0);
+      filter: invert(0); // this allows us to invert the svg img instead of having to embed the svg to change color
     }
   }
   &:disabled {
@@ -271,14 +323,14 @@ button, label.button, a.button {
     right:.5em;
     top:.34em;
     width: 1.5em;
-    filter: invert(1);
+    filter: invert(1); // this allows us to invert the svg img instead of having to embed the svg to change color
   }
 }
 a.button {
   margin: 1.5em auto;
   padding: .5em 2em;
   font-size: 1em;
-  display:table;
+  display:table; // idk why this works to make the button center but it does. /shrug
 }
 label.button {
   font-size: .8em;
@@ -288,22 +340,14 @@ label.button {
     padding-right: 5px;
   }
 }
-footer {
-  text-align: center;
-  font-size: .8em;
-  padding-bottom: 1em;
-  p {
-    margin:.5em;
-  }
-  .soc img{
-    width: 25px;
-    margin:0;
-  }
-  .links a{
-    margin: 1em 20px;
-  }
-}
-/* PAGE SPECIFIC STYLES */
+
+
+
+/***********************************************************************************************************************
+ * Page-specific styles
+/***********************************************************************************************************************
+ * Home page styles
+ **********************************************************************************************************************/
 
 .page-home {
   header {
@@ -323,6 +367,21 @@ footer {
     text-transform: uppercase;
   }
 }
+
+
+
+/***********************************************************************************************************************
+ * Upload Page styles
+ **********************************************************************************************************************/
+
+#selected {
+  text-align: center;
+  font-size: 1.2em;
+  strong {
+    font-weight: 600;
+  }
+}
+
 #uploadWrapper h3 {
   text-align: center;
   text-transform: uppercase;
@@ -336,7 +395,6 @@ footer {
   text-align: center;
   padding:$border-width;
   box-sizing: border-box;
-  //flex-direction: column;
   align-content: center;
   justify-content: center;
   input {
@@ -361,11 +419,11 @@ footer {
       width: 80px;
     }
 
-
     &:hover {
       cursor: pointer;
     }
   }
+  /* more corner bracket magic */
   &:before, &:after, &>:first-child:before, &>:first-child:after {
 
     position:absolute;
@@ -380,6 +438,7 @@ footer {
   &:after {top:0;right:0;border-width: $border-width $border-width 0 0}
   &>:first-child:before {bottom:0;right:0;border-width: 0 $border-width $border-width 0}
   &>:first-child:after {bottom:0;left:0;border-width: 0 0 $border-width $border-width}
+  /* end corner bracket magic */
 }
 #previewContainer {
   flex-direction: column;
@@ -391,8 +450,8 @@ footer {
   box-sizing: border-box;
   position:relative;
 
+  /* more corner bracket magic */
   &:before, &:after, &>:first-child:before, &>:first-child:after {
-
     position:absolute;
     width:40px;
     height: 40px;
@@ -405,7 +464,9 @@ footer {
   &:after {top:0;right:0;border-width: $border-width $border-width 0 0}
   &>:first-child:before {bottom:0;right:0;border-width: 0 $border-width $border-width 0}
   &>:first-child:after {bottom:0;left:0;border-width: 0 0 $border-width $border-width}
+  /* end corner bracket magic */
 }
+
 #thumbnails {
   display:flex;
   flex-wrap: wrap;
@@ -423,6 +484,7 @@ footer {
     display: flex;
     align-content: center;
     justify-content: center;
+
     img.thumbPreview {
       height:100%;
     }
@@ -461,16 +523,9 @@ footer {
     }
   }
 }
-#selected {
-  text-align: center;
-  font-size: 1.2em;
-  strong {
-    font-weight: 600;
-  }
-}
 
 /***********************************************************************************************************************
- * Modal dialogs using jsModal. Light version (should fit most, if not all, administrator themes)
+ * Modal dialogs styles to make them fit Fos branding
  **********************************************************************************************************************/
 
 #akeeba-modal-container {
