@@ -90,7 +90,28 @@ class InstallerApplication extends \Awf\Application\Cli
 			$this->close(253);
 		}
 
-		$hasTable = true;
+        $this->out('Installing / updating schema');
+        $installer = new Installer($this->container);
+        $installer->setXmlDirectory(__DIR__);
+
+        try
+        {
+            $installer->updateSchema();
+        }
+        catch (\Exception $e)
+        {
+            $this->out('Could not install database tables');
+            $this->out($e->getMessage());
+
+            if (defined('AKEEBADEBUG'))
+            {
+                $this->out($e->getFile() . '::' . $e->getLine());
+            }
+        }
+
+        $this->out('Schema update finished');
+
+        $hasTable = true;
 
 		try
 		{
@@ -110,24 +131,6 @@ class InstallerApplication extends \Awf\Application\Cli
 		{
 			$this->out('Already configured');
 			$this->close(252);
-		}
-
-		$installer = new Installer($this->container);
-		$installer->setXmlDirectory(__DIR__);
-
-		try
-		{
-			$installer->updateSchema();
-		}
-		catch (\Exception $e)
-		{
-			$this->out('Could not install database tables');
-			$this->out($e->getMessage());
-
-			if (defined('AKEEBADEBUG'))
-			{
-				$this->out($e->getFile() . '::' . $e->getLine());
-			}
 		}
 
 		$this->out('Setting up default user');
