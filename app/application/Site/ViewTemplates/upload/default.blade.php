@@ -20,8 +20,9 @@
 </header>
 
 <section class="main">
+	<h3 class="upload-header">@lang('SITE_UPLOAD_HEAD_CHOOSE_PHOTOS')</h3>
 	<div class="" id="uploadWrapper">
-		<h3>@lang('SITE_UPLOAD_HEAD_CHOOSE_PHOTOS')</h3>
+
 		<div id="selected" style="display: none;">
 			<strong><span id="numFiles"></span></strong> @lang('SITE_UPLOAD_LBL_TOTAL')&nbsp;
 			<label for="images" class="button">

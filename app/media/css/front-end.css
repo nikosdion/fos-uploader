@@ -445,7 +445,7 @@ label.button strong {
   font-weight: 600;
 }
 
-#uploadWrapper h3 {
+h3.upload-header {
   text-align: center;
   text-transform: uppercase;
   font-size: 1.6em;
