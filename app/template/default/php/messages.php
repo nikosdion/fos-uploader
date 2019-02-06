@@ -22,10 +22,13 @@ foreach (array(
 	if (!empty($messages)):
 		$class = "alert-$class";
 ?>
-<div id="akeeba-message-<?php echo $type ?>" class="akeeba-message akeeba-block--<?php echo $class ?> small">
-<?php foreach($messages as $message):?>
-	<p><?php echo $message ?></p>
-<?php endforeach; ?>
+<div id="message-<?php echo $type ?>" class="top-message block--<?php echo $class ?>">
+    <div class="message-body">
+        <?php foreach($messages as $message):?>
+            <p><?php echo $message ?></p>
+        <?php endforeach; ?>
+    </div>
+
 </div>
 <?php
 	endif;
