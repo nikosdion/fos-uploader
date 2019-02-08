@@ -216,22 +216,22 @@ header .fos-image:before, header .fos-image:after, header .fos-image > :first-ch
 header .fos-image:before {
   top: 15px;
   left: 15px;
-  border-width: 4px 0 0 4px;
+  border-width: 2px 0 0 2px;
 }
 header .fos-image:after {
   top: 15px;
   right: 15px;
-  border-width: 4px 4px 0 0;
+  border-width: 2px 2px 0 0;
 }
 header .fos-image > :first-child:before {
   bottom: 15px;
   right: 15px;
-  border-width: 0 4px 4px 0;
+  border-width: 0 2px 2px 0;
 }
 header .fos-image > :first-child:after {
   bottom: 15px;
   left: 15px;
-  border-width: 0 0 4px 4px;
+  border-width: 0 0 2px 2px;
 }
 header .triangle {
   background: #000;
@@ -457,7 +457,7 @@ h3.upload-header {
   min-height: 350px;
   display: flex;
   text-align: center;
-  padding: 4px;
+  padding: 2px;
   box-sizing: border-box;
   align-content: center;
   justify-content: center;
@@ -501,22 +501,22 @@ h3.upload-header {
 .photo-upload-box:before {
   top: 0;
   left: 0;
-  border-width: 4px 0 0 4px;
+  border-width: 2px 0 0 2px;
 }
 .photo-upload-box:after {
   top: 0;
   right: 0;
-  border-width: 4px 4px 0 0;
+  border-width: 2px 2px 0 0;
 }
 .photo-upload-box > :first-child:before {
   bottom: 0;
   right: 0;
-  border-width: 0 4px 4px 0;
+  border-width: 0 2px 2px 0;
 }
 .photo-upload-box > :first-child:after {
   bottom: 0;
   left: 0;
-  border-width: 0 0 4px 4px;
+  border-width: 0 0 2px 2px;
 }
 
 #previewContainer {
@@ -525,7 +525,7 @@ h3.upload-header {
 
 .thumbnail-wrapper {
   margin: 1em 0;
-  padding: 34px;
+  padding: 32px;
   text-align: center;
   box-sizing: border-box;
   position: relative;
@@ -544,22 +544,22 @@ h3.upload-header {
 .thumbnail-wrapper:before {
   top: 0;
   left: 0;
-  border-width: 4px 0 0 4px;
+  border-width: 2px 0 0 2px;
 }
 .thumbnail-wrapper:after {
   top: 0;
   right: 0;
-  border-width: 4px 4px 0 0;
+  border-width: 2px 2px 0 0;
 }
 .thumbnail-wrapper > :first-child:before {
   bottom: 0;
   right: 0;
-  border-width: 0 4px 4px 0;
+  border-width: 0 2px 2px 0;
 }
 .thumbnail-wrapper > :first-child:after {
   bottom: 0;
   left: 0;
-  border-width: 0 0 4px 4px;
+  border-width: 0 0 2px 2px;
 }
 
 #thumbnails {
