@@ -283,7 +283,8 @@ class Application extends \Awf\Application\Application
 				 * session!). Therefore we need to modify the effective view. We do so through the return array.
 				 */
 				return [
-					'view' => 'main',
+					'view'      => 'main',
+					'shortcode' => $parts[0],
 				];
 			},
 		]);

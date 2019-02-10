@@ -11,5 +11,12 @@ namespace Site\View\Login;
 
 class Html extends \Awf\Mvc\View
 {
+	public $shortcode = '';
 
+	public function onBeforeMain()
+	{
+		$this->shortcode = $this->container->segment->get('shortcode', '');
+
+		return true;
+	}
 }

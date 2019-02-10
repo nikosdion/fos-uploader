@@ -6,6 +6,8 @@
  *
  * Developed by Akeeba Ltd <https://www.akeeba.com>.
  */
+
+/** @var  $this  \Site\View\Login\Html */
 ?>
 <div class="page-home">
 	<header>
@@ -20,7 +22,7 @@
 			<!-- p>@lang('SITE_LOGIN_LBL_ENTER_SHORTCODE')</p -->
 			<div class="">
 				<label for="shortcode"  aria-label="shortcode">@lang('SITE_LOGIN_SHORTCODE_LABEL')</label>
-				<input type="text" name="shortcode" id="shortcode" value="" placeholder="@lang('SITE_LOGIN_INPUT_PLACEHOLDER')">
+				<input type="text" name="shortcode" id="shortcode" value="{{{ $this->shortcode }}}" placeholder="@lang('SITE_LOGIN_INPUT_PLACEHOLDER')">
 			</div>
 			<div class="">
 				<button type="submit" class="">
