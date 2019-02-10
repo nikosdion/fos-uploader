@@ -84,6 +84,8 @@ trait RequireShortcode
 
 		if ($requestCode)
 		{
+			$this->container->segment->set('shortcode', $requestCode);
+
 			return $requestCode;
 		}
 
@@ -104,7 +106,7 @@ trait RequireShortcode
 		$model            = Model::getInstance('Admin', 'Events', $backendContainer);
 
 		return $model->findOrFail([
-			'code' => $code
+			'shortcode' => $code
 		]);
 	}
 }
