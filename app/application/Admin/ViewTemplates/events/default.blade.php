@@ -120,11 +120,9 @@ $baseURL = $uri->toString();
                         </a>
                     </td>
                     <td>
-                        @if ($event->enabled)
-                            <a class="akeeba-btn--dark--small" onclick="showQR('{{{ strtolower($event->shortcode) }}}')">
-                                <span class="akion-qr-scanner" />
-                            </a>
-                        @endif
+						<a class="akeeba-btn--dark--small" onclick="showQR('{{{ strtolower($event->shortcode) }}}')">
+							<span class="akion-qr-scanner" />
+						</a>
                         <a href="@route('index.php?view=Events&task=edit&id=' . $event->event_id)">
                             {{{ $event->shortcode }}}
 
