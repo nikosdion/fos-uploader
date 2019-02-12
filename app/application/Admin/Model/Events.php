@@ -23,6 +23,7 @@ use Awf\Mvc\DataModel;
  * @property   string $shortcode
  * @property   string $folder
  * @property   int    $enabled
+ * @property   string $publish_up
  * @property   string $image
  * @property   string $redirect
  * @property   string $notes
