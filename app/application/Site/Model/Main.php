@@ -9,6 +9,7 @@
 
 namespace Site\Model;
 
+use Awf\Date\Date;
 use Awf\Mvc\Model;
 
 class Main extends Model
@@ -23,12 +24,14 @@ class Main extends Model
 	public function isValidShortcode(string $code): bool
 	{
 		// Get the currently valid shortcodes from the database
-		$db = $this->container->db;
-		$query = $db->getQuery(true)
+		$now        = new Date();
+		$db         = $this->container->db;
+		$query      = $db->getQuery(true)
 			->select([
-				$db->qn('shortcode')
+				$db->qn('shortcode'),
 			])->from($db->qn('#__events'))
-			->where($db->qn('enabled') . ' = ' . $db->q('1'));
+			->where($db->qn('enabled') . ' = ' . $db->q('1'), 'OR')
+			->where($db->qn('publish_up') . ' <= ' . $db->q($now->toSql()), 'OR');
 		$validCodes = $db->setQuery($query)->loadColumn(0);
 
 		// Cast codes to lowercase for safe comparison
@@ -48,12 +51,18 @@ class Main extends Model
 	public function isExpiredShortcode(string $code): bool
 	{
 		// Get the expired shortcodes from the database
-		$db = $this->container->db;
-		$query = $db->getQuery(true)
+		$db           = $this->container->db;
+		$now          = new Date();
+		$query        = $db->getQuery(true)
 			->select([
-				$db->qn('shortcode')
+				$db->qn('shortcode'),
 			])->from($db->qn('#__events'))
-			->where($db->qn('enabled') . ' = ' . $db->q('0'));
+			->where($db->qn('enabled') . ' = ' . $db->q('0'), 'AND')
+			->where('(' .
+				'(' . $db->qn('publish_up') . ' > ' . $db->q($now->toSql()) . ') OR ' .
+				'(' . $db->qn('publish_up') . ' = ' . $db->q($db->getNullDate()) . ') OR ' .
+				'(' . $db->qn('publish_up') . ' IS NULL)'
+				. ')', 'AND');
 		$expiredCodes = $db->setQuery($query)->loadColumn(0);
 
 		// Cast codes to lowercase for safe comparison
@@ -73,13 +82,20 @@ class Main extends Model
 	public function getRedirectionURL(string $code): ?string
 	{
 		// Get the expired shortcodes from the database
-		$db = $this->container->db;
+		$db    = $this->container->db;
+		$now   = new Date();
 		$query = $db->getQuery(true)
 			->select([
-				$db->qn('redirect')
+				$db->qn('redirect'),
 			])->from($db->qn('#__events'))
 			->where($db->qn('enabled') . ' = ' . $db->q('0'))
+			->where('(' .
+				'(' . $db->qn('publish_up') . ' > ' . $db->q($now->toSql()) . ') OR ' .
+				'(' . $db->qn('publish_up') . ' = ' . $db->q($db->getNullDate()) . ') OR ' .
+				'(' . $db->qn('publish_up') . ' IS NULL)'
+				. ')', 'AND')
 			->where($db->qn('shortcode') . ' = ' . $db->q($code));
+
 		return $db->setQuery($query)->loadResult();
 	}
 
