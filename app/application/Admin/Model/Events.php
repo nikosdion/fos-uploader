@@ -12,6 +12,7 @@ namespace Admin\Model;
 
 
 use Admin\Container;
+use Awf\Date\Date;
 use Awf\Mvc\DataModel;
 
 /**
@@ -49,7 +50,7 @@ class Events extends DataModel
 		$this->addBehaviour('Filters');
 	}
 
-	public function check()
+	public function check(): Events
 	{
 		parent::check();
 
@@ -61,5 +62,43 @@ class Events extends DataModel
 		return $this;
 	}
 
+	/**
+	 * Automatically publish events based on their publish date when getting a collection of objects
+	 *
+	 * @param   array  $items
+	 */
+	protected function onAfterGetItemsArray(array &$items): void
+	{
+		if (empty($items))
+		{
+			return;
+		}
 
+		$nullDate = $this->dbo->getNullDate();
+		$now      = time();
+
+		/**
+		 * @var   int    $idx
+		 * @var   Events $item
+		 */
+		foreach ($items as $idx => &$item)
+		{
+			if (empty($item->publish_up) || ($item->publish_up === $nullDate))
+			{
+				continue;
+			}
+
+			$publishUp = new Date($item->publish_up);
+
+			if ($publishUp->toUnix() > $now)
+			{
+				continue;
+			}
+
+			/** @var static $record */
+			$item->save([
+				'enabled' => 1,
+			]);
+		}
+	}
 }
