@@ -59,6 +59,9 @@ $baseURL = $uri->toString();
                 {{ \Awf\Html\Grid::sort('ADMIN_EVENTS_FIELD_SHORTCODE', 'shortcode', $this->lists->order_Dir, $this->lists->order, 'browse') }}
             </th>
             <th>
+                {{ \Awf\Html\Grid::sort('ADMIN_EVENTS_FIELD_PUBLISH_UP', 'published', $this->lists->order_Dir, $this->lists->order, 'browse') }}
+            </th>
+            <th>
                 {{ \Awf\Html\Grid::sort('ADMIN_EVENTS_FIELD_PUBLISHED', 'published', $this->lists->order_Dir, $this->lists->order, 'browse') }}
             </th>
         </tr>
@@ -75,6 +78,7 @@ $baseURL = $uri->toString();
                        placeholder="@lang('ADMIN_EVENTS_FIELD_SHORTCODE')"
                        onchange="this.form.submit();">
             </td>
+			<td></td>
             <td>
                 {{ \Admin\Helper\FEFSelect::published('enabled', [
                 	'onclick' => 'document.forms.adminForm.submit()',
@@ -116,16 +120,21 @@ $baseURL = $uri->toString();
                         </a>
                     </td>
                     <td>
-                        @if ($event->enabled)
-                            <a class="akeeba-btn--dark--small" onclick="showQR('{{{ strtolower($event->shortcode) }}}')">
-                                <span class="akion-qr-scanner" />
-                            </a>
-                        @endif
+						<a class="akeeba-btn--dark--small" onclick="showQR('{{{ strtolower($event->shortcode) }}}')">
+							<span class="akion-qr-scanner" />
+						</a>
                         <a href="@route('index.php?view=Events&task=edit&id=' . $event->event_id)">
                             {{{ $event->shortcode }}}
 
                         </a>
                     </td>
+					<td>
+						@if (!empty($event->publish_up) && ($event->publish_up != $this->getContainer()->db->getNullDate()))
+							{{{ \Admin\Helper\Format::date($event->publish_up, 'j/n/y') }}}
+						@else
+							&mdash;
+						@endif
+					</td>
                     <td>
                         @if ($event->enabled)
                             <a href="@route('index.php?view=Events&task=unpublish&id=' . $event->event_id . '&' . $token . '=1')"

@@ -12,6 +12,7 @@ namespace Admin\Model;
 
 
 use Admin\Container;
+use Awf\Date\Date;
 use Awf\Mvc\DataModel;
 
 /**
@@ -23,6 +24,7 @@ use Awf\Mvc\DataModel;
  * @property   string $shortcode
  * @property   string $folder
  * @property   int    $enabled
+ * @property   string $publish_up
  * @property   string $image
  * @property   string $redirect
  * @property   string $notes
@@ -46,5 +48,57 @@ class Events extends DataModel
 		parent::__construct($container);
 
 		$this->addBehaviour('Filters');
+	}
+
+	public function check(): Events
+	{
+		parent::check();
+
+		if (empty($this->publish_up))
+		{
+			$this->publish_up = null;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Automatically publish events based on their publish date when getting a collection of objects
+	 *
+	 * @param   array  $items
+	 */
+	protected function onAfterGetItemsArray(array &$items): void
+	{
+		if (empty($items))
+		{
+			return;
+		}
+
+		$nullDate = $this->dbo->getNullDate();
+		$now      = time();
+
+		/**
+		 * @var   int    $idx
+		 * @var   Events $item
+		 */
+		foreach ($items as $idx => &$item)
+		{
+			if (empty($item->publish_up) || ($item->publish_up === $nullDate))
+			{
+				continue;
+			}
+
+			$publishUp = new Date($item->publish_up);
+
+			if ($publishUp->toUnix() > $now)
+			{
+				continue;
+			}
+
+			/** @var static $record */
+			$item->save([
+				'enabled' => 1,
+			]);
+		}
 	}
 }

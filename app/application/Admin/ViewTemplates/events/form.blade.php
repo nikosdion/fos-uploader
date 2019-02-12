@@ -68,6 +68,18 @@ $model = $this->getModel();
         </div>
 
         <div class="akeeba-form-group">
+            <label for="publish_up">
+                @lang('ADMIN_EVENTS_FIELD_PUBLISH_UP')
+            </label>
+            <input type="date" name="publish_up" id="publish_up"
+                   value="{{{ empty($model->publish_up) ? '' : \Admin\Helper\Format::date($model->publish_up, 'Y-m-d') }}}"
+                   class="form-control" />
+            <p class="akeeba-help-text">
+                @lang('ADMIN_EVENTS_FIELD_PUBLISH_UP_HELP')
+            </p>
+        </div>
+
+        <div class="akeeba-form-group">
             <label for="image">
                 @lang('ADMIN_EVENTS_FIELD_IMAGE')
             </label>

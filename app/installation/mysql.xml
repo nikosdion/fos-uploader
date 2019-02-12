@@ -47,6 +47,7 @@ CREATE TABLE `#__events` (
   `shortcode` varchar(255) NOT NULL,
   `folder` varchar(255) NOT NULL,
   `enabled` TINYINT(3) NOT NULL DEFAULT 1,
+  `publish_up` DATETIME NULL,
   `image` varchar(255),
   `redirect` varchar(255),
   `notes` longtext,
@@ -67,6 +68,14 @@ ALTER TABLE `#__akeeba_common` MODIFY COLUMN `key` varchar(190) COLLATE utf8_uni
             <query><![CDATA[
 ALTER TABLE `#__events`
 ADD COLUMN `redirect` varchar(255) AFTER `image`;
+            ]]></query>
+        </action>
+
+        <action table="#__events" canfail="1">
+            <condition type="missing" value="publish_up"/>
+            <query><![CDATA[
+ALTER TABLE `#__events`
+ADD COLUMN `publish_up` DATETIME NULL AFTER `enabled`;
             ]]></query>
         </action>
 
