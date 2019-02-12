@@ -48,4 +48,18 @@ class Events extends DataModel
 
 		$this->addBehaviour('Filters');
 	}
+
+	public function check()
+	{
+		parent::check();
+
+		if (empty($this->publish_up))
+		{
+			$this->publish_up = null;
+		}
+
+		return $this;
+	}
+
+
 }
