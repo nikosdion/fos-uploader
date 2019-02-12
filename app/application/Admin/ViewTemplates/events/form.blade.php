@@ -72,7 +72,7 @@ $model = $this->getModel();
                 @lang('ADMIN_EVENTS_FIELD_PUBLISH_UP')
             </label>
             <input type="date" name="publish_up" id="publish_up"
-                   value="{{{ \Admin\Helper\Format::date($model->publish_up, 'Y-m-d') }}}"
+                   value="{{{ empty($model->publish_up) ? '' : \Admin\Helper\Format::date($model->publish_up, 'Y-m-d') }}}"
                    class="form-control" />
             <p class="akeeba-help-text">
                 @lang('ADMIN_EVENTS_FIELD_PUBLISH_UP_HELP')
