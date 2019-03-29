@@ -101,7 +101,7 @@ class Users extends DataModel
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true)
 			->select('COUNT(*)')
-			->from($db->qn('#__ak_users'))
+			->from($db->qn('#__users'))
 			->where($db->qn('username') . ' = ' . $db->q($data['username']))
 			->where('NOT(' . $db->qn('id') . ' = ' . $db->q($user->getId()) . ')');
 		$db->setQuery($query);
@@ -113,7 +113,7 @@ class Users extends DataModel
 
 		$query = $db->getQuery(true)
 			->select('COUNT(*)')
-			->from($db->qn('#__ak_users'))
+			->from($db->qn('#__users'))
 			->where($db->qn('email') . ' = ' . $db->q($data['email']))
 			->where('NOT(' . $db->qn('id') . ' = ' . $db->q($user->getId()) . ')');
 		$db->setQuery($query);
