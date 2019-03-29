@@ -52,12 +52,12 @@ $this->outputHTTPHeaders();
             <a href="https://vimeo.com/user52027932"><ion-icon name="logo-vimeo"></ion-icon></a>
         </p>
         <p class="links">
-            <a href="javascript:akeeba.System.modalWhatIsThis();"><?php echo \Awf\Text\Text::_('SITE_FOOTER_EXPLANATION_LINK') ?></a>
-			<a href="#"><?php echo \Awf\Text\Text::_('SITE_FOOTER_TERMSOFSERVICE') ?></a>
-			<a href="#"><?php echo \Awf\Text\Text::_('SITE_FOOTER_PRIVACY') ?></a>
+			<!--<a href="javascript:akeeba.System.modalWhatIsThis();"><?php echo \Awf\Text\Text::_('SITE_FOOTER_EXPLANATION_LINK') ?></a>-->
+			<a href="tos"><?php echo \Awf\Text\Text::_('SITE_FOOTER_TERMSOFSERVICE') ?></a>
+			<a href="privacy"><?php echo \Awf\Text\Text::_('SITE_FOOTER_PRIVACY') ?></a>
         </p>
         <p class="">
-             &copy; 2018 &ndash; <?php echo date('Y') ?> <a href="https://fosproductions.gr/">Fos Productions</a>. All legal rights reserved.
+             &copy; 2018 &ndash; <?php echo date('Y') ?> <a href="https://fosproductions.gr/">Fos Productions</a>. <?= Awf\Text\Text::_('SITE_FOOTER_ALLRIGHTSRESERVED') ?>
         </p>
 	    <?php if (defined('AKEEBADEBUG')): ?>
             <p class="small">

@@ -57,5 +57,25 @@
       "view": "thankyou",
       "task": "main"
     }
+  },
+  {
+    "path": "privacy",
+    "matchVars": {
+      "view": "legal"
+    },
+    "pushVars": {
+      "view": "legal",
+      "task": "privacy"
+    }
+  },
+  {
+    "path": "tos",
+    "matchVars": {
+      "view": "legal"
+    },
+    "pushVars": {
+      "view": "legal",
+      "task": "tos"
+    }
   }
 ]

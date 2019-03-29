@@ -40,7 +40,7 @@
 		<div class="checkbox">
 			<input type="checkbox" name="agreetotos" id="agreetotos" {{ $this->accept ? 'checked="checked"' : '' }}>
 			<label for="agreetotos">
-				@sprintf('SITE_MAIN_TOS_LABEL', 'tos.html', 'privacy.html')
+				@sprintf('SITE_MAIN_TOS_LABEL', 'tos', 'privacy')
 			</label>
 		</div>
 		<div>
