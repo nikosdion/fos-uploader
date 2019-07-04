@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @package    fos-uploader
+  ~ @copyright  Copyright (c) 2018-2019 Akeeba Ltd
+  ~ @license    GNU Affero GPL v3 or later
+  ~
+  ~ Developed by Akeeba Ltd <https://www.akeeba.com>.
+  ~
+  -->
+
 <schema>
     <!-- Metadata -->
     <meta>

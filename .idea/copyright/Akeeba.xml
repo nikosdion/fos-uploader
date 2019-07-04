@@ -1,0 +1,8 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="allowReplaceRegexp" value="@copyright" />
+    <option name="keyword" value="@copyright" />
+    <option name="notice" value="@package    fos-uploader&#10;@copyright  Copyright (c) 2018-&amp;#36;today.year Akeeba Ltd&#10;@license    GNU Affero GPL v3 or later&#10;&#10;Developed by Akeeba Ltd &lt;https://www.akeeba.com&gt;.&#10;" />
+    <option name="myName" value="Akeeba" />
+  </copyright>
+</component>

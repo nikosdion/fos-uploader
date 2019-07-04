@@ -1,7 +1,10 @@
-/**
- * @package     Solo
- * @copyright   Copyright (c)2014-2018 Nicholas K. Dionysopoulos / Akeeba Ltd
- * @license     GNU GPL version 3 or later
+/*
+ * @package    fos-uploader
+ * @copyright  Copyright (c) 2018-2019 Akeeba Ltd
+ * @license    GNU Affero GPL v3 or later
+ *
+ * Developed by Akeeba Ltd <https://www.akeeba.com>.
+ *
  */
 
 if (typeof akeeba === 'undefined')

@@ -1,12 +1,11 @@
 <?php
 /**
  * @package    fos-uploader
- * @copyright  Copyright (c)2018-2019 Akeeba Ltd & Fos Photography
- * @license    proprietary
+ * @copyright  Copyright (c) 2018-2019 Akeeba Ltd
+ * @license    GNU Affero GPL v3 or later
  *
  * Developed by Akeeba Ltd <https://www.akeeba.com>.
  *
- * This file is based on original work by Akeeba Ltd and is provided to FOS Photography under license.
  */
 
 namespace Admin\Application;
